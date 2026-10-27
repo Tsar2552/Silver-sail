@@ -1,0 +1,15 @@
+{
+  "_note": "ธาตุ 9 ธาตุ ชนะ x2 แพ้ x0.5 (ใช้ได้เมื่อรู้จุดอ่อนแล้วเท่านั้น) แสงกับมืดชนะกันและกัน ไม่มี x0.5",
+  "elements": [
+    {"id":"earth","th":"ดิน","deity":"ธุรี","strong":"lightning","weak":"wind"},
+    {"id":"water","th":"น้ำ","deity":"วารี","strong":"fire","weak":"lightning"},
+    {"id":"wind","th":"ลม","deity":"วายุ","strong":"earth","weak":"metal"},
+    {"id":"fire","th":"ไฟ","deity":"อัคนี","strong":"metal","weak":"water"},
+    {"id":"light","th":"แสง","deity":"เผือก","strong":"dark","weak":null},
+    {"id":"dark","th":"มืด","deity":"นิล","strong":"light","weak":null},
+    {"id":"lightning","th":"สายฟ้า","deity":"อัสนี","strong":"water","weak":"earth"},
+    {"id":"metal","th":"โลหะ","deity":"พสุธา","strong":"wind","weak":"fire"},
+    {"id":"ice","th":"น้ำแข็ง","deity":"-","strong":"wind","weak":"fire"}
+  ],
+  "rules": {"advantage":2.0,"disadvantage":0.5,"requires_known_weakness":true}
+}

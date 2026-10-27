@@ -1,0 +1,462 @@
+{
+ "_note": "อาหาร 41 ชนิด tags เทียบกับ can_eat / cannot_eat ของเผ่า เพื่อให้ทุกเผ่ามีของกิน",
+ "food": [
+  {
+   "id": "bread",
+   "th": "ขนมปังข้าวบาร์เลย์",
+   "price": 20,
+   "tags": [
+    "grain",
+    "normal_food"
+   ],
+   "effect": "ฟื้น HP 20 (กันหิว 1 วัน)",
+   "sold_at": "hot_hearth"
+  },
+  {
+   "id": "porridge",
+   "th": "โจ๊กข้าวโอ๊ต",
+   "price": 25,
+   "tags": [
+    "grain",
+    "normal_food"
+   ],
+   "effect": "ฟื้น HP 30",
+   "sold_at": "hot_hearth"
+  },
+  {
+   "id": "veg_stew",
+   "th": "ซุปผักรวม",
+   "price": 40,
+   "tags": [
+    "vegetable",
+    "normal_food"
+   ],
+   "effect": "ฟื้น HP 40",
+   "sold_at": "hot_hearth"
+  },
+  {
+   "id": "mushroom_soup",
+   "th": "ซุปเห็ดครีม",
+   "price": 60,
+   "tags": [
+    "mushroom",
+    "vegetable"
+   ],
+   "effect": "ฟื้น HP 50 +MANA 2",
+   "sold_at": "hot_hearth"
+  },
+  {
+   "id": "roast_meat",
+   "th": "เนื้อย่างเตาร้อน",
+   "price": 90,
+   "tags": [
+    "meat",
+    "normal_food"
+   ],
+   "effect": "ฟื้น HP 60 / P ATK +10% 1 ศึก",
+   "sold_at": "hot_hearth"
+  },
+  {
+   "id": "grilled_fish",
+   "th": "ปลาย่างเกลือ",
+   "price": 70,
+   "tags": [
+    "fish",
+    "normal_food"
+   ],
+   "effect": "ฟื้น HP 50 / SPD +5% 1 ศึก",
+   "sold_at": "harbor_market"
+  },
+  {
+   "id": "fish_chowder",
+   "th": "ซุปปลาข้นท่าเรือ",
+   "price": 80,
+   "tags": [
+    "fish",
+    "shellfish"
+   ],
+   "effect": "ฟื้น HP 60",
+   "sold_at": "harbor_market"
+  },
+  {
+   "id": "crab_boil",
+   "th": "ปูต้มเกลือ",
+   "price": 120,
+   "tags": [
+    "crab",
+    "shellfish",
+    "fish"
+   ],
+   "effect": "ฟื้น HP 70 / P DEF +10% 1 ศึก",
+   "sold_at": "harbor_market"
+  },
+  {
+   "id": "seaweed_salad",
+   "th": "สลัดสาหร่ายทะเล",
+   "price": 55,
+   "tags": [
+    "seaweed",
+    "vegetable"
+   ],
+   "effect": "ฟื้น MANA 6",
+   "sold_at": "harbor_market"
+  },
+  {
+   "id": "squid_skewer",
+   "th": "ปลาหมึกเสียบไม้",
+   "price": 65,
+   "tags": [
+    "fish",
+    "shellfish",
+    "small_aquatic"
+   ],
+   "effect": "ฟื้น HP 40 / LUCK +1 1 ศึก",
+   "sold_at": "guild_pub"
+  },
+  {
+   "id": "beer",
+   "th": "เบียร์หนวดหมึก",
+   "price": 30,
+   "tags": [
+    "beer"
+   ],
+   "effect": "กล้า: ต้านความกลัวหนึ่งครั้ง แต่ SPD −5% 1 ศึก",
+   "sold_at": "guild_pub"
+  },
+  {
+   "id": "honey_cake",
+   "th": "เค้กน้ำผึ้ง",
+   "price": 50,
+   "tags": [
+    "honey",
+    "grain",
+    "fruit"
+   ],
+   "effect": "ฟื้น HP 30 / WIT +1 1 วัน",
+   "sold_at": "hot_hearth"
+  },
+  {
+   "id": "fruit_tart",
+   "th": "ทาร์ตผลไม้",
+   "price": 55,
+   "tags": [
+    "fruit",
+    "grain"
+   ],
+   "effect": "ฟื้น MANA 5",
+   "sold_at": "hot_hearth"
+  },
+  {
+   "id": "apple",
+   "th": "แอปเปิลแดง",
+   "price": 10,
+   "tags": [
+    "fruit"
+   ],
+   "effect": "ฟื้น HP 10",
+   "sold_at": "harbor_market"
+  },
+  {
+   "id": "berries",
+   "th": "เบอร์รีป่า",
+   "price": 15,
+   "tags": [
+    "fruit"
+   ],
+   "effect": "ฟื้น HP 10 +MANA 1",
+   "sold_at": "outskirt_forest"
+  },
+  {
+   "id": "nut_mix",
+   "th": "ถั่วอบรวม",
+   "price": 25,
+   "tags": [
+    "nut",
+    "seed"
+   ],
+   "effect": "ฟื้น HP 15 / ไม่เน่า",
+   "sold_at": "harbor_market"
+  },
+  {
+   "id": "seed_bar",
+   "th": "แท่งธัญพืชเมล็ดทานตะวัน",
+   "price": 20,
+   "tags": [
+    "seed",
+    "grain"
+   ],
+   "effect": "ฟื้น HP 15 / ไม่เน่า",
+   "sold_at": "harbor_market"
+  },
+  {
+   "id": "boiled_egg",
+   "th": "ไข่ต้ม",
+   "price": 15,
+   "tags": [
+    "egg"
+   ],
+   "effect": "ฟื้น HP 20",
+   "sold_at": "hot_hearth"
+  },
+  {
+   "id": "omelet",
+   "th": "ไข่เจียวสมุนไพร",
+   "price": 45,
+   "tags": [
+    "egg",
+    "vegetable"
+   ],
+   "effect": "ฟื้น HP 35 +MANA 2",
+   "sold_at": "hot_hearth"
+  },
+  {
+   "id": "insect_snack",
+   "th": "แมลงทอดกรอบ",
+   "price": 20,
+   "tags": [
+    "insect"
+   ],
+   "effect": "ฟื้น HP 20 / SPD +5% 1 ศึก",
+   "sold_at": "guild_pub"
+  },
+  {
+   "id": "cricket_paste",
+   "th": "น้ำพริกจิ้งหรีด",
+   "price": 35,
+   "tags": [
+    "insect",
+    "small_animal"
+   ],
+   "effect": "ฟื้น HP 30",
+   "sold_at": "guild_pub"
+  },
+  {
+   "id": "rabbit_skewer",
+   "th": "กระต่ายเสียบไม้",
+   "price": 60,
+   "tags": [
+    "meat",
+    "small_animal"
+   ],
+   "effect": "ฟื้น HP 45",
+   "sold_at": "guild_pub"
+  },
+  {
+   "id": "raw_steak",
+   "th": "สเต็กดิบสด",
+   "price": 100,
+   "tags": [
+    "meat",
+    "raw_meat",
+    "raw_food"
+   ],
+   "effect": "ฟื้น HP 70 (เฉพาะผู้กินเนื้อดิบ)",
+   "sold_at": "hot_hearth"
+  },
+  {
+   "id": "blood_sausage",
+   "th": "ไส้กรอกเลือด",
+   "price": 90,
+   "tags": [
+    "meat",
+    "blood",
+    "cooked_meat"
+   ],
+   "effect": "ฟื้น HP 55 / ฟื้นเลือดผู้กินเลือด",
+   "sold_at": "hot_hearth"
+  },
+  {
+   "id": "blood_vial",
+   "th": "ขวดเลือดสัตว์สดแช่เย็น",
+   "price": 150,
+   "tags": [
+    "blood",
+    "life_force"
+   ],
+   "effect": "ฟื้น HP 80 (เหมาะกับแวมไพร์)",
+   "sold_at": "dark_alley"
+  },
+  {
+   "id": "carrion_jerky",
+   "th": "เนื้อแห้งหมักซาก",
+   "price": 40,
+   "tags": [
+    "carrion",
+    "meat"
+   ],
+   "effect": "ฟื้น HP 40 (ผู้กินซากไม่ติดโรค)",
+   "sold_at": "dark_alley"
+  },
+  {
+   "id": "root_roast",
+   "th": "รากไม้อบเตาถ่าน",
+   "price": 45,
+   "tags": [
+    "root",
+    "vegetable"
+   ],
+   "effect": "ฟื้น HP 45 / P DEF +5% 1 ศึก",
+   "sold_at": "hot_hearth"
+  },
+  {
+   "id": "leaf_tea",
+   "th": "ชาใบหนามเขียว",
+   "price": 30,
+   "tags": [
+    "leaf",
+    "water"
+   ],
+   "effect": "ฟื้น MANA 4",
+   "sold_at": "golden_leaf"
+  },
+  {
+   "id": "spring_water",
+   "th": "น้ำพุศักดิ์สิทธิ์",
+   "price": 10,
+   "tags": [
+    "water"
+   ],
+   "effect": "ฟื้น HP 5 / ล้างพิษอ่อน",
+   "sold_at": "dawn_church"
+  },
+  {
+   "id": "flower_syrup",
+   "th": "น้ำเชื่อมดอกไม้",
+   "price": 50,
+   "tags": [
+    "flower",
+    "honey"
+   ],
+   "effect": "ฟื้น MANA 7 (เผ่าภูต)",
+   "sold_at": "golden_leaf"
+  },
+  {
+   "id": "dragon_jerky",
+   "th": "เนื้อแห้งมังกรเฒ่า",
+   "price": 140,
+   "tags": [
+    "meat",
+    "egg"
+   ],
+   "effect": "ฟื้น HP 80 / P ATK +15% 1 ศึก",
+   "sold_at": "hot_hearth"
+  },
+  {
+   "id": "mushroom_skewer",
+   "th": "เห็ดเสียบย่าง",
+   "price": 40,
+   "tags": [
+    "mushroom"
+   ],
+   "effect": "ฟื้น HP 35",
+   "sold_at": "hot_hearth"
+  },
+  {
+   "id": "hard_cheese",
+   "th": "ชีสแข็งภูผา",
+   "price": 45,
+   "tags": [
+    "normal_food",
+    "egg"
+   ],
+   "effect": "ฟื้น HP 30 / ไม่เน่า",
+   "sold_at": "miner_village"
+  },
+  {
+   "id": "dwarf_bread",
+   "th": "ขนมปังหินคนแคระ",
+   "price": 35,
+   "tags": [
+    "grain",
+    "mushroom"
+   ],
+   "effect": "ฟื้น HP 40 / ไม่เน่า",
+   "sold_at": "miner_village"
+  },
+  {
+   "id": "tonic_broth",
+   "th": "น้ำซุปบำรุงกำลัง",
+   "price": 100,
+   "tags": [
+    "meat",
+    "vegetable"
+   ],
+   "effect": "ฟื้น HP 50 +MANA 4 / ต้านพิษ",
+   "sold_at": "golden_leaf"
+  },
+  {
+   "id": "mage_candy",
+   "th": "ลูกอมเวทหอมหวาน",
+   "price": 80,
+   "tags": [
+    "honey",
+    "fruit",
+    "flower"
+   ],
+   "effect": "M ATK +10% 1 ศึก",
+   "sold_at": "golden_leaf"
+  },
+  {
+   "id": "lucky_stew",
+   "th": "สตูว์นำโชค",
+   "price": 160,
+   "tags": [
+    "meat",
+    "vegetable",
+    "mushroom"
+   ],
+   "effect": "LUCK +2 1 วัน",
+   "sold_at": "hot_hearth"
+  },
+  {
+   "id": "feast_platter",
+   "th": "สำรับฉลองกิลด์",
+   "price": 300,
+   "tags": [
+    "meat",
+    "fish",
+    "fruit",
+    "grain",
+    "vegetable",
+    "normal_food"
+   ],
+   "effect": "ฟื้น HP 100 +MANA 10 / ทั้งปาร์ตี้ได้ 1 สิทธิ์ทอดซ้ำ",
+   "sold_at": "hot_hearth"
+  },
+  {
+   "id": "hardtack",
+   "th": "ขนมปังแข็งเดินทาง",
+   "price": 12,
+   "tags": [
+    "grain",
+    "normal_food",
+    "dry_hard_food"
+   ],
+   "effect": "ฟื้น HP 10 / ไม่เน่า (เผ่ากบกินไม่ได้)",
+   "sold_at": "harbor_market"
+  },
+  {
+   "id": "fried_fish_chip",
+   "th": "ปลาทอดชิ้นเล็ก",
+   "price": 30,
+   "tags": [
+    "small_fish",
+    "fish",
+    "greasy_food"
+   ],
+   "effect": "ฟื้น HP 30",
+   "sold_at": "harbor_market"
+  },
+  {
+   "id": "blood_wine",
+   "th": "ไวน์เลือดอายุร้อยปี",
+   "price": 220,
+   "tags": [
+    "blood",
+    "life_force"
+   ],
+   "effect": "ฟื้น HP 100 +MANA 5 (เหมาะกับแวมไพร์)",
+   "sold_at": "dark_alley"
+  }
+ ]
+}

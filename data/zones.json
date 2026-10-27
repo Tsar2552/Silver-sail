@@ -1,0 +1,32 @@
+{
+ "_note": "โซนเก็บวัตถุดิบในเกมหลัก (ใช้แทนแหล่งของโรงเรียน)",
+ "zones": [
+  "ancient_cave",
+  "beast_reserve_e",
+  "beast_reserve_n",
+  "beast_reserve_s",
+  "deep_forest_core",
+  "deep_forest_e",
+  "deep_forest_eclipse",
+  "deep_forest_n",
+  "deep_forest_s",
+  "deep_forest_w",
+  "dungeon",
+  "dungeon_deep",
+  "dungeon_old",
+  "meteor_crater",
+  "mine_deep",
+  "mine_mana",
+  "mine_mid",
+  "mine_night",
+  "mine_shallow",
+  "outskirt_forest",
+  "pine_forest_n",
+  "river",
+  "shop",
+  "underground_lake",
+  "volcano",
+  "windy_plain",
+  "workshop"
+ ]
+}

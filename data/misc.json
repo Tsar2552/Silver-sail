@@ -1,0 +1,16 @@
+{
+  "genders": ["ชาย","หญิง","อื่นๆ"],
+  "personalities": [
+    ["kind","ใจดี"],["selfish","เห็นแก่ตัว"],["hot_tempered","ใจร้อน"],["careful","รอบคอบ"],
+    ["cowardly","ขี้ขลาด"],["reckless","กล้าบ้าบิ่น"],["curious","ขี้สงสัย"],["honest","ซื่อสัตย์"],
+    ["cunning","เจ้าเล่ห์"],["devout","ศรัทธา"],["greedy","โลภ"],["calm","สงบนิ่ง"]
+  ],
+  "fears": [
+    ["dark","ความมืด"],["heights","ที่สูง"],["deep_water","น้ำลึก"],["fire","ไฟ"],["spiders","แมงมุมและแมลง"],
+    ["undead","อันเดด"],["tight_space","ที่แคบ"],["loud_noise","เสียงดังกะทันหัน"],["alone","ความโดดเดี่ยว"],["blood","เลือด"]
+  ],
+  "fear_exclude": {"mermaid":["deep_water"],"tentacus":["deep_water"],"vampire":["dark","blood"],"half_undead":["undead","blood"],"dragonborn":["fire"],"harpy":["heights"],"arachnid":["spiders","tight_space"],"werewolf":["blood"],"demonspawn":["fire"]},
+  "level_weights": [[1,60],[2,30],[3,10]],
+  "rerolls": 5,
+  "dc": {"very_easy":6,"easy":9,"medium":12,"hard":15,"very_hard":18,"near_impossible":21}
+}

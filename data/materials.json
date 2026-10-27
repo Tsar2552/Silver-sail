@@ -1,0 +1,1636 @@
+{
+ "_note": "วัตถุดิบ 100 ชิ้น: ore 1-50 (แร่/อัญมณี) herb 1-50 (วัตถุดิบยา). draft:true = ข้อมูลที่ยังไม่ได้รับจากผู้เล่น ฉันร่างให้ แก้ทับได้. dlc_src = แหล่งเดิมของโรงเรียน (ไว้ DLC)",
+ "materials": [
+  {
+   "id": "mire_worm_mucus",
+   "kind": "herb",
+   "no": 1,
+   "en": "Mire Worm Mucus",
+   "th": "เมือกหนอนบึง",
+   "rarity": "Common",
+   "value": 500,
+   "desc": "เมือกจากหนอนเวทมนตร์ ใช้เป็นตัวเพิ่มความหนืดในน้ำยา",
+   "zones": [
+    "deep_forest_s",
+    "shop"
+   ],
+   "dlc_src": "ทิศใต้ของป่ามืดทึบ หรือหาจากร้านดันเจี้ยน",
+   "draft": false,
+   "renamed": true
+  },
+  {
+   "id": "valerian_root",
+   "kind": "herb",
+   "no": 2,
+   "en": "Valerian Root",
+   "th": "รากวาเลเรียน",
+   "rarity": "Common",
+   "value": 500,
+   "desc": "รากไม้กลิ่นฉุน ใช้ในยากล่อมประสาท",
+   "zones": [
+    "pine_forest_n"
+   ],
+   "dlc_src": "",
+   "draft": true,
+   "renamed": false
+  },
+  {
+   "id": "moss_cap",
+   "kind": "herb",
+   "no": 3,
+   "en": "Moss Cap",
+   "th": "หมวกตะไคร่",
+   "rarity": "Common",
+   "value": 500,
+   "desc": "เห็ดตะไคร่ ใช้ในยาห้ามเลือดเบื้องต้น",
+   "zones": [
+    "outskirt_forest"
+   ],
+   "dlc_src": "",
+   "draft": true,
+   "renamed": false
+  },
+  {
+   "id": "bog_reed",
+   "kind": "herb",
+   "no": 4,
+   "en": "Bog Reed",
+   "th": "กกบึง",
+   "rarity": "Common",
+   "value": 500,
+   "desc": "ต้นกกที่ดูดน้ำยาได้ดี",
+   "zones": [
+    "deep_forest_s"
+   ],
+   "dlc_src": "",
+   "draft": true,
+   "renamed": false
+  },
+  {
+   "id": "sunpetal",
+   "kind": "herb",
+   "no": 5,
+   "en": "Sunpetal",
+   "th": "ดอกตะวัน",
+   "rarity": "Common",
+   "value": 600,
+   "desc": "กลีบดอกที่ให้ความอบอุ่นอ่อนๆ",
+   "zones": [
+    "outskirt_forest"
+   ],
+   "dlc_src": "",
+   "draft": true,
+   "renamed": false
+  },
+  {
+   "id": "ghost_thistle",
+   "kind": "herb",
+   "no": 6,
+   "en": "Ghost Thistle",
+   "th": "ผักเสี้ยนผี",
+   "rarity": "Uncommon",
+   "value": 1000,
+   "desc": "พืชหนามเรืองแสงจางๆ ใช้ในยาล่องหน",
+   "zones": [
+    "deep_forest_w"
+   ],
+   "dlc_src": "",
+   "draft": true,
+   "renamed": false
+  },
+  {
+   "id": "ember_pepper",
+   "kind": "herb",
+   "no": 7,
+   "en": "Ember Pepper",
+   "th": "พริกถ่านไฟ",
+   "rarity": "Uncommon",
+   "value": 1100,
+   "desc": "พริกที่เผาลิ้นสามวัน ใช้ในยาเสริมแรง",
+   "zones": [
+    "deep_forest_s"
+   ],
+   "dlc_src": "",
+   "draft": true,
+   "renamed": false
+  },
+  {
+   "id": "silvervine",
+   "kind": "herb",
+   "no": 8,
+   "en": "Silvervine",
+   "th": "เถาเงิน",
+   "rarity": "Uncommon",
+   "value": 1200,
+   "desc": "เถาวัลย์ที่แมวหลงรัก",
+   "zones": [
+    "pine_forest_n"
+   ],
+   "dlc_src": "",
+   "draft": true,
+   "renamed": false
+  },
+  {
+   "id": "nightshade_berry",
+   "kind": "herb",
+   "no": 9,
+   "en": "Nightshade Berry",
+   "th": "ผลไนท์เชด",
+   "rarity": "Uncommon",
+   "value": 1200,
+   "desc": "ผลไม้พิษอ่อนๆ ใช้ในยาสลบ",
+   "zones": [
+    "deep_forest_w"
+   ],
+   "dlc_src": "",
+   "draft": true,
+   "renamed": false
+  },
+  {
+   "id": "frost_lily",
+   "kind": "herb",
+   "no": 10,
+   "en": "Frost Lily",
+   "th": "ลิลลี่น้ำแข็ง",
+   "rarity": "Uncommon",
+   "value": 1300,
+   "desc": "ดอกไม้ที่บานเฉพาะอากาศหนาว",
+   "zones": [
+    "pine_forest_n"
+   ],
+   "dlc_src": "",
+   "draft": true,
+   "renamed": false
+  },
+  {
+   "id": "quicksilver_moss",
+   "kind": "herb",
+   "no": 11,
+   "en": "Quicksilver Moss",
+   "th": "ตะไคร่ปรอท",
+   "rarity": "Uncommon",
+   "value": 1400,
+   "desc": "ตะไคร่ที่ไหลได้ ใช้ในยาเร่งความเร็ว",
+   "zones": [
+    "beast_reserve_e"
+   ],
+   "dlc_src": "",
+   "draft": true,
+   "renamed": false
+  },
+  {
+   "id": "giant_spider_silk",
+   "kind": "herb",
+   "no": 12,
+   "en": "Giant Spider Silk",
+   "th": "ใยแมงมุมยักษ์",
+   "rarity": "Rare",
+   "value": 3000,
+   "desc": "ใยเหนียวหนึบ ใช้ในยาสมานแผลลึก",
+   "zones": [
+    "deep_forest_w"
+   ],
+   "dlc_src": "",
+   "draft": true,
+   "renamed": false
+  },
+  {
+   "id": "thornroot",
+   "kind": "herb",
+   "no": 13,
+   "en": "Thornroot",
+   "th": "รากหนามเหล็ก",
+   "rarity": "Rare",
+   "value": 3200,
+   "desc": "รากแข็งเป็นหนาม ใช้ในยาเสริมเกราะ",
+   "zones": [
+    "deep_forest_s"
+   ],
+   "dlc_src": "",
+   "draft": true,
+   "renamed": false
+  },
+  {
+   "id": "bloodmoss",
+   "kind": "herb",
+   "no": 14,
+   "en": "Bloodmoss",
+   "th": "ตะไคร่เลือด",
+   "rarity": "Rare",
+   "value": 3300,
+   "desc": "ตะไคร่แดงใช้ในยาเพิ่มเลือด",
+   "zones": [
+    "deep_forest_core"
+   ],
+   "dlc_src": "",
+   "draft": true,
+   "renamed": false
+  },
+  {
+   "id": "windflower",
+   "kind": "herb",
+   "no": 15,
+   "en": "Windflower",
+   "th": "ดอกลมพัด",
+   "rarity": "Rare",
+   "value": 3500,
+   "desc": "ดอกไม้หมุนตามลม ใช้ในยาเพิ่มความเร็ว",
+   "zones": [
+    "beast_reserve_e"
+   ],
+   "dlc_src": "",
+   "draft": true,
+   "renamed": false
+  },
+  {
+   "id": "serpent_scale_dust",
+   "kind": "herb",
+   "no": 16,
+   "en": "Serpent Scale Dust",
+   "th": "ผงเกล็ดงู",
+   "rarity": "Rare",
+   "value": 3600,
+   "desc": "ผงละเอียดจากเกล็ดงูใหญ่ ใช้ในยาต้านพิษ",
+   "zones": [
+    "deep_forest_s"
+   ],
+   "dlc_src": "",
+   "draft": true,
+   "renamed": false
+  },
+  {
+   "id": "dusk_lotus",
+   "kind": "herb",
+   "no": 17,
+   "en": "Dusk Lotus",
+   "th": "บัวสนธยา",
+   "rarity": "Rare",
+   "value": 3800,
+   "desc": "บัวที่บานเฉพาะยามเย็น ใช้ในยาสงบจิต",
+   "zones": [
+    "underground_lake"
+   ],
+   "dlc_src": "",
+   "draft": true,
+   "renamed": false
+  },
+  {
+   "id": "troll_sweat",
+   "kind": "herb",
+   "no": 18,
+   "en": "Troll Sweat",
+   "th": "เหงื่อโทรลล์",
+   "rarity": "Rare",
+   "value": 3900,
+   "desc": "ของเหม็นแต่ฟื้นฟูแผลเร็ว",
+   "zones": [
+    "beast_reserve_s"
+   ],
+   "dlc_src": "",
+   "draft": true,
+   "renamed": false
+  },
+  {
+   "id": "pixie_dust",
+   "kind": "herb",
+   "no": 19,
+   "en": "Pixie Dust",
+   "th": "ผงภูตจิ๋ว",
+   "rarity": "Rare",
+   "value": 4200,
+   "desc": "ผงเรืองแสง ใช้ในยาลอยตัว",
+   "zones": [
+    "pine_forest_n"
+   ],
+   "dlc_src": "",
+   "draft": true,
+   "renamed": false
+  },
+  {
+   "id": "griffin_egg_shell",
+   "kind": "herb",
+   "no": 20,
+   "en": "Griffin Egg Shell",
+   "th": "เปลือกไข่กริฟฟอน",
+   "rarity": "Rare",
+   "value": 4300,
+   "desc": "เปลือกแข็งใช้ในยาเสริมกำลังขา",
+   "zones": [
+    "beast_reserve_n"
+   ],
+   "dlc_src": "",
+   "draft": true,
+   "renamed": false
+  },
+  {
+   "id": "mandrake_root",
+   "kind": "herb",
+   "no": 21,
+   "en": "Mandrake Root",
+   "th": "รากแมนเดรก",
+   "rarity": "Rare",
+   "value": 3200,
+   "desc": "รากพืชเวทที่มีพลังชีวิตสูง ใช้ในยาฟื้นฟูและยาถอนคำสาปบางชนิด",
+   "zones": [
+    "deep_forest_n",
+    "shop"
+   ],
+   "dlc_src": "ทิศเหนือของป่าต้องห้าม หรือหาจากร้านดันเจี้ยน",
+   "draft": false,
+   "renamed": false
+  },
+  {
+   "id": "phoenix_feather_dust",
+   "kind": "herb",
+   "no": 22,
+   "en": "Phoenix Feather Dust",
+   "th": "ผงขนนกฟีนิกซ์",
+   "rarity": "Epic",
+   "value": 8000,
+   "desc": "ผงจากขนนกฟีนิกซ์ มีพลังฟื้นฟูและไฟศักดิ์สิทธิ์",
+   "zones": [
+    "deep_forest_e"
+   ],
+   "dlc_src": "ทิศตะวันออกของป่าต้องห้าม",
+   "draft": false,
+   "renamed": false
+  },
+  {
+   "id": "dragon_liver",
+   "kind": "herb",
+   "no": 23,
+   "en": "Dragon Liver",
+   "th": "ตับมังกร",
+   "rarity": "Epic",
+   "value": 8500,
+   "desc": "อวัยวะมังกรที่ใช้ในยาพลังสูงและยาเสริมพลังเวท",
+   "zones": [
+    "deep_forest_w"
+   ],
+   "dlc_src": "ทิศตะวันตกของป่าต้องห้าม",
+   "draft": false,
+   "renamed": false
+  },
+  {
+   "id": "dragon_blood_drop",
+   "kind": "herb",
+   "no": 24,
+   "en": "Dragon Blood Drop",
+   "th": "หยดเลือดมังกร",
+   "rarity": "Epic",
+   "value": 9000,
+   "desc": "เลือดมังกรที่มีพลังเวทมหาศาล ใช้ในยาระดับสูง",
+   "zones": [
+    "deep_forest_s"
+   ],
+   "dlc_src": "ทิศใต้ของป่าต้องห้าม",
+   "draft": false,
+   "renamed": false
+  },
+  {
+   "id": "basilisk_fang_powder",
+   "kind": "herb",
+   "no": 25,
+   "en": "Basilisk Fang Powder",
+   "th": "ผงเขี้ยวบาซิลิสก์",
+   "rarity": "Epic",
+   "value": 9500,
+   "desc": "ผงจากเขี้ยวบาซิลิสก์ มีพิษรุนแรง ใช้ในยาพิษขั้นสูง",
+   "zones": [
+    "deep_forest_n"
+   ],
+   "dlc_src": "ทิศเหนือของป่าต้องห้าม",
+   "draft": false,
+   "renamed": false
+  },
+  {
+   "id": "unicorn_hair",
+   "kind": "herb",
+   "no": 26,
+   "en": "Unicorn Hair",
+   "th": "เส้นขนยูนิคอร์น",
+   "rarity": "Epic",
+   "value": 9000,
+   "desc": "เส้นขนเวทบริสุทธิ์ ใช้ในยาป้องกันและยารักษา",
+   "zones": [
+    "beast_reserve_e"
+   ],
+   "dlc_src": "ทิศตะวันออกของเขตอนุรักษ์ของโรงเรียน",
+   "draft": false,
+   "renamed": false
+  },
+  {
+   "id": "moon_fawn_milk",
+   "kind": "herb",
+   "no": 27,
+   "en": "Moon Fawn Milk",
+   "th": "นมลูกกวางจันทร์",
+   "rarity": "Rare",
+   "value": 3500,
+   "desc": "นมจากสัตว์เวทกลางคืน ใช้ในยาที่เกี่ยวกับพลังจันทร์",
+   "zones": [
+    "pine_forest_n",
+    "shop"
+   ],
+   "dlc_src": "ทิศเหนือของโซนต้นสนของโรงเรียน หรือหาจากร้านดันเจี้ยน",
+   "draft": false,
+   "renamed": true
+  },
+  {
+   "id": "giant_spider_venom",
+   "kind": "herb",
+   "no": 28,
+   "en": "Giant Spider Venom",
+   "th": "พิษแมงมุมยักษ์",
+   "rarity": "Epic",
+   "value": 10000,
+   "desc": "พิษแมงมุมยักษ์ ใช้ในยาพิษและยาเวทมืดบางชนิด",
+   "zones": [
+    "deep_forest_w"
+   ],
+   "dlc_src": "ทิศตะวันตกของป่าต้องห้าม",
+   "draft": false,
+   "renamed": true
+  },
+  {
+   "id": "horned_beast_shard",
+   "kind": "herb",
+   "no": 29,
+   "en": "Horned Beast Shard",
+   "th": "เศษเขาอสูรเขาคู่",
+   "rarity": "Epic",
+   "value": 11000,
+   "desc": "เศษเขาสัตว์เวทที่มีพลังเวทดิบสูง",
+   "zones": [
+    "deep_forest_s"
+   ],
+   "dlc_src": "ทิศใต้ของป่าต้องห้าม",
+   "draft": false,
+   "renamed": true
+  },
+  {
+   "id": "gryphon_steed_feather",
+   "kind": "herb",
+   "no": 30,
+   "en": "Gryphon-Steed Feather",
+   "th": "ขนม้าปีกกริฟฟอน",
+   "rarity": "Rare",
+   "value": 4000,
+   "desc": "ขนนกสัตว์เวทที่ใช้ในยาที่เพิ่มความคล่องตัวและโชค",
+   "zones": [
+    "beast_reserve_n",
+    "shop"
+   ],
+   "dlc_src": "ทิศเหนือของเขตอนุรักษ์ของโรงเรียน หรือหาจากร้านดันเจี้ยน",
+   "draft": false,
+   "renamed": true
+  },
+  {
+   "id": "phoenix_tear",
+   "kind": "herb",
+   "no": 31,
+   "en": "Phoenix Tear",
+   "th": "น้ำตาฟีนิกซ์",
+   "rarity": "Legendary",
+   "value": 25000,
+   "desc": "น้ำตาของฟีนิกซ์ มีพลังรักษาสูงสุด สามารถถอนพิษร้ายแรงได้",
+   "zones": [
+    "deep_forest_n"
+   ],
+   "dlc_src": "ทิศเหนือของป่าต้องห้าม",
+   "draft": false,
+   "renamed": false
+  },
+  {
+   "id": "basilisk_venom",
+   "kind": "herb",
+   "no": 32,
+   "en": "Basilisk Venom",
+   "th": "พิษบาซิลิสก์",
+   "rarity": "Legendary",
+   "value": 30000,
+   "desc": "พิษของงูยักษ์ในตำนาน สามารถทำลายเวทมนตร์และสิ่งมีชีวิตได้รุนแรง",
+   "zones": [
+    "deep_forest_s"
+   ],
+   "dlc_src": "ทิศใต้ของป่าต้องห้าม",
+   "draft": false,
+   "renamed": false
+  },
+  {
+   "id": "thunderbird_feather",
+   "kind": "herb",
+   "no": 33,
+   "en": "Thunderbird Feather",
+   "th": "ขนธันเดอร์เบิร์ด",
+   "rarity": "Legendary",
+   "value": 24000,
+   "desc": "ขนนกของสัตว์เวทสายฟ้า ใช้ในยาที่เพิ่มพลังเวทสายฟ้า",
+   "zones": [
+    "deep_forest_e"
+   ],
+   "dlc_src": "ทิศตะวันออกของป่าต้องห้าม",
+   "draft": false,
+   "renamed": false
+  },
+  {
+   "id": "kelpie_hair",
+   "kind": "herb",
+   "no": 34,
+   "en": "Kelpie Hair",
+   "th": "เส้นขนเคลพี",
+   "rarity": "Epic",
+   "value": 12000,
+   "desc": "เส้นขนสัตว์เวทแห่งสายน้ำ ใช้ในยาที่เกี่ยวกับเวทน้ำ",
+   "zones": [
+    "deep_forest_w",
+    "shop"
+   ],
+   "dlc_src": "ทิศตะวันตกของป่ามืดทึบ หรือหาจากร้านดันเจี้ยน",
+   "draft": false,
+   "renamed": false
+  },
+  {
+   "id": "wraith_essence",
+   "kind": "herb",
+   "no": 35,
+   "en": "Wraith Essence",
+   "th": "แก่นวิญญาณเร่ร่อน",
+   "rarity": "Legendary",
+   "value": 32000,
+   "desc": "แก่นพลังเวทมืดที่ใช้ในยาคำสาปหรือยาเวทมืดขั้นสูง",
+   "zones": [
+    "deep_forest_n"
+   ],
+   "dlc_src": "ทิศเหนือของป่าต้องห้าม",
+   "draft": false,
+   "renamed": true
+  },
+  {
+   "id": "moon_phoenix_ash",
+   "kind": "herb",
+   "no": 36,
+   "en": "Moon Phoenix Ash",
+   "th": "เถ้าฟีนิกซ์จันทรา",
+   "rarity": "Epic",
+   "value": 13000,
+   "desc": "เถ้าถ่านจากการเกิดใหม่ของฟีนิกซ์ ใช้ในยาฟื้นฟูพลังเวท",
+   "zones": [
+    "pine_forest_n"
+   ],
+   "dlc_src": "ทิศเหนือของโซนต้นสนของโรงเรียน",
+   "draft": false,
+   "renamed": false
+  },
+  {
+   "id": "leviathan_scale_powder",
+   "kind": "herb",
+   "no": 37,
+   "en": "Leviathan Scale Powder",
+   "th": "ผงเกล็ดเลวีอาธาน",
+   "rarity": "Legendary",
+   "value": 28000,
+   "desc": "ผงจากเกล็ดสัตว์ทะเลยักษ์ ใช้ในยาป้องกันเวทและพลังธาตุน้ำ",
+   "zones": [
+    "deep_forest_w"
+   ],
+   "dlc_src": "ทิศตะวันตกของป่าต้องห้าม",
+   "draft": false,
+   "renamed": false
+  },
+  {
+   "id": "chimera_heart_fragment",
+   "kind": "herb",
+   "no": 38,
+   "en": "Chimera Heart Fragment",
+   "th": "เศษหัวใจไคเมร่า",
+   "rarity": "Legendary",
+   "value": 30000,
+   "desc": "เศษหัวใจสัตว์ผสมในตำนาน ใช้ในยาพลังเวทมหาศาล",
+   "zones": [
+    "deep_forest_s"
+   ],
+   "dlc_src": "ทิศใต้ของป่าต้องห้าม",
+   "draft": false,
+   "renamed": false
+  },
+  {
+   "id": "ancient_mandrake_core",
+   "kind": "herb",
+   "no": 39,
+   "en": "Ancient Mandrake Core",
+   "th": "แก่นแมนเดรกโบราณ",
+   "rarity": "Epic",
+   "value": 15000,
+   "desc": "แก่นของแมนเดรกที่มีอายุมาก ใช้ในยาถอนคำสาประดับสูง",
+   "zones": [
+    "deep_forest_n"
+   ],
+   "dlc_src": "ทิศเหนือของป่าต้องห้าม",
+   "draft": false,
+   "renamed": false
+  },
+  {
+   "id": "starfall_herb",
+   "kind": "herb",
+   "no": 40,
+   "en": "Starfall Herb",
+   "th": "สมุนไพรดาวตก",
+   "rarity": "Epic",
+   "value": 14000,
+   "desc": "พืชที่เติบโตจากพื้นที่ดาวตก มีพลังเวทจักรวาล",
+   "zones": [
+    "deep_forest_e"
+   ],
+   "dlc_src": "ทิศตะวันออกของป่าต้องห้าม",
+   "draft": false,
+   "renamed": false
+  },
+  {
+   "id": "true_unicorn_blood",
+   "kind": "herb",
+   "no": 41,
+   "en": "True Unicorn Blood",
+   "th": "เลือดยูนิคอร์นบริสุทธิ์",
+   "rarity": "Legendary",
+   "value": 35000,
+   "desc": "เลือดของยูนิคอร์นแท้ มีพลังชีวิตมหาศาล ใช้ในยาฟื้นฟูขั้นสูง",
+   "zones": [
+    "beast_reserve_n"
+   ],
+   "dlc_src": "ทิศเหนือของเขตอนุรักษ์ของโรงเรียน",
+   "draft": false,
+   "renamed": false
+  },
+  {
+   "id": "phoenix_heart_ember",
+   "kind": "herb",
+   "no": 42,
+   "en": "Phoenix Heart Ember",
+   "th": "ถ่านหัวใจฟีนิกซ์",
+   "rarity": "Legendary",
+   "value": 38000,
+   "desc": "เศษถ่านจากหัวใจฟีนิกซ์ที่เผาไหม้ไม่ดับ ใช้ในยาที่เพิ่มพลังเวทไฟ",
+   "zones": [
+    "deep_forest_e"
+   ],
+   "dlc_src": "ทิศตะวันออกของป่าต้องห้าม",
+   "draft": false,
+   "renamed": false
+  },
+  {
+   "id": "basilisk_eye_fluid",
+   "kind": "herb",
+   "no": 43,
+   "en": "Basilisk Eye Fluid",
+   "th": "ของเหลวจากตาบาซิลิสก์",
+   "rarity": "Legendary",
+   "value": 40000,
+   "desc": "ของเหลวจากดวงตาบาซิลิสก์ ใช้ในยาที่เกี่ยวกับคำสาปและพิษร้ายแรง",
+   "zones": [
+    "deep_forest_s"
+   ],
+   "dlc_src": "ทิศใต้ของป่าต้องห้าม",
+   "draft": false,
+   "renamed": false
+  },
+  {
+   "id": "dragon_heartstring_essence",
+   "kind": "herb",
+   "no": 44,
+   "en": "Dragon Heartstring Essence",
+   "th": "แก่นเอ็นหัวใจมังกร",
+   "rarity": "Legendary",
+   "value": 42000,
+   "desc": "สารสกัดจากเอ็นหัวใจมังกร มีพลังเวทมหาศาล",
+   "zones": [
+    "deep_forest_w"
+   ],
+   "dlc_src": "ทิศตะวันตกของป่าต้องห้าม",
+   "draft": false,
+   "renamed": false
+  },
+  {
+   "id": "eternal_mandrake_soul",
+   "kind": "herb",
+   "no": 45,
+   "en": "Eternal Mandrake Soul",
+   "th": "วิญญาณแมนเดรกนิรันดร์",
+   "rarity": "Relic",
+   "value": 90000,
+   "desc": "แก่นพลังชีวิตของแมนเดรกโบราณ ใช้ในยาถอนคำสาประดับสูงสุด",
+   "zones": [
+    "deep_forest_n"
+   ],
+   "dlc_src": "ทิศเหนือของป่าต้องห้าม",
+   "draft": false,
+   "renamed": false
+  },
+  {
+   "id": "primordial_dragon_essence",
+   "kind": "herb",
+   "no": 46,
+   "en": "Primordial Dragon Essence",
+   "th": "แก่นมังกรดึกดำบรรพ์",
+   "rarity": "Relic",
+   "value": 100000,
+   "desc": "พลังเวทดิบของมังกรยุคแรก ใช้ในยาที่เพิ่มพลังเวทมหาศาล",
+   "zones": [
+    "deep_forest_e"
+   ],
+   "dlc_src": "ทิศตะวันออกของป่าต้องห้าม",
+   "draft": false,
+   "renamed": false
+  },
+  {
+   "id": "philosopher_s_stone_dust",
+   "kind": "herb",
+   "no": 47,
+   "en": "Philosopher’s Stone Dust",
+   "th": "ผงศิลาอาถรรพ์",
+   "rarity": "Relic",
+   "value": 120000,
+   "desc": "ผงจากศิลาในตำนานที่เกี่ยวข้องกับการเล่นแร่แปรธาตุ",
+   "zones": [
+    "deep_forest_n"
+   ],
+   "dlc_src": "ทิศเหนือของป่าต้องห้าม",
+   "draft": false,
+   "renamed": false
+  },
+  {
+   "id": "abyssal_basilisk_core",
+   "kind": "herb",
+   "no": 48,
+   "en": "Abyssal Basilisk Core",
+   "th": "แก่นบาซิลิสก์แห่งอเวจี",
+   "rarity": "Relic",
+   "value": 130000,
+   "desc": "แก่นพลังจากบาซิลิสก์โบราณ ใช้ในยาพิษระดับตำนาน",
+   "zones": [
+    "deep_forest_s"
+   ],
+   "dlc_src": "ทิศใต้ของป่าต้องห้าม",
+   "draft": false,
+   "renamed": false
+  },
+  {
+   "id": "celestial_phoenix_core",
+   "kind": "herb",
+   "no": 49,
+   "en": "Celestial Phoenix Core",
+   "th": "แก่นฟีนิกซ์สวรรค์",
+   "rarity": "Relic",
+   "value": 140000,
+   "desc": "แก่นพลังฟีนิกซ์ระดับสูงสุด ใช้ในยาฟื้นคืนพลังเวทขั้นสูงสุด",
+   "zones": [
+    "deep_forest_e"
+   ],
+   "dlc_src": "ทิศตะวันออกของป่าต้องห้าม",
+   "draft": false,
+   "renamed": false
+  },
+  {
+   "id": "elixir_seed_of_creation",
+   "kind": "herb",
+   "no": 50,
+   "en": "Elixir Seed of Creation",
+   "th": "เมล็ดกำเนิดเอลิกเซอร์",
+   "rarity": "Relic",
+   "value": 200000,
+   "desc": "เมล็ดพลังเวทโบราณ เชื่อว่าเป็นต้นกำเนิดของน้ำยาเวทมนตร์ทั้งหมด",
+   "zones": [
+    "deep_forest_n"
+   ],
+   "dlc_src": "ทิศเหนือของป่าต้องห้าม",
+   "draft": false,
+   "renamed": false
+  },
+  {
+   "id": "steel",
+   "kind": "ore",
+   "no": 1,
+   "en": "Steel",
+   "th": "เหล็กกล้า",
+   "rarity": "Common",
+   "value": 500,
+   "desc": "โลหะพื้นฐานสำหรับสร้างอาวุธและเกราะของนักเรียน",
+   "zones": [
+    "mine_shallow",
+    "shop"
+   ],
+   "dlc_src": "เหมืองชั้นต้นๆหรือร้านดันเจี้ยน",
+   "draft": false,
+   "renamed": false
+  },
+  {
+   "id": "copper",
+   "kind": "ore",
+   "no": 2,
+   "en": "Copper",
+   "th": "ทองแดง",
+   "rarity": "Common",
+   "value": 500,
+   "desc": "โลหะที่นำพลังเวทได้ดี มักใช้ในอุปกรณ์เวท",
+   "zones": [
+    "mine_shallow",
+    "shop"
+   ],
+   "dlc_src": "เหมืองชั้นต้นๆหรือร้านดันเจี้ยน",
+   "draft": false,
+   "renamed": false
+  },
+  {
+   "id": "tin",
+   "kind": "ore",
+   "no": 3,
+   "en": "Tin",
+   "th": "ดีบุก",
+   "rarity": "Common",
+   "value": 500,
+   "desc": "ใช้เป็นส่วนผสมของโลหะผสม",
+   "zones": [
+    "mine_shallow",
+    "shop"
+   ],
+   "dlc_src": "เหมืองชั้นต้นๆหรือร้านดันเจี้ยน",
+   "draft": false,
+   "renamed": false
+  },
+  {
+   "id": "bronze",
+   "kind": "ore",
+   "no": 4,
+   "en": "Bronze",
+   "th": "สำริด",
+   "rarity": "Common",
+   "value": 600,
+   "desc": "โลหะผสมระหว่าง Copper และ Tin ใช้ทำอาวุธพื้นฐาน",
+   "zones": [
+    "workshop",
+    "shop"
+   ],
+   "dlc_src": "การหลอมในห้องประดิษฐ์และวิจัยหรือร้านดันเจี้ยน",
+   "draft": false,
+   "renamed": false
+  },
+  {
+   "id": "granite",
+   "kind": "ore",
+   "no": 5,
+   "en": "Granite",
+   "th": "หินแกรนิต",
+   "rarity": "Common",
+   "value": 500,
+   "desc": "หินแข็งที่ใช้ทำโล่หรือโครงสร้างอุปกรณ์",
+   "zones": [
+    "mine_shallow",
+    "shop"
+   ],
+   "dlc_src": "เหมืองชั้นต้นๆหรือร้านดันเจี้ยน",
+   "draft": false,
+   "renamed": false
+  },
+  {
+   "id": "silver",
+   "kind": "ore",
+   "no": 6,
+   "en": "Silver",
+   "th": "เงินบริสุทธิ์",
+   "rarity": "Uncommon",
+   "value": 1200,
+   "desc": "โลหะศักดิ์สิทธิ์ที่มีผลต่อแวมไพร์และแวร์วูฟ",
+   "zones": [
+    "workshop",
+    "shop"
+   ],
+   "dlc_src": "นำsteelไปปลุเสกหรือร้านดันเจี้ยน",
+   "draft": false,
+   "renamed": false
+  },
+  {
+   "id": "gold",
+   "kind": "ore",
+   "no": 7,
+   "en": "Gold",
+   "th": "ทองคำ",
+   "rarity": "Uncommon",
+   "value": 1500,
+   "desc": "ใช้สร้างเครื่องรางและเครื่องประดับเวท",
+   "zones": [
+    "river",
+    "shop"
+   ],
+   "dlc_src": "ได้หาจากบริเวณแม่น้ำหรือร้านดันเจี้ยน",
+   "draft": false,
+   "renamed": false
+  },
+  {
+   "id": "obsidian",
+   "kind": "ore",
+   "no": 8,
+   "en": "Obsidian",
+   "th": "ออบซิเดียน",
+   "rarity": "Uncommon",
+   "value": 1000,
+   "desc": "หินภูเขาไฟที่คมมาก ใช้ทำใบมีดบางชนิด",
+   "zones": [
+    "volcano",
+    "shop"
+   ],
+   "dlc_src": "เขตภูเขาไฟหรือร้านดันเจี้ยน",
+   "draft": false,
+   "renamed": false
+  },
+  {
+   "id": "crystal",
+   "kind": "ore",
+   "no": 9,
+   "en": "Crystal",
+   "th": "คริสตัลเวท",
+   "rarity": "Uncommon",
+   "value": 1200,
+   "desc": "คริสตัลพื้นฐานสำหรับเก็บพลังมานา",
+   "zones": [
+    "mine_mid",
+    "shop"
+   ],
+   "dlc_src": "เหมืองชั้นกลางหรือร้านดันเจี้ยน",
+   "draft": false,
+   "renamed": false
+  },
+  {
+   "id": "lava_stone",
+   "kind": "ore",
+   "no": 10,
+   "en": "Lava Stone",
+   "th": "หินลาวา",
+   "rarity": "Uncommon",
+   "value": 1200,
+   "desc": "หินที่ยังมีพลังไฟสะสมอยู่",
+   "zones": [
+    "volcano",
+    "shop"
+   ],
+   "dlc_src": "เขตภูเขาไฟหรือร้านดันเจี้ยน",
+   "draft": false,
+   "renamed": false
+  },
+  {
+   "id": "platinum",
+   "kind": "ore",
+   "no": 11,
+   "en": "Platinum",
+   "th": "แพลทินัม",
+   "rarity": "Rare",
+   "value": 6000,
+   "desc": "โลหะที่ทนต่อพลังเวทสูง",
+   "zones": [
+    "mine_mid",
+    "shop"
+   ],
+   "dlc_src": "เหมืองชั้นกลางหรือร้านดันเจี้ยน",
+   "draft": false,
+   "renamed": false
+  },
+  {
+   "id": "black_steel",
+   "kind": "ore",
+   "no": 12,
+   "en": "Black Steel",
+   "th": "เหล็กดำ",
+   "rarity": "Rare",
+   "value": 5500,
+   "desc": "โลหะที่ดูดซับเวทมืด",
+   "zones": [
+    "dungeon",
+    "shop"
+   ],
+   "dlc_src": "ดันเจี้ยนหรือร้านดันเจี้ยน",
+   "draft": false,
+   "renamed": false
+  },
+  {
+   "id": "blood_iron",
+   "kind": "ore",
+   "no": 13,
+   "en": "Blood Iron",
+   "th": "เหล็กโลหิต",
+   "rarity": "Rare",
+   "value": 6000,
+   "desc": "โลหะสีแดงที่เพิ่มพลังโจมตี",
+   "zones": [
+    "dungeon_old"
+   ],
+   "dlc_src": "ดันเจี้ยนที่มีการต่อสู้มาอย่างยาวนาน",
+   "draft": false,
+   "renamed": false
+  },
+  {
+   "id": "shadow_stone",
+   "kind": "ore",
+   "no": 14,
+   "en": "Shadow Stone",
+   "th": "หินเงามืด",
+   "rarity": "Rare",
+   "value": 5000,
+   "desc": "หินที่เก็บพลังเงา",
+   "zones": [
+    "mine_night",
+    "shop"
+   ],
+   "dlc_src": "เหมืองโดยเก็บเกี่ยวได้ในยามกลางคืนหรือร้านดันเจี้ยน",
+   "draft": false,
+   "renamed": false
+  },
+  {
+   "id": "frost_silver",
+   "kind": "ore",
+   "no": 15,
+   "en": "Frost Silver",
+   "th": "เงินน้ำแข็ง",
+   "rarity": "Rare",
+   "value": 6200,
+   "desc": "โลหะเย็นจัดที่ไม่ละลาย ใช้ทำอาวุธธาตุน้ำแข็ง",
+   "zones": [
+    "mine_deep"
+   ],
+   "dlc_src": "",
+   "draft": true,
+   "renamed": false
+  },
+  {
+   "id": "thunder_ore",
+   "kind": "ore",
+   "no": 16,
+   "en": "Thunder Ore",
+   "th": "แร่สายฟ้า",
+   "rarity": "Rare",
+   "value": 6500,
+   "desc": "แร่ที่สะสมพลังสายฟ้า ใช้ทำอาวุธสายฟ้า",
+   "zones": [
+    "mine_deep",
+    "shop"
+   ],
+   "dlc_src": "เหมืองลึกประจำธาตุหรือร้านดันเจี้ยน",
+   "draft": false,
+   "renamed": false
+  },
+  {
+   "id": "sapphire",
+   "kind": "ore",
+   "no": 17,
+   "en": "Sapphire",
+   "th": "ไพลิน",
+   "rarity": "Rare",
+   "value": 7000,
+   "desc": "อัญมณีเวทที่ช่วยเพิ่มพลังเวทน้ำและน้ำแข็ง",
+   "zones": [
+    "mine_deep",
+    "shop"
+   ],
+   "dlc_src": "เหมืองลึกหรือร้านดันเจี้ยน",
+   "draft": false,
+   "renamed": false
+  },
+  {
+   "id": "ruby",
+   "kind": "ore",
+   "no": 18,
+   "en": "Ruby",
+   "th": "ทับทิม",
+   "rarity": "Rare",
+   "value": 7000,
+   "desc": "อัญมณีที่เก็บพลังไฟ",
+   "zones": [
+    "mine_deep",
+    "shop"
+   ],
+   "dlc_src": "เหมืองลึกหรือร้านดันเจี้ยน",
+   "draft": false,
+   "renamed": false
+  },
+  {
+   "id": "emerald",
+   "kind": "ore",
+   "no": 19,
+   "en": "Emerald",
+   "th": "มรกต",
+   "rarity": "Rare",
+   "value": 7000,
+   "desc": "อัญมณีที่เกี่ยวข้องกับพลังธรรมชาติและการรักษา",
+   "zones": [
+    "mine_deep",
+    "shop"
+   ],
+   "dlc_src": "เหมืองลึกประจำธาตุหรือร้านดันเจี้ยน",
+   "draft": false,
+   "renamed": false
+  },
+  {
+   "id": "onyx_ore",
+   "kind": "ore",
+   "no": 20,
+   "en": "Onyx Ore",
+   "th": "แร่ออนิกซ์",
+   "rarity": "Rare",
+   "value": 6500,
+   "desc": "แร่สีดำที่ใช้ทำอุปกรณ์เวทเงา",
+   "zones": [
+    "deep_forest_core",
+    "shop"
+   ],
+   "dlc_src": "ป่าต้องห้ามของโรงเรียนหรือร้านดันเจี้ยน",
+   "draft": false,
+   "renamed": false
+  },
+  {
+   "id": "mana_crystal",
+   "kind": "ore",
+   "no": 21,
+   "en": "Mana Crystal",
+   "th": "คริสตัลมานา",
+   "rarity": "Rare",
+   "value": 7500,
+   "desc": "คริสตัลที่เก็บพลังมานาจำนวนมาก",
+   "zones": [
+    "mine_mana",
+    "shop"
+   ],
+   "dlc_src": "เหมืองชั้นเวทมนต์หรือร้านดันเจี้ยน",
+   "draft": false,
+   "renamed": false
+  },
+  {
+   "id": "mythril",
+   "kind": "ore",
+   "no": 22,
+   "en": "Mythril",
+   "th": "มิธริล",
+   "rarity": "Epic",
+   "value": 25000,
+   "desc": "โลหะเบาแต่แข็งมาก เหมาะกับเกราะระดับสูง",
+   "zones": [
+    "ancient_cave",
+    "shop"
+   ],
+   "dlc_src": "ถ้ำโบราณหรือร้านดันเจี้ยน",
+   "draft": false,
+   "renamed": false
+  },
+  {
+   "id": "blood_gold",
+   "kind": "ore",
+   "no": 23,
+   "en": "Blood Gold",
+   "th": "ทองโลหิต",
+   "rarity": "Epic",
+   "value": 22000,
+   "desc": "ทองคำที่เก็บพลังชีวิตของผู้ใช้",
+   "zones": [
+    "deep_forest_core",
+    "shop"
+   ],
+   "dlc_src": "ในป่าต้องห้ามหรือร้านดันเจี้ยน",
+   "draft": false,
+   "renamed": false
+  },
+  {
+   "id": "storm_metal",
+   "kind": "ore",
+   "no": 24,
+   "en": "Storm Metal",
+   "th": "โลหะพายุ",
+   "rarity": "Epic",
+   "value": 24000,
+   "desc": "โลหะที่เก็บพลังสายฟ้าและพายุ",
+   "zones": [
+    "windy_plain",
+    "shop"
+   ],
+   "dlc_src": "ที่โล้งกว้างที่มีลมพัดตลอดเวลาหรือร้านดันเจี้ยน",
+   "draft": false,
+   "renamed": false
+  },
+  {
+   "id": "sun_steel",
+   "kind": "ore",
+   "no": 25,
+   "en": "Sun Steel",
+   "th": "เหล็กสุริยัน",
+   "rarity": "Epic",
+   "value": 25000,
+   "desc": "โลหะศักดิ์สิทธิ์สำหรับอาวุธแสง",
+   "zones": [
+    "deep_forest_eclipse",
+    "shop"
+   ],
+   "dlc_src": "ป่าต้องห้ามในเวลาที่เกิดสุริยุปราคาหรือร้านดันเจี้ยน",
+   "draft": false,
+   "renamed": false
+  },
+  {
+   "id": "moon_steel",
+   "kind": "ore",
+   "no": 26,
+   "en": "Moon Steel",
+   "th": "เหล็กจันทรา",
+   "rarity": "Epic",
+   "value": 25000,
+   "desc": "โลหะที่เพิ่มพลังเวทตอนกลางคืน",
+   "zones": [
+    "deep_forest_eclipse",
+    "shop"
+   ],
+   "dlc_src": "ป่าต้องห้ามในเวลาที่เกิดจันทรุปราคาหรือร้านดันเจี้ยน",
+   "draft": false,
+   "renamed": false
+  },
+  {
+   "id": "stardust",
+   "kind": "ore",
+   "no": 27,
+   "en": "Stardust",
+   "th": "ผงดาว",
+   "rarity": "Epic",
+   "value": 28000,
+   "desc": "ฝุ่นจากดาวตก ใช้ทำอุปกรณ์เวทขั้นสูง",
+   "zones": [
+    "meteor_crater",
+    "shop"
+   ],
+   "dlc_src": "หลุมอุกกาบาตใกล้ในรั้วโรงเรียนหรือร้านดันเจี้ยน",
+   "draft": false,
+   "renamed": false
+  },
+  {
+   "id": "meteor_iron",
+   "kind": "ore",
+   "no": 28,
+   "en": "Meteor Iron",
+   "th": "เหล็กอุกกาบาต",
+   "rarity": "Epic",
+   "value": 26000,
+   "desc": "โลหะจากอุกกาบาต",
+   "zones": [
+    "meteor_crater"
+   ],
+   "dlc_src": "อุกาบาตที่ตกลงมา",
+   "draft": false,
+   "renamed": false
+  },
+  {
+   "id": "fey_crystal",
+   "kind": "ore",
+   "no": 29,
+   "en": "Fey Crystal",
+   "th": "คริสตัลภูต",
+   "rarity": "Epic",
+   "value": 27000,
+   "desc": "คริสตัลที่เต็มไปด้วยพลังภูต",
+   "zones": [
+    "deep_forest_n",
+    "shop"
+   ],
+   "dlc_src": "ป่าต้องห้ามทางเหนือหรือร้านดันเจี้ยน",
+   "draft": false,
+   "renamed": false
+  },
+  {
+   "id": "wind_quartz",
+   "kind": "ore",
+   "no": 30,
+   "en": "Wind Quartz",
+   "th": "ควอตซ์สายลม",
+   "rarity": "Epic",
+   "value": 23000,
+   "desc": "ผลึกที่หมุนเบาๆ ตามลม ใช้ทำอาวุธธาตุลม",
+   "zones": [
+    "windy_plain"
+   ],
+   "dlc_src": "",
+   "draft": true,
+   "renamed": false
+  },
+  {
+   "id": "tidal_pearl_ore",
+   "kind": "ore",
+   "no": 31,
+   "en": "Tidal Pearl Ore",
+   "th": "แร่ไข่มุกน้ำขึ้น",
+   "rarity": "Epic",
+   "value": 24000,
+   "desc": "แร่เรืองแสงจากก้นทะเลสาบ ใช้เสริมเกราะธาตุน้ำ",
+   "zones": [
+    "underground_lake"
+   ],
+   "dlc_src": "",
+   "draft": true,
+   "renamed": false
+  },
+  {
+   "id": "ember_core",
+   "kind": "ore",
+   "no": 32,
+   "en": "Ember Core",
+   "th": "แกนถ่านไฟ",
+   "rarity": "Epic",
+   "value": 25000,
+   "desc": "ก้อนแร่ร้อนไม่มอด ใช้ทำอาวุธธาตุไฟ",
+   "zones": [
+    "volcano"
+   ],
+   "dlc_src": "",
+   "draft": true,
+   "renamed": false
+  },
+  {
+   "id": "gale_iron",
+   "kind": "ore",
+   "no": 33,
+   "en": "Gale Iron",
+   "th": "เหล็กพายุ",
+   "rarity": "Epic",
+   "value": 26000,
+   "desc": "เหล็กที่ผ่านพายุฟ้าผ่านับร้อยครั้ง",
+   "zones": [
+    "windy_plain"
+   ],
+   "dlc_src": "",
+   "draft": true,
+   "renamed": false
+  },
+  {
+   "id": "deep_amber",
+   "kind": "ore",
+   "no": 34,
+   "en": "Deep Amber",
+   "th": "อำพันห้วงลึก",
+   "rarity": "Epic",
+   "value": 22000,
+   "desc": "ยางไม้โบราณในถ้ำ กักเก็บเสียงกระซิบไว้",
+   "zones": [
+    "ancient_cave"
+   ],
+   "dlc_src": "",
+   "draft": true,
+   "renamed": false
+  },
+  {
+   "id": "light_prism",
+   "kind": "ore",
+   "no": 35,
+   "en": "Light Prism",
+   "th": "ปริซึมแสง",
+   "rarity": "Epic",
+   "value": 27000,
+   "desc": "ผลึกหักเหแสงเป็นเจ็ดสี ใช้ทำอาวุธธาตุแสง",
+   "zones": [
+    "mine_mana"
+   ],
+   "dlc_src": "",
+   "draft": true,
+   "renamed": false
+  },
+  {
+   "id": "void_glass",
+   "kind": "ore",
+   "no": 36,
+   "en": "Void Glass",
+   "th": "แก้วสุญญากาศ",
+   "rarity": "Epic",
+   "value": 28000,
+   "desc": "แก้วดำดูดแสง ใช้ทำอาวุธธาตุมืด",
+   "zones": [
+    "dungeon_old"
+   ],
+   "dlc_src": "",
+   "draft": true,
+   "renamed": false
+  },
+  {
+   "id": "titan_bone_ore",
+   "kind": "ore",
+   "no": 37,
+   "en": "Titan Bone Ore",
+   "th": "แร่กระดูกไททัน",
+   "rarity": "Epic",
+   "value": 26000,
+   "desc": "แร่หนาแน่นสุดๆ ใช้ทำโล่หนัก",
+   "zones": [
+    "mine_deep"
+   ],
+   "dlc_src": "",
+   "draft": true,
+   "renamed": false
+  },
+  {
+   "id": "aurora_stone",
+   "kind": "ore",
+   "no": 38,
+   "en": "Aurora Stone",
+   "th": "หินแสงเหนือ",
+   "rarity": "Legendary",
+   "value": 32000,
+   "desc": "หินที่เปล่งแสงหลากสีตอนกลางคืน",
+   "zones": [
+    "mine_night"
+   ],
+   "dlc_src": "",
+   "draft": true,
+   "renamed": false
+  },
+  {
+   "id": "dragon_scale_ore",
+   "kind": "ore",
+   "no": 39,
+   "en": "Dragon Scale Ore",
+   "th": "แร่เกล็ดมังกร",
+   "rarity": "Legendary",
+   "value": 35000,
+   "desc": "แร่ที่ขึ้นเป็นเกล็ดตามรอยแยก",
+   "zones": [
+    "volcano"
+   ],
+   "dlc_src": "",
+   "draft": true,
+   "renamed": false
+  },
+  {
+   "id": "star_iron",
+   "kind": "ore",
+   "no": 40,
+   "en": "Star Iron",
+   "th": "เหล็กดวงดาว",
+   "rarity": "Legendary",
+   "value": 36000,
+   "desc": "เหล็กจากดาวตกที่แข็งแกร่งกว่าเหล็กอุกกาบาต",
+   "zones": [
+    "meteor_crater"
+   ],
+   "dlc_src": "",
+   "draft": true,
+   "renamed": false
+  },
+  {
+   "id": "abyss_silver",
+   "kind": "ore",
+   "no": 41,
+   "en": "Abyss Silver",
+   "th": "เงินห้วงอเวจี",
+   "rarity": "Legendary",
+   "value": 38000,
+   "desc": "เงินที่ดูดซับความมืดจนดำสนิท",
+   "zones": [
+    "dungeon_old"
+   ],
+   "dlc_src": "",
+   "draft": true,
+   "renamed": false
+  },
+  {
+   "id": "saint_gold",
+   "kind": "ore",
+   "no": 42,
+   "en": "Saint Gold",
+   "th": "ทองศักดิ์สิทธิ์",
+   "rarity": "Legendary",
+   "value": 40000,
+   "desc": "ทองที่ผ่านพิธีอธิษฐานหนึ่งร้อยปี",
+   "zones": [
+    "ancient_cave"
+   ],
+   "dlc_src": "",
+   "draft": true,
+   "renamed": false
+  },
+  {
+   "id": "thunder_heart",
+   "kind": "ore",
+   "no": 43,
+   "en": "Thunder Heart",
+   "th": "หัวใจอัสนี",
+   "rarity": "Legendary",
+   "value": 42000,
+   "desc": "แกนฟ้าผ่าที่ยังเต้นอยู่",
+   "zones": [
+    "mine_deep"
+   ],
+   "dlc_src": "",
+   "draft": true,
+   "renamed": false
+  },
+  {
+   "id": "frozen_sun",
+   "kind": "ore",
+   "no": 44,
+   "en": "Frozen Sun",
+   "th": "ตะวันเยือกแข็ง",
+   "rarity": "Legendary",
+   "value": 45000,
+   "desc": "แร่ขัดแย้งในตัวเอง ร้อนและเย็นพร้อมกัน",
+   "zones": [
+    "deep_forest_eclipse"
+   ],
+   "dlc_src": "",
+   "draft": true,
+   "renamed": false
+  },
+  {
+   "id": "orichalcum",
+   "kind": "ore",
+   "no": 45,
+   "en": "Orichalcum",
+   "th": "ออริชัลคัม",
+   "rarity": "Relic",
+   "value": 90000,
+   "desc": "โลหะในตำนาน ว่ากันว่ามาจากทวีปที่จมหาย",
+   "zones": [
+    "ancient_cave"
+   ],
+   "dlc_src": "",
+   "draft": true,
+   "renamed": false
+  },
+  {
+   "id": "skyfall_alloy",
+   "kind": "ore",
+   "no": 46,
+   "en": "Skyfall Alloy",
+   "th": "โลหะฟ้าถล่ม",
+   "rarity": "Relic",
+   "value": 110000,
+   "desc": "โลหะผสมจากอุกกาบาตสามก้อนที่ตกคืนเดียวกัน",
+   "zones": [
+    "meteor_crater"
+   ],
+   "dlc_src": "",
+   "draft": true,
+   "renamed": false
+  },
+  {
+   "id": "worldroot_crystal",
+   "kind": "ore",
+   "no": 47,
+   "en": "Worldroot Crystal",
+   "th": "ผลึกรากโลก",
+   "rarity": "Relic",
+   "value": 130000,
+   "desc": "ผลึกที่เชื่อมรากไม้ทุกต้นเข้าด้วยกัน",
+   "zones": [
+    "deep_forest_core"
+   ],
+   "dlc_src": "",
+   "draft": true,
+   "renamed": false
+  },
+  {
+   "id": "eternal_flame_stone",
+   "kind": "ore",
+   "no": 48,
+   "en": "Eternal Flame Stone",
+   "th": "หินเพลิงนิรันดร์",
+   "rarity": "Relic",
+   "value": 150000,
+   "desc": "ไฟที่ไม่เคยดับตั้งแต่ก่อนมีอารยธรรม",
+   "zones": [
+    "volcano"
+   ],
+   "dlc_src": "",
+   "draft": true,
+   "renamed": false
+  },
+  {
+   "id": "moonlit_mithril",
+   "kind": "ore",
+   "no": 49,
+   "en": "Moonlit Mithril",
+   "th": "มิธริลต้องแสงจันทร์",
+   "rarity": "Relic",
+   "value": 170000,
+   "desc": "มิธริลที่ผ่านคืนจันทร์เต็มดวงนับพัน",
+   "zones": [
+    "deep_forest_eclipse"
+   ],
+   "dlc_src": "",
+   "draft": true,
+   "renamed": false
+  },
+  {
+   "id": "heart_of_the_mountain",
+   "kind": "ore",
+   "no": 50,
+   "en": "Heart of the Mountain",
+   "th": "หัวใจแห่งภูผา",
+   "rarity": "Relic",
+   "value": 250000,
+   "desc": "แร่ที่ว่ากันว่าเป็นหัวใจของคลังใต้ภูผา",
+   "zones": [
+    "dungeon_deep"
+   ],
+   "dlc_src": "",
+   "draft": true,
+   "renamed": false
+  }
+ ]
+}

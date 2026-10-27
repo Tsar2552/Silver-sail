@@ -1,0 +1,22 @@
+{
+  "_note": "มอนสเตอร์ 17 ตัว (ปาร์ตี้ 4 คน) ฟิลด์: [id, ชื่อ, ชั้น, Lv, HP, ATK, ประเภท(p/m), P DEF, M DEF, SPD, ธาตุ, จุดอ่อน, บอส]  ไม่มีธาตุ = ไม่มีจุดอ่อน",
+  "monsters": [
+    ["cave_rat","หนูถ้ำยักษ์",1,1,70,6,"p",1,0,5,"earth","wind",false],
+    ["cave_slime","เมือกถ้ำ",1,1,90,5,"p",0,3,2,"water","lightning",false],
+    ["goblin_scout","ก็อบลินสอดแนม",1,2,85,7,"p",2,1,6,null,null,false],
+    ["vampire_bat","ค้างคาวดูดเลือด",1,2,70,7,"p",1,2,9,"dark","light",false],
+    ["spore_mushroom","เห็ดสปอร์",1,2,90,7,"m",2,3,3,"earth","wind",false],
+    ["grak","กรัก หัวหน้าก็อบลิน",1,4,480,10,"p",4,3,5,null,null,true],
+    ["skeleton_soldier","โครงกระดูกทหาร",2,3,130,9,"p",4,2,4,"dark","light",false],
+    ["goblin_miner","ก็อบลินนักขุด",2,3,120,9,"p",3,2,5,"earth","wind",false],
+    ["cave_spider","แมงมุมถ้ำ",2,4,125,10,"p",3,2,8,null,null,false],
+    ["iron_snake","งูเหล็ก",2,4,150,10,"p",6,2,5,"metal","fire",false],
+    ["mine_spirit","วิญญาณเหมือง",2,4,100,11,"m",7,3,7,"dark","light",false],
+    ["goblin_shaman","ก็อบลินหมอผี",2,4,110,8,"m",2,4,6,null,null,false],
+    ["goblin_archer","ก็อบลินนักธนู",3,5,150,12,"p",3,3,9,null,null,false],
+    ["cave_wolf","หมาป่าถ้ำ",3,5,190,13,"p",4,2,10,null,null,false],
+    ["ice_sprite","ภูตน้ำแข็ง",3,5,140,12,"m",3,6,7,"ice","fire",false],
+    ["stone_golem","โกเล็มหิน",3,6,330,14,"p",10,3,1,"earth","wind",false],
+    ["mine_guardian","เกราะผู้พิทักษ์เหมือง",3,8,1200,15,"p",10,6,4,"metal","fire",true]
+  ]
+}
