@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>สารานุกรม · ใบเรือเงิน</title><link rel="stylesheet" href="css/style.css"></head>
+<body><a class="back" href="index.html">← เมนูหลัก</a>
+<main><nav id="nav" style="margin-bottom:10px"></nav>
+<div class="row" style="margin-bottom:8px"><input id="q" placeholder="ค้นหา..." style="flex:1;min-width:180px"></div>
+<div id="filters"></div><div class="dim" id="count"></div><div id="out" class="grid"></div></main>
+<script src="js/common.js"></script>
+<script>
+const EL={earth:"ดิน",water:"น้ำ",wind:"ลม",fire:"ไฟ",metal:"โลหะ",lightning:"สายฟ้า",light:"แสง",dark:"มืด",ice:"น้ำแข็ง"};
+const STN={p_atk:"P ATK",m_atk:"M ATK",hp:"HP",spd:"SPD",p_def:"P DEF",m_def:"M DEF",luck:"LUCK",wit:"WIT",mana:"MANA"};
+const RAR={Common:"#b8a58a",Uncommon:"#7fae6a",Rare:"#5aa0e0",Epic:"#b070e0",Legendary:"#e0b25a",Relic:"#e05a5a"};
+let D,tabNow="weapon",F={type:"",el:""};
+const elTag=e=>e?`<span class="tag">ธาตุ${EL[e]||e}</span>`:"";
+const rarTag=r=>`<span class="tag" style="color:${RAR[r]||"inherit"};border-color:${RAR[r]||"var(--line)"}">${r}</span>`;
+const stat=(k,v)=>v?`<span class="tag">${k} ${v>0?"+":""}${v}</span>`:"";
+const TABS=[
+ ["weapon","อาวุธ",()=>D.weapons.weapons,w=>[w.type_th,w.th,w.element],
+   w=>`<b>${esc(w.th)}</b> ${rarTag(w.rarity)}<div>${elTag(w.element)}<span class="tag">${w.type_th}</span><span class="tag">Lv ${w.level}</span><span class="tag">${w.hands} มือ</span></div>
+   <div>พลังโจมตี <b>${w.power}</b> (${w.stat==="p"?"กายภาพ":"เวทมนตร์"}) · ราคา ${w.price.toLocaleString()} กัส</div><div class="dim">${esc(w.desc)}${w.material?` · วัสดุ: ${w.material}`:""}</div>`,"weapon"],
+ ["armor","เกราะ",()=>D.armor.armor,a=>[a.type_th,a.th,a.resist],
+   a=>`<b>${esc(a.th)}</b> ${rarTag(a.rarity)}<div>${elTag(a.resist)}<span class="tag">${a.type_th}</span><span class="tag">Lv ${a.level}</span></div>
+   <div>${stat("P DEF",a.p_def)}${stat("M DEF",a.m_def)}${stat("HP",a.hp)}${stat("SPD",a.spd)} · ${a.price.toLocaleString()} กัส</div><div class="dim">${esc(a.desc)}</div>`,"armor"],
+ ["monster","มอนสเตอร์",()=>D.monsters.monsters.map(m=>({id:m[0],th:m[1],floor:m[2],lv:m[3],hp:m[4],atk:m[5],kind:m[6],pdef:m[7],mdef:m[8],spd:m[9],el:m[10],weak:m[11],boss:m[12]})),m=>[m.th,m.el],
+   m=>`<b>${esc(m.th)}</b> ${m.boss?'<span class="tag" style="color:var(--red)">บอส</span>':""}<div><span class="tag">ชั้น ${m.floor}</span><span class="tag">Lv ${m.lv}</span>${elTag(m.el)}</div>
+   <div>HP ${m.hp} · ATK ${m.atk} (${m.kind==="p"?"กายภาพ":"เวท"}) · DEF ${m.pdef}/${m.mdef} · SPD ${m.spd}</div><div class="dim">จุดอ่อน: ${m.weak?EL[m.weak]||m.weak:"ไม่มี (ต้องค้นพบ)"}</div>`,"el"],
+ ["trait","คุณลักษณะ",()=>D.traits.traits.map(t=>({id:t[0],th:t[1],tier:t[2],desc:t[3]})),t=>[t.th,t.desc],t=>`<b>${esc(t.th)}</b> <span class="tag">ระดับ ${t.tier}</span><div class="dim">${esc(t.desc)}</div>`,""],
+ ["race","เผ่า",()=>D.races.races,r=>[r.th,r.en,r.element],
+   r=>`<b>${esc(r.th)}</b> <span class="dim">${esc(r.en)}</span> ${elTag(r.element)}<div>${D.races.stat_order.map((k,i)=>`<span class="tag">${STN[k]} ${r.stats[i]}</span>`).join("")}</div>
+   <div class="dim">${esc(r.skill)}</div><div class="dim">ท่าเผ่า: ${esc(r.move)}</div><div class="dim">อายุขัย: ${esc(r.lifespan)}</div>`,""],
+ ["status","สถานะ",()=>D.statuses.statuses,s=>[s.th,s.effect],s=>`<b>${esc(s.th)}</b><div>${esc(s.effect)}</div><div class="dim">วิธีหาย: ${esc(s.cure)}</div>`,""],
+ ["person","นิสัย",()=>D.misc.personalities.map(p=>({id:p[0],th:p[1]})).concat(D.misc.fears.map(p=>({id:p[0],th:"กลัว"+p[1]}))),p=>[p.th],p=>`<b>${esc(p.th)}</b>`,""],
+ ["npc","NPC",()=>D.npcs.npcs,n=>[n.th,n.race,n.role],n=>`<img class="npcimg" loading="lazy" src="images/npc/${n.id}_normal.webp" onerror="this.remove()"><b>${esc(n.th)}</b><div class="dim">${esc(n.race)} · ${esc(n.role)}</div><div class="dim">“${esc(n.lines[0]||"")}”</div>`,""],
+ ["place","สถานที่",()=>D.locations.locations.map(l=>({id:l[0],th:l[1],group:l[2]})),l=>[l.th,l.group],l=>`<b>${esc(l.th)}</b><div><span class="tag">${esc(l.group)}</span></div>`,""],
+ ["info","ข้อมูลย่อ",null,null,null,""]
+];
+function info(){return `<div class="card" style="grid-column:1/-1"><h3>กติกาสั้นๆ</h3><ul>
+<li><b>ทอยเต๋า:</b> ใช้ d20 อย่างเดียว ทุกครั้งแสดงเหตุผล และทอยหลังกด "ตกลง" เท่านั้น</li>
+<li><b>เช็กความสำเร็จ:</b> d20 + สเตตัส เทียบ DC (ง่ายมาก 6 · ง่าย 9 · กลาง 12 · ยาก 15 · ยากมาก 18 · เกือบเป็นไปไม่ได้ 21) — ทอยได้ 20 สำเร็จเสมอ ทอยได้ 1 พลาดเสมอ</li>
+<li><b>ได้เปรียบ/เสียเปรียบ:</b> ทอย 2 ลูกเลือกสูง/ต่ำ ถ้ามีทั้งสองอย่างจะหักล้างกัน</li>
+<li><b>ต่อสู้:</b> ติด = d20 + ค่าเล็ง ≥ 10 + SPD เป้าหมาย · ดาเมจ = (ATK + พลังอาวุธ + พลังท่า) x3 − DEF x2 แล้วคูณ 0.8 + 0.02 x d20 · คริติคอล x1.5</li>
+<li><b>ตัวต่อสู้:</b> ท่า 4 ช่อง + ปุ่มท่าเผ่า · ลำดับเทิร์นทอย d20 + SPD ใหม่ทุกรอบ</li>
+<li><b>HP 0:</b> ทอย Death Save ล้มเหลวสะสม 3 ครั้งตาย</li>
+<li><b>เงิน:</b> สกุล "กัส" ซื้อ 100% ขายคืน 40%</li>
+<li><b>เลเวล:</b> EXP ถึงเลเวลถัดไป = 150 x เลเวล² · ขึ้นเลเวล HP +10 MANA +2</li></ul></div>
+<div class="card" style="grid-column:1/-1"><h3>ธาตุ (ได้เปรียบ x2 · เสียเปรียบ x0.5 ต้องรู้จุดอ่อนก่อน)</h3><table><tr><th>ธาตุ</th><th>ชนะ</th><th>แพ้</th></tr>
+${D.elements.elements.map(e=>`<tr><td>${EL[e.id]} <span class="dim">${esc(e.deity||"")}</span></td><td>${EL[e.strong]||e.strong||"—"}</td><td>${EL[e.weak]||e.weak||"—"}</td></tr>`).join("")}</table></div>
+<div class="card" style="grid-column:1/-1"><h3>สเตตัส 9 ค่า</h3>${Object.entries(STN).map(([k,v])=>`<span class="tag">${v}</span>`).join("")}<div class="dim">HP นับเป็นสิบเท่า</div></div>`;}
+function draw(){
+  const t=TABS.find(x=>x[0]===tabNow),q=$("#q").value.trim().toLowerCase(),out=$("#out");
+  $$("#nav button").forEach(b=>b.classList.toggle("on",b.dataset.t===tabNow));
+  if(tabNow==="info"){$("#filters").innerHTML="";$("#count").textContent="";$("#q").style.display="none";out.innerHTML=info();return;}
+  $("#q").style.display="";
+  const all=t[2](),fk=t[5];
+  let f="";
+  if(fk==="weapon"||fk==="armor"){
+    const types=[...new Map(all.map(x=>[x.type,x.type_th]))];
+    f=`<div class="chips"><span class="dim">ชนิด:</span><button class="chip ${F.type?"":"on"}" data-ft="">ทั้งหมด</button>${types.map(([i,n])=>`<button class="chip ${F.type===i?"on":""}" data-ft="${i}">${n}</button>`).join("")}</div>`;
+  }
+  if(fk==="weapon"||fk==="armor"||fk==="el")
+    f+=`<div class="chips"><span class="dim">ธาตุ:</span><button class="chip ${F.el?"":"on"}" data-fe="">ทั้งหมด</button><button class="chip ${F.el==="none"?"on":""}" data-fe="none">ไม่มีธาตุ</button>${Object.entries(EL).map(([i,n])=>`<button class="chip ${F.el===i?"on":""}" data-fe="${i}">${n}</button>`).join("")}</div>`;
+  $("#filters").innerHTML=f;
+  $$("[data-ft]").forEach(b=>b.onclick=()=>{F.type=b.dataset.ft;draw();});
+  $$("[data-fe]").forEach(b=>b.onclick=()=>{F.el=b.dataset.fe;draw();});
+  const ek=x=>x.element??x.resist??x.el??null;
+  const list=all.filter(x=>(!F.type||x.type===F.type)&&(!F.el||(F.el==="none"?!ek(x):ek(x)===F.el))&&(!q||t[3](x).join(" ").toLowerCase().includes(q)));
+  $("#count").textContent=`พบ ${list.length} จาก ${all.length}`;
+  out.innerHTML=list.map(x=>`<div class="card" style="margin:0">${t[4](x)}</div>`).join("")||'<div class="dim">ไม่พบ</div>';
+}
+loadData(["weapons","armor","monsters","traits","races","statuses","misc","npcs","locations","elements"]).then(d=>{D=d;
+  TABS.forEach(t=>{const b=document.createElement("button");b.textContent=t[1];b.dataset.t=t[0];b.onclick=()=>{tabNow=t[0];F={type:"",el:""};draw();};$("#nav").appendChild(b);});
+  $("#q").oninput=draw;draw();}).catch(e=>$("#out").textContent="โหลดข้อมูลไม่ได้ (ต้องเปิดผ่าน http ไม่ใช่เปิดไฟล์ตรงๆ): "+e);
+</script></body></html>

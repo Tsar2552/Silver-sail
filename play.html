@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ใบเรือเงิน: คลังใต้ภูผา</title>
+<style>
+:root{--bg:#1b1511;--panel:#2a2019;--line:#5a4631;--ink:#efe3cf;--dim:#b8a58a;--gold:#e0b25a;--red:#c8553d;--green:#7fae6a}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,"Noto Sans Thai",sans-serif;line-height:1.5}
+header{padding:10px 16px;border-bottom:1px solid var(--line);display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+header h1{font-size:18px;margin:0;color:var(--gold)}
+nav{display:flex;gap:6px;flex-wrap:wrap}
+nav button,button,select,input,textarea{font:inherit}
+button{background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:6px 12px;cursor:pointer}
+button:hover{border-color:var(--gold)}
+button.on{background:var(--gold);color:#1b1511;border-color:var(--gold)}
+button.ok{background:var(--green);color:#10200a;border-color:var(--green);font-weight:600}
+button:disabled{opacity:.4;cursor:not-allowed}
+select,input,textarea{background:#15100c;color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:6px 8px}
+main{padding:14px;max-width:1200px;margin:0 auto}
+section{display:none}section.on{display:block}
+.row{display:flex;gap:12px;flex-wrap:wrap}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px;margin-bottom:12px}
+.card h3{margin:0 0 8px;font-size:15px;color:var(--gold)}
+.dim{color:var(--dim);font-size:13px}
+.log{background:#120d0a;border:1px solid var(--line);border-radius:8px;padding:8px;height:260px;overflow:auto;font-family:ui-monospace,Menlo,monospace;font-size:13px;white-space:pre-wrap}
+.log div{margin-bottom:4px}
+.dlg{display:flex;gap:14px;flex-wrap:wrap}
+.stage{position:relative;width:340px;min-height:420px;background:#120d0a center/cover;border:1px solid var(--line);border-radius:10px;display:flex;align-items:flex-end;justify-content:center;overflow:hidden}
+.stage img.full{max-width:100%;max-height:420px}
+.ph{width:100%;height:420px;display:flex;align-items:center;justify-content:center;font-size:72px;color:var(--line)}
+.emo{position:absolute;right:8px;bottom:8px;width:96px;height:96px;border:2px solid var(--gold);border-radius:10px;background:#120d0a;overflow:hidden;display:flex;align-items:center;justify-content:center;flex-direction:column}
+.emo img{width:100%;height:100%;object-fit:cover;object-position:top}
+.emo span{position:absolute;bottom:0;left:0;right:0;background:#000a;text-align:center;font-size:12px}
+.bubble{background:#120d0a;border:1px solid var(--line);border-radius:8px;padding:10px;min-height:70px;margin-bottom:8px}
+.slots{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:8px}
+.slot{background:#15100c;border:1px solid var(--line);border-radius:8px;padding:8px}
+.slot b{display:block;color:var(--dim);font-size:12px}
+.slot .v{margin:2px 0 6px}
+.bar{height:10px;background:#120d0a;border:1px solid var(--line);border-radius:5px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--green)}
+.bar.m i{background:var(--red)}
+table{border-collapse:collapse;width:100%;font-size:13px}td,th{border:1px solid var(--line);padding:4px 6px;text-align:left}
+.res{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:8px}
+.big{font-size:44px;font-weight:700;color:var(--gold)}
+</style>
+</head>
+<body>
+<header><a href="index.html" style="color:var(--dim);text-decoration:none">← เมนู</a>
+  <h1>ใบเรือเงิน: คลังใต้ภูผา</h1>
+  <nav id="nav"></nav>
+  <label class="dim">seed <input id="seed" size="8" placeholder="สุ่ม"></label>
+</header>
+<main>
+<section id="t_dlg">
+  <div class="dlg">
+    <div>
+      <div class="stage" id="stage"><div class="ph" id="ph">?</div><img class="full" id="fullimg" style="display:none"><div class="emo" id="emobox"><span id="emolabel">ปกติ</span></div></div>
+    </div>
+    <div style="flex:1;min-width:300px">
+      <div class="card"><h3>ฉาก</h3>
+        <select id="loc"></select>
+        <div class="dim" id="locinfo" style="margin-top:6px"></div>
+        <textarea id="scenetxt" rows="2" style="width:100%;margin-top:6px" placeholder="คำบรรยายฉาก (GM พิมพ์เอง)"></textarea>
+        <button id="showscene">แสดงคำบรรยาย</button>
+      </div>
+      <div class="card"><h3>ตัวละครที่พูด</h3>
+        <select id="npc"></select>
+        <div class="dim" id="npcinfo"></div>
+        <div id="emobtns" class="row" style="gap:6px;margin:8px 0"></div>
+        <div id="linebtns" class="row" style="gap:6px;margin-bottom:8px"></div>
+        <textarea id="said" rows="2" style="width:100%" placeholder="พิมพ์คำพูดของตัวละคร"></textarea>
+        <button class="ok" id="say">แสดงข้อความ</button>
+        <button id="copylog">คัดลอกบันทึก</button>
+      </div>
+      <div class="bubble" id="bubble">เลือกตัวละครแล้วกดแสดงข้อความ</div>
+      <div class="log" id="dlglog" style="height:140px"></div>
+    </div>
+  </div>
+</section>
+
+<section id="t_dice">
+  <div class="card"><h3>ทอยเต๋า d20 (ทอยเมื่อกดตกลงเท่านั้น)</h3>
+    <div class="row">
+      <label>ค่าที่ใช้ <select id="dstat"><option value="p_atk">P ATK</option><option value="m_atk">M ATK</option><option value="spd">SPD</option><option value="luck">LUCK</option><option value="wit">WIT</option><option value="hp3">ความอึด (HP÷30)</option></select></label>
+      <label>ค่าสเตตัส <input id="dval" type="number" value="2" style="width:70px"></label>
+      <label>โบนัส <input id="dbonus" type="number" value="0" style="width:70px"></label>
+      <label>DC <select id="ddc"></select></label>
+      <label>แบบ <select id="dmode"><option value="n">ปกติ</option><option value="a">ได้เปรียบ</option><option value="d">เสียเปรียบ</option><option value="ad">ทั้งคู่ (หักล้าง)</option></select></label>
+      <label>เหตุผล <input id="dwhy" placeholder="เช่น งัดล็อกหีบ" style="width:200px"></label>
+    </div>
+    <p class="dim" id="dpreview"></p>
+    <button class="ok" id="droll">ตกลง ทอย</button>
+    <div class="big" id="dbig">-</div>
+  </div>
+  <div class="log" id="dlog"></div>
+</section>
+
+<section id="t_char">
+  <div class="card"><h3>สร้างตัวละคร (รีได้ <span id="rrleft">5</span> ครั้ง)</h3>
+    <button class="ok" id="cgen">สุ่มตัวละครใหม่ทั้งชุด</button>
+    <button id="cconfirm" disabled>ยืนยันตัวละคร</button>
+    <button id="cexport" disabled>ส่งออก JSON</button>
+    <span class="dim">รี 1 ช่อง = 1 แต้ม ช่องที่ผูกกันสุ่มตามฟรี ล็อกช่องที่ชอบไว้ได้</span>
+  </div>
+  <div class="slots" id="slots"></div>
+  <div class="card" style="margin-top:12px"><h3>สเตตัส</h3><div id="cstats" class="dim">กดสุ่มก่อน</div></div>
+</section>
+
+<section id="t_fight">
+  <div class="card"><h3>ต่อสู้ทดสอบ (ใช้ตัวละครจากแท็บสร้างตัวละคร)</h3>
+    <div class="row">
+      <label>ศัตรู <select id="mon"></select></label>
+      <label>ปรับ HP ศัตรู <input id="mscale" type="number" step="0.05" value="0.35" style="width:70px"></label>
+      <button id="fstart">เริ่มสู้</button>
+    </div>
+    <p class="dim">ค่า HP ศัตรูในตารางคิดสำหรับปาร์ตี้ 4 คน เล่นทดสอบเดี่ยวให้ลดด้วยตัวคูณนี้</p>
+  </div>
+  <div class="row">
+    <div class="card" style="flex:1;min-width:280px"><h3 id="pname">ผู้เล่น</h3>
+      <div class="bar"><i id="phpbar" style="width:100%"></i></div><div id="phpt" class="dim"></div>
+      <div class="bar m" style="margin-top:6px"><i id="pmpbar" style="width:100%;background:#4a7fd0"></i></div><div id="pmpt" class="dim"></div></div>
+    <div class="card" style="flex:1;min-width:280px"><h3 id="mname">ศัตรู</h3>
+      <div class="bar m"><i id="mhpbar" style="width:100%"></i></div><div id="mhpt" class="dim"></div><div id="mweak" class="dim"></div></div>
+  </div>
+  <div class="card"><h3>เลือกท่า</h3>
+    <div class="row" id="acts"></div>
+    <p class="dim" id="fpreview">ยังไม่ได้เริ่ม</p>
+    <button class="ok" id="fgo" disabled>ตกลง</button>
+  </div>
+  <div class="log" id="flog"></div>
+</section>
+
+<section id="t_wiki">
+  <div class="card"><input id="q" placeholder="ค้นหา เผ่า อาชีพ คุณลักษณะ ธาตุ NPC มอนสเตอร์" style="width:100%"></div>
+  <div class="res" id="res"></div>
+</section>
+</main>
+
+<script>
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const ST=["p_atk","m_atk","hp","spd","p_def","m_def","luck","wit","mana"];
+const STN={p_atk:"P ATK",m_atk:"M ATK",hp:"HP",spd:"SPD",p_def:"P DEF",m_def:"M DEF",luck:"LUCK",wit:"WIT",mana:"MANA"};
+let D={};
+// ---------- RNG (seed ได้ เพื่อทดสอบซ้ำ) ----------
+let rngState=null,rngSeedUsed="";
+function rnd(){
+  const s=$("#seed").value.trim();
+  if(s){ if(rngSeedUsed!==s||rngState===null){rngSeedUsed=s;let h=1779033703;for(const c of s)h=Math.imul(h^c.charCodeAt(0),3432918353);rngState=h>>>0;}
+    rngState=(rngState+0x6D2B79F5)>>>0;let t=rngState;t=Math.imul(t^t>>>15,t|1);t^=t+Math.imul(t^t>>>7,t|61);return((t^t>>>14)>>>0)/4294967296;}
+  rngSeedUsed="";rngState=null;return Math.random();
+}
+const d20=()=>1+Math.floor(rnd()*20);
+const pick=a=>a[Math.floor(rnd()*a.length)];
+function wpick(t){let s=t.reduce((a,b)=>a+b[1],0),r=rnd()*s;for(const x of t){r-=x[1];if(r<0)return x[0];}return t[0][0];}
+function log(el,t){const d=document.createElement("div");d.textContent=t;$(el).appendChild(d);$(el).scrollTop=1e9;}
+// ---------- load ----------
+async function load(){
+  for(const n of ["races","elements","classes","traits","npcs","monsters","locations","misc"]){
+    const r=await fetch("data/"+n+".json");D[n]=await r.json();
+  }
+  D.race=Object.fromEntries(D.races.races.map(r=>[r.id,r]));
+  D.el=Object.fromEntries(D.elements.elements.map(e=>[e.id,e]));
+  init();
+}
+const TABS=[["t_dlg","สนทนา"],["t_dice","ทอยเต๋า"],["t_char","สร้างตัวละคร"],["t_fight","ต่อสู้"],["t_wiki","สารานุกรม"]];
+function init(){
+  TABS.forEach(([id,n],i)=>{const b=document.createElement("button");b.textContent=n;b.onclick=()=>tab(id);b.dataset.t=id;$("#nav").appendChild(b);});
+  tab("t_dlg");initDlg();initDice();initChar();initFight();initWiki();
+}
+function tab(id){$$("section").forEach(s=>s.classList.toggle("on",s.id===id));$$("nav button").forEach(b=>b.classList.toggle("on",b.dataset.t===id));}
+// ---------- สนทนา ----------
+let curNpc=null,curEmo="ปกติ";
+function imgTry(list,img,onFail){let i=0;img.onerror=()=>{i++;if(i<list.length)img.src=list[i];else onFail();};img.onload=null;img.src=list[0];}
+function initDlg(){
+  const groups={};D.locations.locations.forEach(l=>(groups[l[2]]=groups[l[2]]||[]).push(l));
+  $("#loc").innerHTML=Object.entries(groups).map(([g,a])=>`<optgroup label="${g}">`+a.map(l=>`<option value="${l[0]}">${l[1]}</option>`).join("")+"</optgroup>").join("");
+  $("#npc").innerHTML=D.npcs.npcs.map(n=>`<option value="${n.id}">${n.th} (${n.role})</option>`).join("");
+  $("#emobtns").innerHTML=Object.keys(D.npcs.emotion_map).map(e=>`<button data-e="${e}">${e}</button>`).join("");
+  $$("#emobtns button").forEach(b=>b.onclick=()=>{curEmo=b.dataset.e;drawNpc();});
+  $("#loc").onchange=()=>{const id=$("#loc").value;const l=D.locations.locations.find(x=>x[0]===id);$("#locinfo").textContent=l?l[2]+" / "+l[1]:"";
+    $("#stage").style.backgroundImage=`url(images/bg/${id}.webp)`;};
+  $("#npc").onchange=()=>{curEmo="ปกติ";drawNpc();};
+  $("#showscene").onclick=()=>{const t=$("#scenetxt").value.trim();if(t){log("#dlglog","[ฉาก] "+t);$("#bubble").textContent=t;}};
+  $("#say").onclick=()=>{const n=curNpc,t=$("#said").value.trim();if(!n||!t)return;const s=`${n.th} (${curEmo}): "${t}"`;$("#bubble").textContent=s;log("#dlglog",s);$("#said").value="";};
+  $("#copylog").onclick=()=>navigator.clipboard.writeText($("#dlglog").innerText);
+  $("#loc").onchange();drawNpc();
+}
+function drawNpc(){
+  const n=D.npcs.npcs.find(x=>x.id===$("#npc").value);curNpc=n;
+  $("#npcinfo").textContent=`${n.race} / ${n.role}`;
+  const emo=D.npcs.emotion_map[curEmo]||"normal";
+  const full=$("#fullimg");full.style.display="none";$("#ph").style.display="flex";$("#ph").textContent=n.th[0];
+  full.onload=()=>{full.style.display="block";$("#ph").style.display="none";};
+  imgTry([`images/npc/${n.id}_full.webp`,`images/npc/${n.id}_normal.webp`],full,()=>{});
+  const box=$("#emobox");box.querySelectorAll("img").forEach(i=>i.remove());
+  const im=document.createElement("img");im.onerror=()=>im.remove();im.src=`images/npc/${n.id}_${emo}.webp`;box.prepend(im);
+  $("#emolabel").textContent=curEmo;
+  $("#linebtns").innerHTML=n.lines.map((l,i)=>`<button data-i="${i}">${l.slice(0,22)}${l.length>22?"…":""}</button>`).join("");
+  $$("#linebtns button").forEach(b=>b.onclick=()=>{$("#said").value=n.lines[b.dataset.i];});
+}
+// ---------- เต๋า ----------
+function initDice(){
+  $("#ddc").innerHTML=Object.entries(D.misc.dc).map(([k,v])=>`<option value="${v}">${k.replace(/_/g," ")} (${v})</option>`).join("");
+  $("#ddc").value=12;
+  const pv=()=>{const m=$("#dmode").value;$("#dpreview").textContent="จะทอย d20 "+(m==="a"||m==="d"?"2 ลูก (เอา"+(m==="a"?"สูง":"ต่ำ")+")":"1 ลูก")+" + ค่าสเตตัส + โบนัส เทียบ DC "+$("#ddc").value+" — ยังไม่ทอยจนกว่าจะกดตกลง";};
+  ["#dmode","#ddc","#dval","#dbonus"].forEach(s=>$(s).onchange=pv);pv();
+  $("#droll").onclick=()=>{
+    const mode=$("#dmode").value==="ad"?"n":$("#dmode").value;
+    const a=d20(),b=mode==="n"?null:d20();let r=a,note="";
+    if(mode==="a"){r=Math.max(a,b);note=` | ได้เปรียบ ทอย ${a} และ ${b} เลือก ${r} (สูงกว่า)`;}
+    else if(mode==="d"){r=Math.min(a,b);note=` | เสียเปรียบ ทอย ${a} และ ${b} เลือก ${r} (ต่ำกว่า)`;}
+    else if($("#dmode").value==="ad")note=" | ได้เปรียบและเสียเปรียบหักล้าง ทอยปกติ";
+    const val=+$("#dval").value,bon=+$("#dbonus").value,dc=+$("#ddc").value,tot=r+val+bon;
+    let res=tot>=dc?"สำเร็จ":"พลาด";if(r===20)res="ทอย 20 สำเร็จพิเศษ";if(r===1)res="ทอย 1 พลาดหนัก";
+    const line=`🎲 d20 = ${r} | ${$("#dwhy").value||"เช็ก"}: ${r} + ค่า ${val} + โบนัส ${bon} = ${tot} vs DC ${dc} → ${res}${note}`;
+    $("#dbig").textContent=r;log("#dlog",line);
+  };
+}
+// ---------- สร้างตัวละคร ----------
+let C=null; // {slots,locked,rr,confirmed}
+const SLOTS=[["race","เผ่า"],["gender","เพศ"],["age","อายุ"],["class","อาชีพ"],["element","ธาตุ"],["personality","นิสัย"],["fear","สิ่งที่กลัว"],["trait1","คุณลักษณะ 1"],["trait2","คุณลักษณะ 2"],["level","เลเวลเริ่มต้น"]];
+const CASCADE={race:["element","age","fear"],class:[]};
+function rollSlot(k,s){
+  const R=D.race[s.race];
+  switch(k){
+    case "race":return pick(D.races.races).id;
+    case "gender":return pick(D.misc.genders);
+    case "age":{const[a,b]=R.lifespan;return a+Math.floor(rnd()*Math.min(b-a,Math.max(10,(b-a)*0.4)));}
+    case "class":return pick(D.classes.classes)[0];
+    case "element":return R.element||pick(D.elements.elements).id;
+    case "personality":return pick(D.misc.personalities)[0];
+    case "fear":{const ex=D.misc.fear_exclude[s.race]||[];return pick(D.misc.fears.filter(f=>!ex.includes(f[0])))[0];}
+    case "trait1":case "trait2":{const other=k==="trait1"?s.trait2:s.trait1;return pick(D.traits.traits.filter(t=>t[0]!==other))[0];}
+    case "level":return wpick(D.misc.level_weights);
+  }
+}
+function genAll(){
+  const s={};for(const[k]of SLOTS)s[k]=rollSlot(k,s);
+  C={slots:s,locked:{},rr:D.misc.rerolls,confirmed:false};drawChar();
+}
+function reroll(k){
+  if(!C||C.confirmed||C.rr<=0||C.locked[k])return;
+  if(k==="element"&&D.race[C.slots.race].element)return;
+  const old=C.slots[k];let v,t=0;do{v=rollSlot(k,C.slots);t++;}while(v===old&&t<30);
+  C.slots[k]=v;C.rr--;
+  if(k==="race"){for(const c of CASCADE.race)if(!C.locked[c])C.slots[c]=rollSlot(c,C.slots);
+    if(D.race[v].element)C.slots.element=D.race[v].element;}
+  drawChar();
+}
+function nameOf(k,v){
+  if(k==="race")return D.race[v].th;if(k==="class")return D.classes.classes.find(c=>c[0]===v)[1];
+  if(k==="element")return D.el[v].th;if(k==="personality")return D.misc.personalities.find(p=>p[0]===v)[1];
+  if(k==="fear")return D.misc.fears.find(p=>p[0]===v)[1];
+  if(k==="trait1"||k==="trait2"){const t=D.traits.traits.find(x=>x[0]===v);return t[1]+" — "+t[3];}
+  if(k==="age")return v+" ปี";if(k==="level")return "Lv "+v;return v;
+}
+function charStats(s){
+  const R=D.race[s.race],c=D.classes.classes.find(x=>x[0]===s.class)[3],o={};
+  ST.forEach((k,i)=>o[k]=R.stats[i]);
+  for(const[k,v]of Object.entries(c))o[k]+=k==="hp"?v*10:v;
+  const lv=s.level-1;o.hp+=lv*10;o.mana+=lv*2;
+  for(const k of ST)o[k]=Math.max(k==="luck"?0:1,o[k]);
+  return o;
+}
+function drawChar(){
+  $("#rrleft").textContent=C.rr;
+  $("#slots").innerHTML=SLOTS.map(([k,n])=>{const lockedRace=k==="element"&&D.race[C.slots.race].element;
+    return `<div class="slot"><b>${n}</b><div class="v">${nameOf(k,C.slots[k])}${lockedRace?' <span class="dim">(ล็อกตามเผ่า)</span>':""}</div>
+    <button data-r="${k}" ${C.confirmed||C.rr<=0||C.locked[k]||lockedRace?"disabled":""}>รี</button>
+    <button data-l="${k}" class="${C.locked[k]?"on":""}" ${C.confirmed?"disabled":""}>${C.locked[k]?"ล็อกแล้ว":"ล็อก"}</button></div>`;}).join("");
+  $$("#slots [data-r]").forEach(b=>b.onclick=()=>reroll(b.dataset.r));
+  $$("#slots [data-l]").forEach(b=>b.onclick=()=>{C.locked[b.dataset.l]=!C.locked[b.dataset.l];drawChar();});
+  const st=charStats(C.slots),R=D.race[C.slots.race];
+  $("#cstats").innerHTML=`<table><tr>${ST.map(k=>`<th>${STN[k]}</th>`).join("")}</tr><tr>${ST.map(k=>`<td>${st[k]}</td>`).join("")}</tr></table>
+   <p><b>สกิลเผ่า:</b> ${R.skill}<br><b>ท่าเผ่า:</b> ${R.move}<br><b>สกิลอาชีพ:</b> ${D.classes.classes.find(c=>c[0]===C.slots.class)[4]}</p>
+   <p class="dim">กินได้: ${R.can_eat.join(", ")} | กินไม่ได้: ${R.cannot_eat.join(", ")}</p>`;
+  $("#cconfirm").disabled=C.confirmed;$("#cexport").disabled=!C.confirmed;
+}
+function initChar(){
+  $("#cgen").onclick=()=>{if(C&&C.confirmed&&!confirm("ตัวละครเดิมจะหาย"))return;genAll();};
+  $("#cconfirm").onclick=()=>{C.confirmed=true;drawChar();};
+  $("#cexport").onclick=()=>{const blob=new Blob([JSON.stringify({slots:C.slots,stats:charStats(C.slots)},null,2)],{type:"application/json"});
+    const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="character.json";a.click();};
+}
+// ---------- ต่อสู้ ----------
+let F=null,known=new Set();
+function initFight(){
+  $("#mon").innerHTML=D.monsters.monsters.map(m=>`<option value="${m[0]}">ชั้น ${m[2]} Lv${m[3]} ${m[1]}${m[12]?" (บอส)":""}</option>`).join("");
+  $("#fstart").onclick=startFight;
+  $("#fgo").onclick=goRound;
+}
+function startFight(){
+  if(!C){alert("สร้างตัวละครก่อนที่แท็บสร้างตัวละคร");return;}
+  const m=D.monsters.monsters.find(x=>x[0]===$("#mon").value),st=charStats(C.slots),sc=+$("#mscale").value||1;
+  F={p:{name:nameOf("race",C.slots.race)+" "+nameOf("class",C.slots.class),st,hp:st.hp,mp:st.mana,el:C.slots.element,
+    atk:Math.max(st.p_atk,st.m_atk),weapon:3},
+    m:{id:m[0],name:m[1],lv:m[3],hp:Math.round(m[4]*sc),max:Math.round(m[4]*sc),atk:m[5],type:m[6],pdef:m[7],mdef:m[8],spd:m[9],el:m[10],weak:m[11]},
+    round:0,act:null,over:false,guard:false};
+  F.p.max=st.hp;F.p.mpmax=st.mana;
+  $("#flog").innerHTML="";log("#flog",`เริ่มสู้: ${F.p.name} vs ${F.m.name} (Lv${F.m.lv}) HP ${F.m.hp}`);
+  drawFight();
+}
+function acts(){
+  const st=F.p.st;
+  return [["phys","ฟันตรง (กายภาพ พลัง 2)"],["magic","ลูกเวท (MP 2 พลัง 2)"],["guard","ตั้งการ์ด (ลดดาเมจ 50%)"],["flee","หนี"]]
+    .filter(a=>a[0]!=="magic"||F.p.mp>=2);
+}
+function drawFight(){
+  const p=F.p,m=F.m;
+  $("#pname").textContent=p.name;$("#mname").textContent=m.name+" Lv"+m.lv;
+  $("#phpbar").style.width=Math.max(0,p.hp/p.max*100)+"%";$("#phpt").textContent=`HP ${Math.max(0,p.hp)}/${p.max}`;
+  $("#pmpbar").style.width=p.mp/p.mpmax*100+"%";$("#pmpt").textContent=`MANA ${p.mp}/${p.mpmax}`;
+  $("#mhpbar").style.width=Math.max(0,m.hp/m.max*100)+"%";$("#mhpt").textContent=`HP ${Math.max(0,m.hp)}/${m.max}`;
+  $("#mweak").textContent=known.has(m.id)?`ธาตุ ${m.el?D.el[m.el].th:"-"} จุดอ่อน ${m.weak?D.el[m.weak].th:"-"} (รู้แล้ว)`:"ยังไม่รู้จุดอ่อน";
+  const box=$("#acts");box.innerHTML="";
+  if(!F.over)acts().forEach(([id,n])=>{const b=document.createElement("button");b.textContent=n;b.className=F.act===id?"on":"";b.onclick=()=>{F.act=id;drawFight();};box.appendChild(b);});
+  $("#fgo").disabled=F.over||!F.act;
+  $("#fpreview").textContent=F.over?"จบการต่อสู้":!F.act?"เลือกท่าก่อน":
+    "จะทอย: ลำดับเทิร์น (ทั้งสองฝ่าย) → "+({phys:"ทอยโจมตี + ทอยดาเมจ",magic:"ทอยโจมตี + ทอยดาเมจ",guard:"ไม่ทอยท่านี้",flee:"ทอยหนี"})[F.act]+" ; ศัตรูทอยโจมตี + ดาเมจ (ถ้าลงมือ) — ยังไม่ทอยจนกว่าจะกดตกลง";
+}
+function elemMult(atkEl,defender){
+  if(!atkEl||!defender.el)return[1,"ไม่มีตัวคูณธาตุ"];
+  if(!known.has(defender.id))return[1,"ยังไม่รู้จุดอ่อน คิดดาเมจปกติ"];
+  const a=D.el[atkEl];
+  if(a.strong===defender.el)return[2,`ธาตุ${a.th}ชนะ${D.el[defender.el].th} x2`];
+  if(a.weak===defender.el)return[0.5,`ธาตุ${a.th}แพ้${D.el[defender.el].th} x0.5`];
+  return[1,"ธาตุไม่เกี่ยวกัน"];
+}
+function attack(who,kind){ // kind: phys|magic
+  const P=F.p,M=F.m,pl=who==="p";
+  const aim=pl?(kind==="phys"?P.st.spd:Math.floor(P.st.wit/2)):M.spd;
+  const tspd=pl?M.spd:P.st.spd;
+  const nm=pl?P.name:M.name;
+  const r=d20(),tot=r+aim,need=10+tspd;
+  const hit=r===1?false:(r===20?true:tot>=need);
+  log("#flog",`🎲 d20 = ${r} | ทอยโจมตี ${nm}: ${r} + ค่าเล็ง ${aim} = ${tot} vs ค่าหลบ 10 + SPD ${tspd} = ${need} → ${r===1?"พลาดเสมอ (ทอย 1)":r===20?"โดนและคริติคอล (ทอย 20)":hit?"โดน":"พลาด"}`);
+  if(!hit)return;
+  const atk=pl?(kind==="phys"?P.st.p_atk:P.st.m_atk):M.atk,wp=pl?P.weapon:0,pw=2;
+  const def=pl?(kind==="phys"?M.pdef:M.mdef):(M.type==="p"?P.st.p_def:P.st.m_def);
+  let base=(atk+wp+pw)*3-def*2;const mn=Math.ceil(atk*0.1);if(base<mn)base=mn;
+  const r2=d20(),mult=0.8+0.02*r2;let dmg=base*mult,txt=`ฐาน (${atk}+${wp}+${pw})×3 − ${def}×2 = ${base} × (0.8+0.02×${r2} = ${mult.toFixed(2)})`;
+  if(pl&&kind==="magic"){const[em,et]=elemMult(P.el,M);dmg*=em;txt+=` | ${et}`;}
+  else if(pl&&kind==="phys"){txt+=" | กายภาพไม่มีธาตุ";}
+  if(r===20){dmg*=1.5;txt+=" | คริติคอล x1.5";}
+  if(!pl&&F.guard){dmg*=0.5;txt+=" | ตั้งการ์ด x0.5";}
+  dmg=Math.max(1,Math.round(dmg));
+  log("#flog",`🎲 d20 = ${r2} | ทอยดาเมจ: ${txt} → ${dmg}`);
+  if(pl)M.hp-=dmg;else P.hp-=dmg;
+}
+function goRound(){
+  if(F.over||!F.act)return;
+  F.round++;F.guard=false;log("#flog",`── รอบ ${F.round} ──`);
+  const P=F.p,M=F.m;
+  const ip=d20(),im=d20(),tp=ip+P.st.spd,tm=im+M.spd;
+  log("#flog",`🎲 d20 = ${ip} | ลำดับเทิร์น ${P.name}: ${ip} + SPD ${P.st.spd} = ${tp}`);
+  log("#flog",`🎲 d20 = ${im} | ลำดับเทิร์น ${M.name}: ${im} + SPD ${M.spd} = ${tm}`);
+  let playerFirst=tp>tm||(tp===tm&&(P.st.spd>=M.spd));
+  if(F.act==="guard")playerFirst=true;
+  if(F.act==="flee")playerFirst=true;
+  log("#flog",playerFirst?"ผู้เล่นลงมือก่อน":"ศัตรูลงมือก่อน");
+  const doP=()=>{
+    if(F.act==="guard"){F.guard=true;log("#flog","ตั้งการ์ด: ดาเมจที่รับในรอบนี้ลด 50% (ไม่ทอย เพราะผลรับประกัน)");}
+    else if(F.act==="flee"){const r=d20(),t=r+P.st.spd,n=10+M.spd;log("#flog",`🎲 d20 = ${r} | ทอยหนี: ${r} + SPD ${P.st.spd} = ${t} vs 10 + SPD ศัตรู ${M.spd} = ${n} → ${t>=n?"หนีสำเร็จ":"หนีไม่พ้น"}`);if(t>=n){F.over=true;log("#flog","หนีสำเร็จ");}}
+    else{if(F.act==="magic")P.mp-=2;attack("p",F.act);}
+  };
+  const doM=()=>{if(M.hp>0)attack("m",M.type==="p"?"phys":"magic");};
+  const alive=()=>!F.over&&P.hp>0&&M.hp>0;
+  if(playerFirst){doP();if(alive())doM();}else{doM();if(alive())doP();}
+  if(M.hp<=0&&!F.over){F.over=true;known.add(M.id);log("#flog",`ชนะ! รู้จุดอ่อนของ ${M.name} แล้ว (ธาตุ ${M.el?D.el[M.el].th:"-"} จุดอ่อน ${M.weak?D.el[M.weak].th:"-"}) EXP ${15*M.lv}`);}
+  if(P.hp<=0&&!F.over){F.over=true;log("#flog","ล้ม! (กติกา Death Save จะเพิ่มในเวอร์ชันถัดไป) กลับกิลด์ เสียเงิน 10% และวัตถุดิบรอบนั้น 1 ส่วน");}
+  F.act=null;drawFight();
+}
+// ---------- สารานุกรม ----------
+function initWiki(){$("#q").oninput=wiki;wiki();}
+function wiki(){
+  const q=$("#q").value.trim().toLowerCase(),out=[];
+  const add=(t,n,body)=>{if(!q||(t+n+body).toLowerCase().includes(q))out.push(`<div class="card"><h3>${n}</h3><div class="dim">${t}</div><div>${body}</div></div>`);};
+  D.races.races.forEach(r=>add("เผ่า",r.th+" / "+r.en,ST.map((k,i)=>STN[k]+" "+r.stats[i]).join(" · ")+"<br>"+r.skill+"<br>ท่าเผ่า: "+r.move));
+  D.classes.classes.forEach(c=>add("อาชีพ "+(c[2]==="c"?"(ต่อสู้)":"(จิปาถะ)"),c[1],Object.entries(c[3]).map(([k,v])=>STN[k]+(v>0?" +":" ")+v).join(" ")+"<br>"+c[4]));
+  D.traits.traits.forEach(t=>add("คุณลักษณะ",t[1],t[3]));
+  D.elements.elements.forEach(e=>add("ธาตุ",e.th,`ชนะ ${e.strong?D.el[e.strong].th:"-"} / แพ้ ${e.weak?D.el[e.weak].th:"-"}`));
+  D.npcs.npcs.forEach(n=>add("NPC",n.th,n.race+" / "+n.role));
+  D.monsters.monsters.forEach(m=>add("มอนสเตอร์",m[1],`ชั้น ${m[2]} Lv${m[3]} HP ${m[4]} ATK ${m[5]} DEF ${m[7]}/${m[8]} SPD ${m[9]}`));
+  $("#res").innerHTML=out.slice(0,120).join("")||'<div class="dim">ไม่พบ</div>';
+}
+load().catch(e=>{document.body.insertAdjacentHTML("afterbegin",`<pre style="color:#f88;padding:12px">โหลดข้อมูลไม่ได้: ${e}\nถ้าเปิดไฟล์ตรงๆ ให้รัน: python3 -m http.server แล้วเปิด http://localhost:8000</pre>`);});
+</script>
+<script>
+// เซฟแบบเบื้องต้น: ผูกกับ ?save=<id> (เล่นคนเดียว) · ปุ่ม 💾 เก็บบันทึกของ GM และเวลา
+(function(){const K="ssail_saves_v1",rd=()=>{try{return JSON.parse(localStorage.getItem(K)||"[]")}catch(e){return[]}},Saves={get:id=>rd().find(x=>x.id===id),update:(id,st)=>{try{localStorage.setItem(K,JSON.stringify(rd().map(x=>x.id===id?{...x,state:st,updated:Date.now()}:x)))}catch(e){alert("บันทึกไม่ได้")}}};const q=new URLSearchParams(location.search),sid=q.get("save");
+ const h=document.querySelector("header");const b=document.createElement("button");b.textContent="💾 บันทึก";
+ const tag=document.createElement("span");tag.className="dim";h.appendChild(b);h.appendChild(tag);
+ if(q.get("mode")==="mp")tag.textContent=q.get("host")?"ห้อง "+q.get("room")+" · คุณเป็น Host/GM":"ห้อง "+q.get("room")+" · ผู้เล่น (โหมดดูหน้าจอ GM ที่แชร์)";
+ const sv=sid&&Saves.get(sid);if(sv)tag.textContent="เซฟ: "+sv.name;
+ b.onclick=()=>{if(!sid){alert("โหมดนี้ไม่มีช่องเซฟ (เปิดจากเมนู → เริ่มเกม → เล่นคนเดียว)");return;}
+  Saves.update(sid,{...(Saves.get(sid)||{}).state,savedAt:Date.now(),log:(document.querySelector(".log")||{}).innerText||""});tag.textContent="บันทึกแล้ว "+new Date().toLocaleTimeString("th-TH");};})();
+</script>
+</body>
+</html>

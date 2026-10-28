@@ -27,7 +27,7 @@ jobs:
       - name: เตรียมไฟล์เว็บ (ไม่เอา raw/ และ gm_secrets)
         run: |
           mkdir _site
-          cp -r index.html data images _site/
+          cp -r index.html play.html wiki.html lobby.html css js data images _site/
       - uses: actions/configure-pages@v5
         with: { enablement: true }
       - uses: actions/upload-pages-artifact@v3
