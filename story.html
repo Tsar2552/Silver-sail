@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Act 1 · ใบเรือเงิน</title>
+<style>
+:root{--blue1:#0b1d6b;--blue2:#1a3bb0;--win:#fff;--red:#ff4a4a;--gold:#ffd24a}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:#000;color:#fff;font-family:"Noto Sans Thai",system-ui,sans-serif}
+#game{position:relative;max-width:980px;height:100vh;max-height:760px;margin:0 auto;background:#10131e;overflow:hidden;display:flex;flex-direction:column}
+#bg{position:absolute;inset:0;background:linear-gradient(#1b2a4a,#0c1020) center/cover no-repeat;transition:background .4s}
+#bgname{position:absolute;top:44px;left:12px;background:#000a;border:2px solid #fff;border-radius:6px;padding:2px 10px;font-size:13px}
+#port{position:absolute;left:3%;bottom:210px;height:58%;max-width:42%;display:none;filter:drop-shadow(0 4px 8px #000)}
+#hud{position:relative;z-index:3;display:flex;gap:10px;flex-wrap:wrap;padding:6px 10px;background:linear-gradient(var(--blue1),var(--blue2));border-bottom:2px solid #fff;font-size:13px;align-items:center}
+#hud a,#hud button{color:#fff;background:#0006;border:1px solid #fff;border-radius:5px;padding:1px 8px;font:inherit;text-decoration:none;cursor:pointer}
+.win{background:linear-gradient(var(--blue1),var(--blue2));border:3px solid var(--win);border-radius:10px;box-shadow:0 0 0 2px #000,inset 0 0 0 2px #0a1450}
+#box{position:absolute;z-index:3;left:10px;right:10px;bottom:10px;min-height:190px;padding:14px 18px 16px;font-size:18px;line-height:1.55}
+#name{position:absolute;top:-16px;left:14px;background:var(--blue2);border:2px solid #fff;border-radius:6px;padding:0 12px;font-size:15px}
+#text{min-height:80px;white-space:pre-wrap}
+#next{position:absolute;right:16px;bottom:8px;animation:bl 1s infinite}@keyframes bl{50%{opacity:0}}
+#menu{margin-top:8px}
+.opt{display:block;width:100%;text-align:left;background:none;border:0;color:#fff;font:inherit;padding:5px 8px;cursor:pointer;border-radius:5px}
+.opt:hover,.opt.sel{background:#ffffff22}.opt:before{content:"　";}.opt:hover:before,.opt.sel:before{content:"▶ ";color:var(--gold)}
+.long{color:var(--red);font-size:13px;display:block;margin-left:22px}
+.star{color:var(--red);font-weight:700}
+#toast{position:absolute;z-index:5;top:80px;right:12px;display:flex;flex-direction:column;gap:4px;align-items:flex-end}
+#toast div{background:#000c;border:1px solid var(--gold);color:var(--gold);padding:2px 10px;border-radius:5px;font-size:13px}
+#battle{position:absolute;z-index:4;inset:44px 10px 10px;display:none;padding:12px;flex-direction:column;gap:8px}
+#enemies{display:flex;gap:10px;flex-wrap:wrap}.en{flex:1;min-width:200px;background:#0008;border:2px solid #fff;border-radius:8px;padding:8px}
+.bar{height:10px;background:#000;border:1px solid #fff;border-radius:5px;overflow:hidden}.bar i{display:block;height:100%;background:#4ad46a}.bar.e i{background:#e04a4a}
+#blog{flex:1;overflow:auto;background:#000a;border:1px solid #fff5;border-radius:6px;padding:6px;font-size:13px;font-family:ui-monospace,monospace}
+#bcmd{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:6px}
+#bcmd button{background:var(--blue2);color:#fff;border:2px solid #fff;border-radius:6px;padding:6px;font:inherit;cursor:pointer}#bcmd button:disabled{opacity:.35}
+#shopbox{position:absolute;z-index:4;inset:44px 10px 10px;display:none;padding:12px;overflow:auto}
+.si{display:flex;gap:8px;align-items:center;border-bottom:1px solid #fff3;padding:4px 0;font-size:14px}.si span{flex:1}
+.si button{background:var(--blue2);color:#fff;border:1px solid #fff;border-radius:5px;padding:2px 10px;font:inherit;cursor:pointer}
+#over{position:absolute;z-index:6;inset:0;background:#000d;display:none;align-items:center;justify-content:center;padding:20px}
+#over .win{max-width:560px;width:100%;padding:18px;max-height:90%;overflow:auto}
+</style></head><body>
+<div id="game">
+ <div id="hud"><a href="index.html">← เมนู</a><span id="hlv"></span><span id="hhp"></span><span id="hmp"></span><span id="hgas"></span><button id="bnote">📓 รากเรื่อง</button><button id="bsave">💾</button></div>
+ <div id="bg"></div><div id="bgname"></div><img id="port" alt="">
+ <div id="toast"></div>
+ <div id="box" class="win"><div id="name"></div><div id="text"></div><div id="menu"></div><div id="next">▼</div></div>
+ <div id="battle" class="win"><div id="enemies"></div><div id="blog"></div><div id="bstat"></div><div id="bcmd"></div></div>
+ <div id="shopbox" class="win"><h3 id="shoptitle" style="margin:0 0 6px"></h3><div id="shoplist"></div><button id="shopdone" style="margin-top:8px;padding:6px 14px;background:#fff;color:#000;border:0;border-radius:6px;font:inherit;cursor:pointer">เสร็จแล้ว ไปต่อ</button></div>
+ <div id="over"><div class="win" id="overbox"></div></div>
+</div>
+<script src="js/common.js"></script><script src="js/vault.js"></script><script src="js/battle.js"></script><script src="js/story.js"></script>
+<script>
+const q=new URLSearchParams(location.search);
+const $id=i=>document.getElementById(i);
+let advance=null;
+const wait=()=>new Promise(r=>{advance=r;});
+document.addEventListener("keydown",e=>{if((e.key===" "||e.key==="Enter")&&advance){e.preventDefault();advance();}
+  if(["1","2","3"].includes(e.key)){const b=document.querySelectorAll(".opt")[+e.key-1];b&&b.click();}});
+$id("box").onclick=e=>{if(advance&&!e.target.closest("button"))advance();};
+let NPC={},SPK={},curEmo={};
+const UI={
+ bg(id){const el=$id("bg");el.style.backgroundImage=`url(images/bg/${id}.webp),linear-gradient(#1b2a4a,#0c1020)`;
+   const l=(window.LOC||{})[id];$id("bgname").textContent=l||"";$id("bgname").style.display=l?"block":"none";},
+ status(ch,s){$id("hlv").textContent=`Lv ${ch.level||1}`;$id("hhp").textContent=`HP ${ch.hp??s.hp}/${s.hp}`;$id("hmp").textContent=`MP ${ch.mp??s.mana}/${s.mana}`;$id("hgas").textContent=`${ch.gas||0} กัส`;},
+ toast(arr){const t=$id("toast");arr.forEach(x=>{const d=document.createElement("div");d.textContent=x;t.appendChild(d);setTimeout(()=>d.remove(),3200);});},
+ async say(n){
+   $id("menu").innerHTML="";$id("next").style.display="none";
+   const nm=n.sp?(NPC[n.sp]||SPK[n.sp]||n.sp):"";$id("name").textContent=nm;$id("name").style.display=nm?"block":"none";
+   const p=$id("port");if(n.sp&&NPC[n.sp]){p.style.display="block";p.onerror=()=>{p.style.display="none"};p.src=`images/npc/${n.sp}_${n.emo||"normal"}.webp`;}else p.style.display="none";
+   const t=$id("text");t.textContent="";let i=0,done=false;const full=n.text;
+   await new Promise(res=>{const iv=setInterval(()=>{t.textContent=full.slice(0,++i);if(i>=full.length){clearInterval(iv);done=true;res();}},18);
+     advance=()=>{clearInterval(iv);t.textContent=full;done=true;res();};});
+   $id("next").style.display="block";await wait();advance=null;},
+ async choice(n){
+   $id("name").style.display=n.sp?"block":"none";$id("text").textContent=n.prompt;$id("next").style.display="none";
+   const m=$id("menu");m.innerHTML="";
+   return new Promise(res=>{n.opts.forEach((o,i)=>{const b=document.createElement("button");b.className="opt";
+     b.innerHTML=`${i+1}. ${o.long?'<span class="star">*</span> ':""}${esc(o.text)}${o.long?'<span class="long">*ส่งผลระยะยาวต่อเนื้อเรื่อง</span>':""}`;
+     b.onclick=()=>{m.innerHTML="";res(i);};m.appendChild(b);});});},
+ async check(n,val,rng){
+   $id("text").innerHTML=`🎲 <b>เช็ก ${({wit:"WIT",spd:"SPD",luck:"LUCK"})[n.stat]||n.stat}</b> — ${esc(n.why)}<br>d20 + ค่า ${val} เทียบ DC ${n.dc} <span style="color:#9fd">(ยังไม่ทอยจนกว่าจะกดตกลง)</span>`;
+   const m=$id("menu");m.innerHTML="";
+   await new Promise(r=>{const b=document.createElement("button");b.className="opt sel";b.textContent="ตกลง ทอยเต๋า";b.onclick=()=>{m.innerHTML="";r();};m.appendChild(b);});
+   const d=rng(),tot=d+val,ok=d===20||(d!==1&&tot>=n.dc);
+   $id("text").innerHTML=`🎲 d20 = <b>${d}</b> | ${esc(n.why)}: ${d} + ค่า ${val} = ${tot} vs DC ${n.dc} → <b style="color:${ok?"#6f6":"#f66"}">${d===20?"ทอยได้ 20 สำเร็จเสมอ!":d===1?"ทอยได้ 1 พลาดเสมอ":ok?"สำเร็จ":"ล้มเหลว"}</b>`;
+   $id("next").style.display="block";await wait();advance=null;return ok;},
+ async shop(n,ch,list,buy){
+   $id("shoptitle").textContent=n.title||"ร้านค้า";const box=$id("shopbox");box.style.display="block";
+   const draw=()=>{$id("shoplist").innerHTML=`<div class="dim">เงิน: ${ch.gas||0} กัส</div>`+list.map((it,i)=>`<div class="si"><span><b>${esc(it.th)}</b> — ${esc(it.desc)}</span><b>${it.price} กัส</b><button data-i="${i}">ซื้อ</button></div>`).join("");
+     $id("shoplist").querySelectorAll("button").forEach(b=>b.onclick=()=>{const e=buy(list[b.dataset.i]);if(e)UI.toast([e]);else{UI.toast(["ซื้อแล้ว: "+list[b.dataset.i].th]);Story.refresh&&Story.refresh();}draw();UI.updateStatus&&UI.updateStatus();});};
+   draw();await new Promise(r=>{$id("shopdone").onclick=r;});box.style.display="none";},
+ battleStart(n,Es,cnt,ally){$id("battle").style.display="flex";$id("blog").innerHTML="";
+   if(n.intro)UI.battleLog([`⚔ ${n.intro}`]);if(cnt)UI.battleLog([`✔ การเตรียมตัวช่วยไว้ ${cnt} ข้อ (ศัตรูอ่อนลง)`]);if(ally)UI.battleLog(["🤝 คาเรลต่อสู้เคียงข้างคุณ"]);
+   UI.battleRefresh(null,Es);},
+ battleRefresh(P,Es){$id("enemies").innerHTML=Es.map(e=>`<div class="en"><b>${esc(e.name)}</b> Lv${e.lv} ${e.boss?"👑":""}<div class="bar e"><i style="width:${100*e.hp/e.maxhp}%"></i></div><div class="dim">HP ${e.hp}/${e.maxhp} · SPD ${e.spd} · ${e.kind==="p"?"กายภาพ":"เวท"}${e.charge===2?" · ⚠ กำลังสะสมพลัง!":""}</div></div>`).join("");
+   if(P)$id("bstat").innerHTML=`<b>${esc(P.name)}</b> HP ${P.hp}/${P.maxhp} · MP ${P.mp}/${P.maxmp}<div class="bar"><i style="width:${100*P.hp/P.maxhp}%"></i></div>`;},
+ battleLog(L){const b=$id("blog");L.forEach(x=>{const d=document.createElement("div");d.textContent=x;b.appendChild(d);});b.scrollTop=1e9;},
+ battleMenu({P,Es,E,round,pot,fire,spells,flee}){UI.battleRefresh(P,Es);UI.battleLog([`— รอบ ${round} — เลือกคำสั่ง (กดแล้วทอยทันที)`]);
+   const M=Battle.MOVES,c=$id("bcmd");c.innerHTML="";
+   const btn=(t,a,dis)=>{const b=document.createElement("button");b.textContent=t;b.disabled=!!dis;b.title="";c.appendChild(b);return new Promise(r=>{b.onclick=()=>r(a);});};
+   return Promise.race([btn(`${M.slash.th} (แม่น)`,"slash"),btn(`${M.heavy.th} (ติด −3)`,"heavy"),btn(`${M.bolt.th} (MP 4)`,"bolt",!spells),btn("🛡 ตั้งการ์ด","guard"),btn(`🧪 ใช้ยา (${pot})`,"potion",pot<1||P.hp>=P.maxhp),btn(`🔥 ขวดไฟ (${fire?"มี":"หมด"})`,"fire",!fire),btn("🏃 หนี","flee",!flee)]).then(a=>{c.innerHTML="";return a;});},
+ battleEnd(){$id("battle").style.display="none";},
+ async end(n,st,A,ch){const roots=st.log.map(l=>`<li><b>${esc(l.prompt)}</b><br>→ ${esc(l.pick)}${l.note?`<br><span style="color:#f88">★ ${esc(l.note)}</span>`:""}</li>`).join("");
+   $id("overbox").innerHTML=`<h2 style="margin-top:0;color:var(--gold)">${esc(n.text)}</h2><p>Lv ${ch.level} · ${ch.gas||0} กัส</p><h3>การตัดสินใจที่ส่งผลระยะยาว</h3><ul>${roots||"<li>—</li>"}</ul>
+   <p><button onclick="finishAct()" style="padding:8px 16px">${q.get("camp")?"จบ Act 1 → อัปเดตตัวละครเข้าคลัง":"กลับเมนู"}</button> <a href="index.html" style="color:#fff">เมนูหลัก</a></p>`;$id("over").style.display="flex";await new Promise(()=>{});}
+};
+function finishAct(){const id=q.get("camp");if(!id){location.href="index.html";return;}const k=Campaign.get(id);
+  const out=Campaign.finishAct(k);k.party=out.map(o=>{Vault.checkin(o.char,"จบ Act 1");return{owner:o.owner,char:Vault.checkout(o.char.cid,"solo:"+k.id)};});
+  k.story=null;Campaign.put(k);alert("อัปเดตตัวละครเข้าคลังแล้ว");location.href="vault.html";}
+$id("bnote").onclick=()=>{const g=window.__G;if(!g)return;const {st}=g.getState(),R=window.__A.roots;
+  const rows=Object.entries(st.roots).map(([k,v])=>`<li>${esc(R[k]?.label||k)}: <b>${esc(R[k]?.vals[v]||v)}</b></li>`).join("");
+  $id("overbox").innerHTML=`<h3 style="margin-top:0">📓 รากเรื่อง (สิ่งที่คุณเลือกไว้)</h3><ul>${rows||"<li>ยังไม่มี</li>"}</ul><button onclick="document.getElementById('over').style.display='none'">ปิด</button>`;$id("over").style.display="flex";};
+$id("bsave").onclick=()=>UI.toast([q.get("camp")?"บันทึกอัตโนมัติทุกฉากแล้ว":"โหมดทดลอง ไม่มีเซฟ"]);
+(async()=>{
+  const D=await loadData(["monsters","weapons","armor","npcs","locations","items"]);
+  D.act1=await (await fetch("data/story/act1.json")).json();window.__A=D.act1;
+  NPC=Object.fromEntries(D.npcs.npcs.map(n=>[n.id,n.th]));SPK=D.act1.speakers||{};
+  window.LOC=Object.fromEntries(D.locations.locations.map(l=>[l[0],l[1]]));
+  Story.setUI(UI);if(q.get("seed")){let s=+q.get("seed");Story.rngSet(()=>{s=(s*1664525+1013904223)%4294967296;return 1+Math.floor(s/4294967296*20);});}
+  const camp=q.get("camp");
+  if(camp&&!Campaign.get(camp)){alert("ไม่พบเซฟนี้");location.href="index.html";return;}
+  const g=await Story.start({data:D,campId:camp});window.__G=g;g.run().catch(e=>{console.error(e);alert("เกิดข้อผิดพลาด: "+e.message);});
+})();
+</script></body></html>

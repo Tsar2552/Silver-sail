@@ -1,0 +1,2618 @@
+{
+ "title": "Act 1: ใบเรือเงิน",
+ "start": "start",
+ "roots": {
+  "mint": {
+   "label": "คำสัญญาของมิ้นท์",
+   "vals": {
+    "promised": "สัญญาเต็มที่ว่าจะกลับมา",
+    "tried": "บอกว่าจะพยายามที่สุด",
+    "silent": "ลูบหัวโดยไม่ตอบ"
+   }
+  },
+  "debt": {
+   "label": "หนี้กิลด์",
+   "vals": {
+    "none": "ไม่กู้",
+    "small": "กู้ 500 (คืน 600)",
+    "big": "กู้ 2,000 (คืน 2,600)"
+   }
+  },
+  "lead": {
+   "label": "การนำทีม",
+   "vals": {
+    "self": "เป็นหัวหน้าเอง (ไรเวนเป็นคู่แข่ง)",
+    "karel": "ให้คาเรลนำ",
+    "solo": "ไปเดี่ยว"
+   }
+  },
+  "valenz": {
+   "label": "ท่าทีต่อวาเลนซ์",
+   "vals": {
+    "trusted": "ให้ความไว้ใจ",
+    "suspected": "สงสัยตามเวสเปอร์"
+   }
+  },
+  "orek": {
+   "label": "สัญญากับโอเรก",
+   "vals": {
+    "miners_first": "พาคนงานกลับก่อน",
+    "paid": "รับค่าจ้างล่วงหน้า",
+    "destroy_guardian": "สัญญาทำลายผู้พิทักษ์"
+   }
+  },
+  "trap": {
+   "label": "กับดักห้องที่ 2",
+   "vals": {
+    "set_for_grak": "ตั้งกับดักไว้ล่อกรัก"
+   }
+  },
+  "dorn": {
+   "label": "ดอร์น",
+   "vals": {
+    "saved": "ช่วยดอร์นไว้"
+   }
+  },
+  "grak": {
+   "label": "ชะตากรรมของกรัก",
+   "vals": {
+    "spared": "ไว้ชีวิต",
+    "killed": "สังหาร",
+    "karel_handled": "ปล่อยให้คาเรลจัดการ"
+   }
+  },
+  "spirit": {
+   "label": "วิญญาณเหมือง",
+   "vals": {
+    "listened": "ฟังความจริง",
+    "ignored": "ปัดทิ้ง"
+   }
+  },
+  "guardian": {
+   "label": "ผู้พิทักษ์",
+   "vals": {
+    "calmed": "ทำให้สงบ",
+    "fought": "ต่อสู้"
+   }
+  },
+  "valenz_end": {
+   "label": "บทสรุปของวาเลนซ์",
+   "vals": {
+    "forgiven": "ให้อภัย คืนหัวใจเตา",
+    "arrested": "ส่งตัวให้กิลด์",
+    "secret": "เก็บหัวใจเตาไว้เอง"
+   }
+  }
+ },
+ "speakers": {
+  "dorn": "ดอร์น",
+  "grak": "กรัก",
+  "goblin_shaman": "ก็อบลินหมอผี",
+  "mine_guardian": "ผู้พิทักษ์เหมือง",
+  "mine_spirit": "วิญญาณเหมือง"
+ },
+ "nodes": {
+  "start": {
+   "t": "narr",
+   "text": "ฝนพรำบนท่าเรือเมืองใบเรือเงิน ป้ายกิลด์สีเงินแกว่งไกวตามลมทะเล วันนี้คือวันแรกที่คุณมาลงทะเบียนเป็นนักผจญภัย",
+   "id": "start",
+   "bg": "guild_lobby",
+   "do": {
+    "gasmin": 150,
+    "item": {
+     "bread": 0
+    }
+   },
+   "next": "n001"
+  },
+  "n001": {
+   "t": "narr",
+   "text": "หน้าประตูกิลด์ มีชายตาบอดนั่งถือชามเก่าๆ ศีรษะเอียงตามเสียงฝีเท้าของคุณ",
+   "id": "n001",
+   "next": "n002"
+  },
+  "n002": {
+   "t": "say",
+   "sp": "grong",
+   "emo": "normal",
+   "text": "เสียงรองเท้าเธอ... มือใหม่สินะ ก้าวสั้น ลังเล แต่หัวใจหนักแน่น",
+   "id": "n002",
+   "next": "c_grong"
+  },
+  "c_grong": {
+   "t": "choice",
+   "prompt": "คุณจะทำอย่างไรกับลุงโกร่ง?",
+   "opts": [
+    {
+     "text": "ใส่เหรียญ 10 กัสลงในชาม",
+     "goto": "g_help",
+     "long": false,
+     "do": {
+      "gas": -10,
+      "flag": [
+       "helped_grong"
+      ]
+     },
+     "note": null
+    },
+    {
+     "text": "ถามว่าเขารู้ได้ยังไงว่าเป็นมือใหม่",
+     "goto": "g_ask",
+     "long": false,
+     "do": null,
+     "note": null
+    },
+    {
+     "text": "เดินผ่านเข้าไปเงียบๆ",
+     "goto": "g_ignore",
+     "long": false,
+     "do": {
+      "flag": [
+       "ignored_grong"
+      ]
+     },
+     "note": null
+    }
+   ],
+   "id": "c_grong"
+  },
+  "g_help": {
+   "t": "say",
+   "sp": "grong",
+   "emo": "smile",
+   "text": "ขอบใจ... ใจดีแบบนี้ ระวังจะอายุสั้นนะ ฮ่าๆ ฟังไว้ ถ้าเจอห้องที่พื้นเสียงกลวง อย่าเหยียบตรงกลาง",
+   "id": "g_help",
+   "next": "g_help2"
+  },
+  "g_help2": {
+   "t": "jump",
+   "cases": [],
+   "next": "mint",
+   "id": "g_help2"
+  },
+  "g_ask": {
+   "t": "say",
+   "sp": "grong",
+   "emo": "normal",
+   "text": "คนที่ยืนหน้าประตูนี้ทุกวันฟังรองเท้าคนมานับพัน พวกกลับมา ก้าวหนักขึ้น พวกไม่กลับ ก้าวเบาลงเรื่อยๆ ... วันนี้เธอก้าวสั้นเพราะกลัว นั่นดี คนไม่กลัวตายเร็ว",
+   "id": "g_ask",
+   "do": {
+    "flag": [
+     "grong_hint"
+    ]
+   },
+   "next": "g_ask2"
+  },
+  "g_ask2": {
+   "t": "jump",
+   "cases": [],
+   "next": "mint",
+   "id": "g_ask2"
+  },
+  "g_ignore": {
+   "t": "narr",
+   "text": "ลุงโกร่งยิ้มบางๆ ราวกับได้ยินเสียงคุณเดินผ่านไปแล้ว",
+   "id": "g_ignore",
+   "next": "mint"
+  },
+  "mint": {
+   "t": "say",
+   "sp": "mint",
+   "emo": "shock",
+   "text": "พี่คะ! พี่เป็นคนที่จะลงเหมืองใช่ไหมคะ... หนูได้ยินพี่ลินเด้คุยกัน",
+   "id": "mint",
+   "bg": "guild_lobby",
+   "next": "n003"
+  },
+  "n003": {
+   "t": "say",
+   "sp": "mint",
+   "emo": "sad",
+   "text": "คนที่ไปเหมืองไม่ค่อยกลับ... พ่อหนูก็ไปแล้ว",
+   "id": "n003",
+   "next": "c_mint"
+  },
+  "c_mint": {
+   "t": "choice",
+   "prompt": "มิ้นท์จ้องคุณตาแป๋ว เด็กน้อยกำชายเสื้อไว้แน่น",
+   "opts": [
+    {
+     "text": "\"พี่สัญญา จะกลับมาให้ได้\" (รับปากเต็มที่)",
+     "goto": "m_prom",
+     "long": true,
+     "do": {
+      "root": {
+       "mint": "promised"
+      }
+     },
+     "note": "ถ้าผิดสัญญา มิ้นท์จะจำไปตลอด"
+    },
+    {
+     "text": "\"พี่ไม่รับปาก แต่จะพยายามที่สุด\"",
+     "goto": "m_try",
+     "long": true,
+     "do": {
+      "root": {
+       "mint": "tried"
+      }
+     },
+     "note": null
+    },
+    {
+     "text": "ลูบหัวเธอแล้วไม่ตอบ",
+     "goto": "m_none",
+     "long": false,
+     "do": {
+      "root": {
+       "mint": "silent"
+      }
+     },
+     "note": null
+    }
+   ],
+   "id": "c_mint"
+  },
+  "m_prom": {
+   "t": "say",
+   "sp": "mint",
+   "emo": "smile",
+   "text": "จริงนะคะ! งั้นหนูจะรอ... พี่เอาขนมปังจากร้านป้าแมกกี้กลับมาให้หนูด้วยนะ!",
+   "id": "m_prom",
+   "next": "m_prom2"
+  },
+  "m_prom2": {
+   "t": "jump",
+   "cases": [],
+   "next": "counter",
+   "id": "m_prom2"
+  },
+  "m_try": {
+   "t": "say",
+   "sp": "mint",
+   "emo": "normal",
+   "text": "อื้อ... ซื่อสัตย์ดี หนูชอบ",
+   "id": "m_try",
+   "next": "m_try2"
+  },
+  "m_try2": {
+   "t": "jump",
+   "cases": [],
+   "next": "counter",
+   "id": "m_try2"
+  },
+  "m_none": {
+   "t": "narr",
+   "text": "มิ้นท์ก้มหน้าไม่พูดอะไรอีก",
+   "id": "m_none",
+   "next": "counter"
+  },
+  "counter": {
+   "t": "say",
+   "sp": "maren",
+   "emo": "normal",
+   "text": "เซ็นตรงนี้ค่ะ ไม่ใช่ตรงนั้น ค่าใบอนุญาตหนึ่งร้อยกัสนะคะ ไม่ลดค่ะ",
+   "id": "counter",
+   "bg": "guild_counter",
+   "next": "n004"
+  },
+  "n004": {
+   "t": "say",
+   "sp": "linde",
+   "emo": "smile",
+   "text": "ยินดีต้อนรับสู่ใบเรือเงิน ฉันลินเด้ ดูแลบัญชี ... อ้อ กิลด์มี 'สัญญากู้ยืมนักผจญภัยใหม่' ด้วย กำไรสุทธิ ไม่ใช่ยอดขาย ดอกเบี้ยเราคิดแฟร์ ใช่ไหมคะมาเรน",
+   "id": "n004",
+   "next": "n005"
+  },
+  "n005": {
+   "t": "say",
+   "sp": "maren",
+   "emo": "normal",
+   "text": "...ค่ะ ฉันไม่อยากยุ่ง",
+   "id": "n005",
+   "next": "c_loan"
+  },
+  "c_loan": {
+   "t": "choice",
+   "prompt": "คุณมีเงิน 150 กัส ค่าใบอนุญาตหมดไป 100 กัส ลินเด้ยื่นสัญญามาให้ดู",
+   "opts": [
+    {
+     "text": "ไม่กู้ ใช้เงินที่มีอยู่",
+     "goto": "l_none",
+     "long": true,
+     "do": {
+      "gas": -100,
+      "root": {
+       "debt": "none"
+      }
+     },
+     "note": "เหลือ 50 กัส ซื้อของไม่ค่อยได้ แต่ไม่มีหนี้"
+    },
+    {
+     "text": "กู้ 500 กัส (คืน 600 ตอนจบ Act)",
+     "goto": "l_small",
+     "long": true,
+     "do": {
+      "gas": 400,
+      "root": {
+       "debt": "small"
+      }
+     },
+     "note": null
+    },
+    {
+     "text": "กู้ 2,000 กัส (คืน 2,600 ตอนจบ Act)",
+     "goto": "l_big",
+     "long": true,
+     "do": {
+      "gas": 1900,
+      "root": {
+       "debt": "big"
+      }
+     },
+     "note": "ซื้อของดีได้ แต่ต้องใช้คืนก่อนจบ Act"
+    }
+   ],
+   "id": "c_loan"
+  },
+  "l_none": {
+   "t": "say",
+   "sp": "linde",
+   "emo": "normal",
+   "text": "ตัดสินใจรอบคอบดี... แต่ถ้าเป็นหนี้ ฉันไม่เคยลืม",
+   "id": "l_none",
+   "next": "l_none2"
+  },
+  "l_none2": {
+   "t": "jump",
+   "cases": [],
+   "next": "briefing",
+   "id": "l_none2"
+  },
+  "l_small": {
+   "t": "say",
+   "sp": "linde",
+   "emo": "smile",
+   "text": "ลงชื่อตรงนี้ค่ะ ฉันจะจดไว้ในบัญชี ขอให้โชคดีนะคะ",
+   "id": "l_small",
+   "next": "l_small2"
+  },
+  "l_small2": {
+   "t": "jump",
+   "cases": [],
+   "next": "briefing",
+   "id": "l_small2"
+  },
+  "l_big": {
+   "t": "say",
+   "sp": "linde",
+   "emo": "smile",
+   "text": "โอ้... ชอบความกล้าแบบนี้ สัญญาฉบับใหญ่ ฉันเตรียมไว้แล้ว",
+   "id": "l_big",
+   "next": "n006"
+  },
+  "n006": {
+   "t": "say",
+   "sp": "maren",
+   "emo": "normal",
+   "text": "...ของเยอะขึ้นก็จริง แต่ใบเรือเงินไม่ใช่การกุศลนะคะ",
+   "id": "n006",
+   "next": "briefing"
+  },
+  "briefing": {
+   "t": "say",
+   "sp": "horka",
+   "emo": "normal",
+   "text": "ของกิลด์ ต้องกลับมาครบ... รวมถึงคนด้วย",
+   "id": "briefing",
+   "bg": "guild_master_room",
+   "next": "n007"
+  },
+  "n007": {
+   "t": "say",
+   "sp": "horka",
+   "emo": "normal",
+   "text": "เหมืองใต้ภูผาที่ปิดมาสิบปี กลับมามีเสียงดังจากข้างใน คนงานหายไปเจ็ดคน วันก่อน วาเลนซ์ รุ่นพี่เรากลับออกมาคนเดียว เขาไม่ยอมพูดอะไร",
+   "id": "n007",
+   "next": "n008"
+  },
+  "n008": {
+   "t": "say",
+   "sp": "horka",
+   "emo": "normal",
+   "text": "ภารกิจของเจ้าคือลงไปคลังใต้ภูผา ตามหาคนงาน และหาให้ได้ว่าเกิดอะไรขึ้น ใครจะไปด้วยก็ได้",
+   "id": "n008",
+   "next": "c_team"
+  },
+  "c_team": {
+   "t": "choice",
+   "prompt": "ฮอร์ก้าชี้ไปที่คาเรลและไรเวนที่ยืนอยู่ข้างๆ \"เลือกเอา\"",
+   "opts": [
+    {
+     "text": "\"ข้าจะเป็นหัวหน้าทีมเอง\" (พาคาเรลและไรเวนไป)",
+     "goto": "t_lead",
+     "long": true,
+     "do": {
+      "flag": [
+       "ally_karel",
+       "ally_raven"
+      ],
+      "ally": "karel",
+      "root": {
+       "lead": "self"
+      }
+     },
+     "note": "ไรเวนจะมองคุณเป็นคู่แข่งตัวจริง"
+    },
+    {
+     "text": "\"ขอให้คาเรลนำทางได้ไหม\"",
+     "goto": "t_karel",
+     "long": true,
+     "do": {
+      "flag": [
+       "ally_karel"
+      ],
+      "ally": "karel",
+      "root": {
+       "lead": "karel"
+      }
+     },
+     "note": "คาเรลไว้ใจคุณมากขึ้น ไรเวนจะไปทางของเขาเอง"
+    },
+    {
+     "text": "\"ข้าไปคนเดียว\" (ได้ยาเพิ่ม 2 ขวด แต่ไม่มีใครช่วย)",
+     "goto": "t_solo",
+     "long": true,
+     "do": {
+      "flag": [
+       "lone_wolf"
+      ],
+      "item": {
+       "potion": 2
+      },
+      "root": {
+       "lead": "solo"
+      }
+     },
+     "note": "ด่านบอสจะยากมากโดยไม่มีผู้ช่วย"
+    }
+   ],
+   "id": "c_team"
+  },
+  "t_lead": {
+   "t": "say",
+   "sp": "raven",
+   "emo": "angry",
+   "text": "รอบนี้ฉันนำแน่... แต่ถ้านายกล้านำก็ลองดู",
+   "id": "t_lead",
+   "bg": "guild_meeting",
+   "next": "n009"
+  },
+  "n009": {
+   "t": "say",
+   "sp": "karel",
+   "emo": "smile",
+   "text": "สมัยฉัน... เอาเถอะ ฉันเป็นคนถือหอก นายเป็นคนสั่ง ฉันยอม",
+   "id": "n009",
+   "next": "t_lead2"
+  },
+  "t_lead2": {
+   "t": "jump",
+   "cases": [],
+   "next": "pub",
+   "id": "t_lead2"
+  },
+  "t_karel": {
+   "t": "say",
+   "sp": "karel",
+   "emo": "normal",
+   "text": "สมัยฉัน ฉันก็ถูกนำแบบนี้ เข้าใจแล้ว ตามฉันมา เดินตรงกลาง อย่าเดินชิดผนัง",
+   "id": "t_karel",
+   "bg": "guild_meeting",
+   "next": "n010"
+  },
+  "n010": {
+   "t": "say",
+   "sp": "raven",
+   "emo": "angry",
+   "text": "ห่า... ฉันไปเองก็ได้!",
+   "id": "n010",
+   "next": "t_karel2"
+  },
+  "t_karel2": {
+   "t": "jump",
+   "cases": [],
+   "next": "pub",
+   "id": "t_karel2"
+  },
+  "t_solo": {
+   "t": "say",
+   "sp": "horka",
+   "emo": "normal",
+   "text": "ฮึ... กล้าหรือโง่ ยังไม่รู้ ถ้าตาย อย่าหวังให้ใครเก็บศพ",
+   "id": "t_solo",
+   "bg": "guild_master_room",
+   "next": "n011"
+  },
+  "n011": {
+   "t": "say",
+   "sp": "lola",
+   "emo": "shock",
+   "text": "จดหมายด่วน! เซ็นรับด้วย ... อ๊ะ พี่จะไปคนเดียวเหรอคะ",
+   "id": "n011",
+   "next": "pub"
+  },
+  "pub": {
+   "t": "narr",
+   "text": "คืนก่อนออกเดินทาง คุณแวะผับหนวดปลาหมึกเมา เสียงหัวเราะและกลิ่นเหล้าลอยอบอวล",
+   "id": "pub",
+   "bg": "guild_pub",
+   "next": "n012"
+  },
+  "n012": {
+   "t": "say",
+   "sp": "tobias",
+   "emo": "normal",
+   "text": "ดื่มก่อน เดี๋ยวเล่าให้ฟัง ... มุมนั้น คนที่นั่งคนเดียว วาเลนซ์ เขานั่งตรงนั้นสามวันแล้ว ไม่ยอมแตะเหล้า",
+   "id": "n012",
+   "next": "n013"
+  },
+  "n013": {
+   "t": "say",
+   "sp": "vesper",
+   "emo": "smile",
+   "text": "ข้อมูลแลกข้อมูล ถ้าเธอบอกฉันว่าเธอรู้อะไรเกี่ยวกับวาเลนซ์ ฉันจะบอกเรื่องที่เธอยังไม่รู้... เขากลับมาตอนฟ้าสาง ตัวเย็นเฉียบ เหมือนคนที่ควรตายไปแล้ว",
+   "id": "n013",
+   "next": "n014"
+  },
+  "n014": {
+   "t": "say",
+   "sp": "valenz",
+   "emo": "sad",
+   "text": "ฉันไม่ได้ตายสักหน่อย...",
+   "id": "n014",
+   "next": "c_valenz"
+  },
+  "c_valenz": {
+   "t": "choice",
+   "prompt": "วาเลนซ์เงยหน้ามองคุณ สายตาเหมือนคนไม่ได้นอนมานาน",
+   "opts": [
+    {
+     "text": "ซื้อน้ำให้เขาแล้วนั่งลงเงียบๆ (ให้ความไว้ใจ)",
+     "goto": "v_trust",
+     "long": true,
+     "do": {
+      "root": {
+       "valenz": "trusted"
+      },
+      "gas": -20
+     },
+     "note": "วาเลนซ์จะจำความใจดีนี้"
+    },
+    {
+     "text": "ถามตรงๆ ว่าข้างล่างเกิดอะไรขึ้น",
+     "goto": "v_ask",
+     "long": false,
+     "do": null,
+     "note": null
+    },
+    {
+     "text": "แอบฟังเวสเปอร์ เธอพูดถูก เขาน่าสงสัย",
+     "goto": "v_sus",
+     "long": true,
+     "do": {
+      "root": {
+       "valenz": "suspected"
+      },
+      "flag": [
+       "vesper_deal"
+      ]
+     },
+     "note": "วาเลนซ์จะไม่ช่วยคุณอีก"
+    }
+   ],
+   "id": "c_valenz"
+  },
+  "v_trust": {
+   "t": "say",
+   "sp": "valenz",
+   "emo": "sad",
+   "text": "...ขอบใจ ไม่มีใครซื้ออะไรให้ฉันมานานแล้ว ฟังนะ ผู้พิทักษ์ข้างล่างไม่ได้ชั่วร้าย มันกลัวไฟ อย่ามองมันเป็นศัตรูทันที แล้วก็... อย่าเชื่อใจก็อบลินที่ยิ้ม",
+   "id": "v_trust",
+   "next": "v_trust2"
+  },
+  "v_trust2": {
+   "t": "jump",
+   "cases": [],
+   "next": "shop_hub",
+   "id": "v_trust2"
+  },
+  "v_ask": {
+   "t": "check",
+   "stat": "wit",
+   "dc": 12,
+   "why": "อ่านสีหน้าวาเลนซ์ว่าเขากำลังปิดบังอะไร",
+   "ok": "v_ok",
+   "fail": "v_fail",
+   "id": "v_ask"
+  },
+  "v_ok": {
+   "t": "say",
+   "sp": "valenz",
+   "emo": "sad",
+   "text": "...เธอดูออกสินะ ข้างล่าง มีของที่ฉันเอามา... ขอโทษ ฉันบอกได้แค่ว่าผู้พิทักษ์แพ้ไฟ และคนงานยังมีชีวิตอยู่ที่ทะเลสาบ",
+   "id": "v_ok",
+   "do": {
+    "flag": [
+     "known_weak_fire",
+     "miners_alive"
+    ]
+   },
+   "next": "v_ok2"
+  },
+  "v_ok2": {
+   "t": "jump",
+   "cases": [],
+   "next": "shop_hub",
+   "id": "v_ok2"
+  },
+  "v_fail": {
+   "t": "say",
+   "sp": "valenz",
+   "emo": "angry",
+   "text": "ไม่มีอะไรจะพูด ไปเถอะ",
+   "id": "v_fail",
+   "next": "v_fail2"
+  },
+  "v_fail2": {
+   "t": "jump",
+   "cases": [],
+   "next": "shop_hub",
+   "id": "v_fail2"
+  },
+  "v_sus": {
+   "t": "say",
+   "sp": "vesper",
+   "emo": "smile",
+   "text": "ข้อมูลแลกข้อมูล ... เขามีของบางอย่างซ่อนอยู่ในเสื้อ ฉันเห็นมันเรืองแสงสีแดง ของแถม: เหมืองมี 'ผู้พิทักษ์' เกราะเหล็กตัวใหญ่ ขยับตอนมีคนเข้าใกล้ทะเลสาบ",
+   "id": "v_sus",
+   "do": {
+    "flag": [
+     "known_guardian"
+    ]
+   },
+   "next": "v_sus2"
+  },
+  "v_sus2": {
+   "t": "jump",
+   "cases": [],
+   "next": "shop_hub",
+   "id": "v_sus2"
+  },
+  "shop_hub": {
+   "t": "narr",
+   "text": "ก่อนออกเดินทาง คุณมีเวลาเตรียมของที่ตลาดท่าเรือ",
+   "id": "shop_hub",
+   "bg": "harbor_market",
+   "next": "c_shop"
+  },
+  "c_shop": {
+   "t": "choice",
+   "prompt": "จะไปร้านไหนก่อน?",
+   "opts": [
+    {
+     "text": "ร้านช่างตีเหล็กบรอม (อาวุธ/เกราะ)",
+     "goto": "shop_brom",
+     "long": false,
+     "do": null,
+     "note": null
+    },
+    {
+     "text": "ร้านยาใบไม้ทอง (ยา/ของกิน)",
+     "goto": "shop_leaf",
+     "long": false,
+     "do": null,
+     "note": null
+    },
+    {
+     "text": "พอแล้ว ออกเดินทางไปประตูเมืองเหนือ",
+     "goto": "gate",
+     "long": false,
+     "do": null,
+     "note": null
+    }
+   ],
+   "id": "c_shop"
+  },
+  "shop_brom": {
+   "t": "say",
+   "sp": "brom",
+   "emo": "normal",
+   "text": "ของดีไม่ต้องเถียงราคา ดูเอาเอง",
+   "id": "shop_brom",
+   "bg": "brom_smithy",
+   "next": "sh1"
+  },
+  "sh1": {
+   "t": "shop",
+   "items": [
+    "sword_common",
+    "spear_common",
+    "dagger_common",
+    "axe_common",
+    "staff_common",
+    "wand_common",
+    "bow_common",
+    "sword_uncommon",
+    "spear_uncommon",
+    "staff_uncommon",
+    "robe_common",
+    "light_common",
+    "medium_common",
+    "shield_common"
+   ],
+   "next": "shop_hub",
+   "id": "sh1",
+   "title": "ร้านช่างตีเหล็กบรอม"
+  },
+  "shop_leaf": {
+   "t": "say",
+   "sp": "ferly",
+   "emo": "smile",
+   "text": "อย่าดมขวดนั้นนะ! ... ยาฟื้นฟูกับของกิน เอาไปเลยจ้ะ",
+   "id": "shop_leaf",
+   "bg": "golden_leaf",
+   "next": "sh2"
+  },
+  "sh2": {
+   "t": "shop",
+   "items": [
+    "@potion",
+    "@bread",
+    "@antidote"
+   ],
+   "next": "shop_hub",
+   "id": "sh2",
+   "title": "ร้านยาใบไม้ทอง"
+  },
+  "gate": {
+   "t": "say",
+   "sp": "sissa",
+   "emo": "normal",
+   "text": "ชื่อ ธุระ ปลายทาง",
+   "id": "gate",
+   "bg": "north_gate",
+   "next": "c_gate"
+  },
+  "c_gate": {
+   "t": "choice",
+   "prompt": "กัปตันซิสซาจ้องคุณเขม็ง ใบอนุญาตอยู่ในมือคุณแล้ว",
+   "opts": [
+    {
+     "text": "ตอบตรงๆ ตามความจริง",
+     "goto": "sis_true",
+     "long": false,
+     "do": null,
+     "note": null
+    },
+    {
+     "text": "อ้างว่าไปหาของป่าให้กิลด์ (โกหก)",
+     "goto": "sis_lie",
+     "long": false,
+     "do": null,
+     "note": null
+    },
+    {
+     "text": "ยื่นถุงเหรียญ 30 กัสให้ลับๆ",
+     "goto": "sis_bribe",
+     "long": false,
+     "do": {
+      "gas": -30,
+      "flag": [
+       "bribed_sissa"
+      ]
+     },
+     "note": null
+    }
+   ],
+   "id": "c_gate"
+  },
+  "sis_true": {
+   "t": "say",
+   "sp": "sissa",
+   "emo": "normal",
+   "text": "เหมืองใต้ภูผา... ดี ฉันไม่ถามต่อ ระวังตัว ฟังนะ ถ้าเห็นของแปลกที่ไหลมาจากเหมือง ส่งข่าวให้ฉันก่อนกิลด์",
+   "id": "sis_true",
+   "do": {
+    "flag": [
+     "sissa_ally"
+    ]
+   },
+   "next": "sis_true2"
+  },
+  "sis_true2": {
+   "t": "jump",
+   "cases": [],
+   "next": "road",
+   "id": "sis_true2"
+  },
+  "sis_lie": {
+   "t": "check",
+   "stat": "wit",
+   "dc": 11,
+   "why": "พูดโกหกให้แนบเนียนต่อหน้านักสืบ",
+   "ok": "sis_lie_ok",
+   "fail": "sis_lie_fail",
+   "id": "sis_lie"
+  },
+  "sis_lie_ok": {
+   "t": "narr",
+   "text": "ซิสซาหรี่ตา แต่ยอมโบกมือให้ผ่าน",
+   "id": "sis_lie_ok",
+   "next": "sis_lie_ok2"
+  },
+  "sis_lie_ok2": {
+   "t": "jump",
+   "cases": [],
+   "next": "road",
+   "id": "sis_lie_ok2"
+  },
+  "sis_lie_fail": {
+   "t": "say",
+   "sp": "sissa",
+   "emo": "angry",
+   "text": "โกหกไม่เก่ง ฉันเห็นรอยโคลนเหมืองที่รองเท้าเธอ... ผ่านไปได้ แต่ฉันจำหน้าเธอแล้ว",
+   "id": "sis_lie_fail",
+   "do": {
+    "flag": [
+     "sissa_suspicious"
+    ]
+   },
+   "next": "sis_lie_fail2"
+  },
+  "sis_lie_fail2": {
+   "t": "jump",
+   "cases": [],
+   "next": "road",
+   "id": "sis_lie_fail2"
+  },
+  "sis_bribe": {
+   "t": "say",
+   "sp": "sissa",
+   "emo": "normal",
+   "text": "...ฉันไม่เห็นอะไรทั้งนั้น ไปเถอะ",
+   "id": "sis_bribe",
+   "next": "sis_bribe2"
+  },
+  "sis_bribe2": {
+   "t": "jump",
+   "cases": [],
+   "next": "road",
+   "id": "sis_bribe2"
+  },
+  "road": {
+   "t": "narr",
+   "text": "ถนนหลวงทอดยาวไปทางเหนือ ผ่านป่าชานเมืองและสะพานหินเก่า เด็กส่งของวิ่งสวนทางมา",
+   "id": "road",
+   "bg": "royal_road",
+   "next": "n015"
+  },
+  "n015": {
+   "t": "say",
+   "sp": "tib",
+   "emo": "shock",
+   "text": "ส่งของค่ะ! ผมหมายถึงครับ! ... พี่ๆ จะไปเหมืองเหรอครับ ระวังนะครับ เมื่อเช้าผมเห็นก็อบลินหลายตัวแอบอยู่ตรงสะพาน",
+   "id": "n015",
+   "next": "n016"
+  },
+  "n016": {
+   "t": "narr",
+   "text": "ที่สะพานหินเก่า เงาก็อบลินสอดแนมสองตัวโผล่ออกมาจากพุ่มไม้!",
+   "id": "n016",
+   "bg": "old_stone_bridge",
+   "next": "b_road"
+  },
+  "b_road": {
+   "t": "battle",
+   "enemies": [
+    "goblin_scout"
+   ],
+   "win": "road_win",
+   "lose": "road_lose",
+   "id": "b_road",
+   "bg": "old_stone_bridge",
+   "ally": "karel",
+   "intro": "ก็อบลินสอดแนมขวางสะพาน"
+  },
+  "road_win": {
+   "t": "say",
+   "sp": "karel",
+   "emo": "normal",
+   "text": "ฮึ... พวกมันมาไกลกว่าที่คิด ก็อบลินไม่ควรโผล่แถวนี้ นี่มันผิดปกติ",
+   "id": "road_win",
+   "do": {
+    "exp": 40,
+    "gasplus": 15
+   },
+   "next": "road_win2"
+  },
+  "road_win2": {
+   "t": "jump",
+   "cases": [],
+   "next": "village",
+   "id": "road_win2"
+  },
+  "road_lose": {
+   "t": "narr",
+   "text": "คุณเข่าทรุด ขณะที่ทุกอย่างมืดลง... ก่อนสติจะหลุด คุณรู้สึกว่ามีคนลากคุณไปที่ปลอดภัย",
+   "id": "road_lose",
+   "do": {
+    "heal": true,
+    "flag": [
+     "rescued_by_tib"
+    ]
+   },
+   "next": "n017"
+  },
+  "n017": {
+   "t": "say",
+   "sp": "tib",
+   "emo": "shy",
+   "text": "พี่ฟื้นแล้วเหรอครับ! ผมลากพี่ออกมาจากพุ่มไม้ ... อย่าบอกใครนะครับว่าผมวิ่งหนี!",
+   "id": "n017",
+   "next": "road_lose2"
+  },
+  "road_lose2": {
+   "t": "jump",
+   "cases": [],
+   "next": "village",
+   "id": "road_lose2"
+  },
+  "village": {
+   "t": "narr",
+   "text": "หมู่บ้านคนขุดแร่เงียบกริบ หน้าบ้านหลายหลังแขวนผ้าสีดำ",
+   "id": "village",
+   "bg": "miner_village",
+   "next": "n018"
+  },
+  "n018": {
+   "t": "say",
+   "sp": "win",
+   "emo": "sad",
+   "text": "หมู่บ้านนี้อยู่ได้เพราะเหมือง... แต่ตอนนี้เหมืองกินลูกหลานเราไปเจ็ดคน หนึ่งในนั้นคือหลานชายฉัน ปิ๊ป อายุสิบหก",
+   "id": "n018",
+   "next": "n019"
+  },
+  "n019": {
+   "t": "say",
+   "sp": "orek",
+   "emo": "normal",
+   "text": "ลงไปเหรอ ฉันไม่ไปด้วยนะ ... แต่ฉันมีของให้ แผนผังชั้นล่าง กับตราผนึกควบคุมผู้พิทักษ์ ถ้าเธอสัญญาข้อหนึ่ง",
+   "id": "n019",
+   "next": "c_orek"
+  },
+  "c_orek": {
+   "t": "choice",
+   "prompt": "โอเรกหยิบตราโลหะสลักรูนออกมา \"สัญญาข้อไหน?\"",
+   "opts": [
+    {
+     "text": "\"พาคนงานกลับมาให้ครบก่อน เรื่องอื่นทีหลัง\"",
+     "goto": "o_miners",
+     "long": true,
+     "do": {
+      "flag": [
+       "has_rune"
+      ],
+      "root": {
+       "orek": "miners_first"
+      }
+     },
+     "note": "ผู้พิทักษ์อาจ 'สงบได้' ถ้าคุณใช้ตราถูกวิธี"
+    },
+    {
+     "text": "\"ข้าขอค่าจ้างล่วงหน้า 200 กัส\"",
+     "goto": "o_pay",
+     "long": false,
+     "do": {
+      "gas": 200,
+      "flag": [
+       "has_rune"
+      ],
+      "root": {
+       "orek": "paid"
+      }
+     },
+     "note": null
+    },
+    {
+     "text": "\"ข้าสัญญาว่าจะทำลายผู้พิทักษ์ ให้เหมืองกลับมาใช้ได้\"",
+     "goto": "o_destroy",
+     "long": true,
+     "do": {
+      "flag": [
+       "has_rune"
+      ],
+      "root": {
+       "orek": "destroy_guardian"
+      }
+     },
+     "note": "หมู่บ้านจะได้เหมืองคืน แต่ผู้พิทักษ์ปกป้องบางอย่างอยู่"
+    }
+   ],
+   "id": "c_orek"
+  },
+  "o_miners": {
+   "t": "say",
+   "sp": "orek",
+   "emo": "normal",
+   "text": "ดี... รูนบนตรานี่ใช้สั่งให้ผู้พิทักษ์หยุดได้ครั้งเดียว ต้องเอาให้ใกล้ก่อน",
+   "id": "o_miners",
+   "next": "o_m2"
+  },
+  "o_m2": {
+   "t": "jump",
+   "cases": [],
+   "next": "camp",
+   "id": "o_m2"
+  },
+  "o_pay": {
+   "t": "say",
+   "sp": "orek",
+   "emo": "normal",
+   "text": "โลภนะ... แต่ซื่อตรงดี เอาไป อย่าหนีล่ะ",
+   "id": "o_pay",
+   "next": "o_p2"
+  },
+  "o_p2": {
+   "t": "jump",
+   "cases": [],
+   "next": "camp",
+   "id": "o_p2"
+  },
+  "o_destroy": {
+   "t": "say",
+   "sp": "orek",
+   "emo": "angry",
+   "text": "นั่นแหละที่ฉันอยากได้ยิน เจ้าไปจัดการมัน ฉันจะรอข่าว",
+   "id": "o_destroy",
+   "next": "camp"
+  },
+  "camp": {
+   "t": "narr",
+   "text": "ค่ำแล้ว ที่แคมป์ปากเหมือง ร่างสูงใหญ่ขวางทางเข้าไว้ เป็นซัน ยามผิวคล้ำร่างยักษ์",
+   "id": "camp",
+   "bg": "mine_camp",
+   "next": "n020"
+  },
+  "n020": {
+   "t": "say",
+   "sp": "sun",
+   "emo": "normal",
+   "text": "ผ่านไปไม่ได้ จนกว่าจะรุ่งเช้า",
+   "id": "n020",
+   "next": "c_camp"
+  },
+  "c_camp": {
+   "t": "choice",
+   "prompt": "คุณจะทำอย่างไร?",
+   "opts": [
+    {
+     "text": "พักผ่อนจนเช้า (ฟื้น HP/MANA เต็ม)",
+     "goto": "s_rest",
+     "long": false,
+     "do": {
+      "heal": true
+     },
+     "note": null
+    },
+    {
+     "text": "ลองโน้มน้าวซันให้เปิดทาง",
+     "goto": "s_talk",
+     "long": false,
+     "do": null,
+     "note": null
+    },
+    {
+     "text": "รอให้ซันเผลอแล้วลอดเข้าไป",
+     "goto": "s_sneak",
+     "long": false,
+     "do": null,
+     "note": null
+    }
+   ],
+   "id": "c_camp"
+  },
+  "s_rest": {
+   "t": "narr",
+   "text": "คุณนอนข้างกองไฟ ฝันเห็นเสียงโซ่ลากอยู่ใต้ดิน เช้าวันใหม่ ซันเปิดทางให้พร้อมพยักหน้าสั้นๆ",
+   "id": "s_rest",
+   "next": "s_rest2"
+  },
+  "s_rest2": {
+   "t": "jump",
+   "cases": [],
+   "next": "floor1",
+   "id": "s_rest2"
+  },
+  "s_talk": {
+   "t": "check",
+   "stat": "wit",
+   "dc": 12,
+   "why": "โน้มน้าวยามผู้ทำตามกฎอย่างเคร่งครัด",
+   "ok": "s_talk_ok",
+   "fail": "s_talk_fail",
+   "id": "s_talk"
+  },
+  "s_talk_ok": {
+   "t": "say",
+   "sp": "sun",
+   "emo": "smile",
+   "text": "...ก็ได้ เพราะเธอไม่ได้หนีเหมือนคนอื่น ผ่านไป",
+   "id": "s_talk_ok",
+   "next": "s_talk_ok2"
+  },
+  "s_talk_ok2": {
+   "t": "jump",
+   "cases": [],
+   "next": "floor1",
+   "id": "s_talk_ok2"
+  },
+  "s_talk_fail": {
+   "t": "say",
+   "sp": "sun",
+   "emo": "angry",
+   "text": "ผ่านไม่ได้ กลับไปพักซะ",
+   "id": "s_talk_fail",
+   "do": {
+    "heal": true
+   },
+   "next": "s_talk_fail2"
+  },
+  "s_talk_fail2": {
+   "t": "jump",
+   "cases": [],
+   "next": "floor1",
+   "id": "s_talk_fail2"
+  },
+  "s_sneak": {
+   "t": "check",
+   "stat": "spd",
+   "dc": 12,
+   "why": "เคลื่อนตัวเงียบๆ ผ่านยามยักษ์",
+   "ok": "s_sneak_ok",
+   "fail": "s_sneak_fail",
+   "id": "s_sneak"
+  },
+  "s_sneak_ok": {
+   "t": "narr",
+   "text": "คุณลอดผ่านเงาของซันไปได้ ใจเต้นแรงตลอดทาง",
+   "id": "s_sneak_ok",
+   "next": "s_sneak_ok2"
+  },
+  "s_sneak_ok2": {
+   "t": "jump",
+   "cases": [],
+   "next": "floor1",
+   "id": "s_sneak_ok2"
+  },
+  "s_sneak_fail": {
+   "t": "say",
+   "sp": "sun",
+   "emo": "angry",
+   "text": "ผ่านไปไม่ได้!",
+   "id": "s_sneak_fail",
+   "next": "n021"
+  },
+  "n021": {
+   "t": "narr",
+   "text": "ซันจับคุณวางข้างกองไฟ \"พักก่อน\" ไม่ได้ลงโทษอะไรนอกจากเสียเวลา",
+   "id": "n021",
+   "do": {
+    "heal": true
+   },
+   "next": "s_sneak_fail2"
+  },
+  "s_sneak_fail2": {
+   "t": "jump",
+   "cases": [],
+   "next": "floor1",
+   "id": "s_sneak_fail2"
+  },
+  "floor1": {
+   "t": "narr",
+   "text": "ปากทางเข้าคลังใต้ภูผา ลมเย็นพัดออกมาพร้อมกลิ่นดินชื้นและเหล็กเก่า",
+   "id": "floor1",
+   "bg": "dungeon_entrance",
+   "next": "n022"
+  },
+  "n022": {
+   "t": "narr",
+   "text": "ห้องโถงก็อบลิน เสียงหัวเราะแหลมเล็กดังก้องไปมา กองไฟกลางห้อง และก็อบลินสอดแนมสองตัวเดินวนอยู่",
+   "id": "n022",
+   "bg": "goblin_hall",
+   "next": "c_hall"
+  },
+  "c_hall": {
+   "t": "choice",
+   "prompt": "คุณจะเข้าไปอย่างไร?",
+   "opts": [
+    {
+     "text": "บุกตรงๆ ชนกับพวกมัน",
+     "goto": "h_fight",
+     "long": false,
+     "do": null,
+     "note": null
+    },
+    {
+     "text": "ย่องเข้าไปหลังกองไฟ",
+     "goto": "h_sneak",
+     "long": false,
+     "do": null,
+     "note": null
+    },
+    {
+     "text": "ตะโกนเจรจา: \"ข้าไม่ได้มาเพื่อต่อสู้!\"",
+     "goto": "h_talk",
+     "long": false,
+     "do": null,
+     "note": null
+    }
+   ],
+   "id": "c_hall"
+  },
+  "h_fight": {
+   "t": "battle",
+   "enemies": [
+    "goblin_scout",
+    "goblin_scout"
+   ],
+   "win": "h_win",
+   "lose": "h_lose",
+   "id": "h_fight",
+   "bg": "goblin_hall",
+   "ally": "karel"
+  },
+  "h_sneak": {
+   "t": "check",
+   "stat": "spd",
+   "dc": 12,
+   "why": "ย่องผ่านสายตาก็อบลินสอดแนม",
+   "ok": "h_sneak_ok",
+   "fail": "h_sneak_fail",
+   "id": "h_sneak"
+  },
+  "h_sneak_ok": {
+   "t": "narr",
+   "text": "คุณลอดผ่านหลังกองไฟ พร้อมเห็นกระเป๋าของก็อบลินเปิดอยู่ มียาขวดหนึ่งตกอยู่",
+   "id": "h_sneak_ok",
+   "do": {
+    "item": {
+     "potion": 1
+    }
+   },
+   "next": "h_sneak_ok2"
+  },
+  "h_sneak_ok2": {
+   "t": "jump",
+   "cases": [],
+   "next": "three",
+   "id": "h_sneak_ok2"
+  },
+  "h_sneak_fail": {
+   "t": "narr",
+   "text": "เท้าคุณเหยียบกิ่งไม้! ก็อบลินสองตัวหันขวับ!",
+   "id": "h_sneak_fail",
+   "next": "h_sneak_fail2"
+  },
+  "h_sneak_fail2": {
+   "t": "battle",
+   "enemies": [
+    "goblin_scout",
+    "goblin_scout"
+   ],
+   "win": "h_win",
+   "lose": "h_lose",
+   "id": "h_sneak_fail2",
+   "bg": "goblin_hall",
+   "ally": "karel"
+  },
+  "h_talk": {
+   "t": "check",
+   "stat": "wit",
+   "dc": 15,
+   "why": "พูดจาให้ก็อบลินที่ไม่เข้าใจภาษากลางเข้าใจ",
+   "ok": "h_talk_ok",
+   "fail": "h_talk_fail",
+   "id": "h_talk"
+  },
+  "h_talk_ok": {
+   "t": "say",
+   "sp": "goblin_shaman",
+   "emo": "normal",
+   "text": "เจ้าเป็นคนพูดกับพวกเรา... กรักจะ 'ปล่อย' คนข้างล่างเมื่อเจ้ามาหา เขาอยู่ห้องบอส ห้องสมบัติมีกับดัก ระวังพื้นกลางห้อง",
+   "id": "h_talk_ok",
+   "do": {
+    "flag": [
+     "goblin_tip"
+    ]
+   },
+   "next": "h_talk_ok2"
+  },
+  "h_talk_ok2": {
+   "t": "jump",
+   "cases": [],
+   "next": "three",
+   "id": "h_talk_ok2"
+  },
+  "h_talk_fail": {
+   "t": "narr",
+   "text": "ก็อบลินไม่เข้าใจ... หรือไม่ฟัง พวกมันพุ่งเข้าใส่!",
+   "id": "h_talk_fail",
+   "next": "h_talk_fail2"
+  },
+  "h_talk_fail2": {
+   "t": "jump",
+   "cases": [],
+   "next": "h_fight",
+   "id": "h_talk_fail2"
+  },
+  "h_win": {
+   "t": "narr",
+   "text": "ก็อบลินล้มลง กองสมบัติเล็กๆ ของพวกมันกระจายอยู่ใกล้กองไฟ",
+   "id": "h_win",
+   "do": {
+    "exp": 80,
+    "gasplus": 40
+   },
+   "next": "h_win2"
+  },
+  "h_win2": {
+   "t": "jump",
+   "cases": [],
+   "next": "three",
+   "id": "h_win2"
+  },
+  "h_lose": {
+   "t": "narr",
+   "text": "คุณล้มลง ก็อบลินยึดของบางส่วน แล้วปล่อยคุณทิ้งไว้ที่ปากเหมือง",
+   "id": "h_lose",
+   "do": {
+    "heal": true,
+    "gas": -30,
+    "flag": [
+     "lost_to_goblins"
+    ]
+   },
+   "next": "h_lose2"
+  },
+  "h_lose2": {
+   "t": "jump",
+   "cases": [],
+   "next": "three",
+   "id": "h_lose2"
+  },
+  "three": {
+   "t": "narr",
+   "text": "ทางแยกสามทาง ทางซ้ายมีรอยตะปูบนพื้น ทางกลางมีเสียงน้ำหยด ทางขวามีแสงสีทองเลือนราง",
+   "id": "three",
+   "bg": "three_way",
+   "next": "c_three"
+  },
+  "c_three": {
+   "t": "choice",
+   "prompt": "ไปทางไหนก่อน?",
+   "opts": [
+    {
+     "text": "ซ้าย: ห้องกับดัก",
+     "goto": "trap",
+     "long": false,
+     "do": null,
+     "note": null
+    },
+    {
+     "text": "กลาง: ทะเลสาบใต้ดิน",
+     "goto": "lake",
+     "long": false,
+     "do": null,
+     "note": null
+    },
+    {
+     "text": "ขวา: ลงไปห้องบอสชั้น 1",
+     "goto": "boss1",
+     "long": false,
+     "do": null,
+     "note": null
+    }
+   ],
+   "id": "c_three"
+  },
+  "trap": {
+   "t": "narr",
+   "text": "ห้องกับดักเต็มไปด้วยแผ่นหินที่มีรอยขีด พื้นกลางห้องมีเสียงกลวง",
+   "id": "trap",
+   "bg": "trap_room",
+   "next": "trap_j"
+  },
+  "trap_j": {
+   "t": "jump",
+   "cases": [
+    [
+     "helped_grong",
+     "trap_grong"
+    ],
+    [
+     "grong_hint",
+     "trap_grong"
+    ]
+   ],
+   "next": "trap_free",
+   "id": "trap_j"
+  },
+  "trap_grong": {
+   "t": "narr",
+   "text": "เสียงของลุงโกร่งดังก้องในหัว \"ถ้าเจอห้องที่พื้นเสียงกลวง อย่าเหยียบตรงกลาง\" คุณเดินเลียบผนัง ปลอดภัย!",
+   "id": "trap_grong",
+   "do": {
+    "flag": [
+     "trap_safe"
+    ]
+   },
+   "next": "trap_g2"
+  },
+  "trap_g2": {
+   "t": "jump",
+   "cases": [],
+   "next": "trap_loot",
+   "id": "trap_g2"
+  },
+  "trap_free": {
+   "t": "check",
+   "stat": "luck",
+   "dc": 8,
+   "why": "เหยียบแผ่นหินโดยไม่รู้ว่าอันไหนคือกับดัก (ดวงล้วนๆ)",
+   "ok": "trap_luck",
+   "fail": "trap_hurt",
+   "id": "trap_free"
+  },
+  "trap_luck": {
+   "t": "narr",
+   "text": "โชคดี! คุณก้าวพลาดแล้วแผ่นหินแค่ส่งเสียงกึกกัก",
+   "id": "trap_luck",
+   "do": {
+    "flag": [
+     "trap_safe"
+    ]
+   },
+   "next": "trap_l2"
+  },
+  "trap_l2": {
+   "t": "jump",
+   "cases": [],
+   "next": "trap_loot",
+   "id": "trap_l2"
+  },
+  "trap_hurt": {
+   "t": "narr",
+   "text": "ลูกดอกพุ่งออกจากผนัง! คุณเสียเลือดนิดหน่อย ก่อนสังเกตเห็นกลไก",
+   "id": "trap_hurt",
+   "do": {
+    "hp": -30,
+    "flag": [
+     "trap_known"
+    ]
+   },
+   "next": "trap_h2"
+  },
+  "trap_h2": {
+   "t": "jump",
+   "cases": [],
+   "next": "trap_loot",
+   "id": "trap_h2"
+  },
+  "trap_loot": {
+   "t": "choice",
+   "prompt": "ที่ปลายห้องมีคันโยกเก่า และมีเชือกเหล็กพาดอยู่เหนือทางไปห้องสมบัติ",
+   "opts": [
+    {
+     "text": "ดึงคันโยก ปลดกับดักทั้งห้อง",
+     "goto": "trap_pull",
+     "long": false,
+     "do": {
+      "flag": [
+       "trap_off"
+      ]
+     },
+     "note": null
+    },
+    {
+     "text": "ดัดแปลงกับดักให้ชี้ไปทางห้องบอส ล่อกรักมาเหยียบ",
+     "goto": "trap_set",
+     "long": true,
+     "do": {
+      "flag": [
+       "prep_trap"
+      ],
+      "root": {
+       "trap": "set_for_grak"
+      }
+     },
+     "note": "กรักจะอ่อนลงก่อนสู้ แต่อาจกระทบคนที่ผ่านทางนี้"
+    },
+    {
+     "text": "เก็บของที่เหลือแล้วออกไป",
+     "goto": "trap_leave",
+     "long": false,
+     "do": null,
+     "note": null
+    }
+   ],
+   "id": "trap_loot"
+  },
+  "trap_pull": {
+   "t": "narr",
+   "text": "คุณปลดกลไกได้ทั้งหมด เข้าห้องสมบัติได้โดยปลอดภัย",
+   "id": "trap_pull",
+   "next": "trap_p2"
+  },
+  "trap_p2": {
+   "t": "jump",
+   "cases": [],
+   "next": "treasure",
+   "id": "trap_p2"
+  },
+  "trap_set": {
+   "t": "narr",
+   "text": "คุณเปลี่ยนมุมลูกดอกและเสริมแผ่นหิน ให้ใครก็ตามที่ลงบันไดมาจากห้องบอสเหยียบแล้วเสียหลัก",
+   "id": "trap_set",
+   "next": "trap_s2"
+  },
+  "trap_s2": {
+   "t": "jump",
+   "cases": [],
+   "next": "treasure",
+   "id": "trap_s2"
+  },
+  "trap_leave": {
+   "t": "jump",
+   "cases": [],
+   "next": "three",
+   "id": "trap_leave"
+  },
+  "treasure": {
+   "t": "narr",
+   "text": "ห้องสมบัติ หีบไม้ผุๆ สองใบ ด้านในมีของจริง",
+   "id": "treasure",
+   "bg": "treasure_room",
+   "do": {
+    "gasplus": 120,
+    "item": {
+     "potion": 1
+    },
+    "flag": [
+     "treasure_taken"
+    ]
+   },
+   "next": "treasure2"
+  },
+  "treasure2": {
+   "t": "jump",
+   "cases": [],
+   "next": "three",
+   "id": "treasure2"
+  },
+  "lake": {
+   "t": "narr",
+   "text": "ทะเลสาบใต้ดินสงบนิ่ง หินงอกหินย้อยส่องแสงฟ้าจางๆ ริมน้ำมีเสียงสะอื้นเบาๆ",
+   "id": "lake",
+   "bg": "underground_lake",
+   "next": "n023"
+  },
+  "n023": {
+   "t": "say",
+   "sp": "dorn",
+   "emo": "sad",
+   "text": "ช่วยด้วย... ผมคือดอร์น คนงานเหมือง พวกเราถูกผู้พิทักษ์ 'เก็บ' ไว้ที่ชั้นสาม เขาไม่ได้ทำร้ายเรา แต่ก็อบลินกรักรุกเข้ามา เราซ่อนอยู่ที่นี่...",
+   "id": "n023",
+   "next": "c_dorn"
+  },
+  "c_dorn": {
+   "t": "choice",
+   "prompt": "ดอร์นหนาวสั่น แผลที่ขามีรอยเขียว เขายื่นของบางอย่างมา",
+   "opts": [
+    {
+     "text": "ให้ยาพาเขากลับไปปากเหมือง (เสียยา 1 ขวด)",
+     "goto": "d_help",
+     "long": true,
+     "do": {
+      "item": {
+       "potion": -1
+      },
+      "flag": [
+       "dorn_saved"
+      ],
+      "root": {
+       "dorn": "saved"
+      }
+     },
+     "note": "ดอร์นจะเล่าเรื่องในหมู่บ้านให้เสียงดี"
+    },
+    {
+     "text": "ถามข้อมูลเรื่องผู้พิทักษ์ก่อน",
+     "goto": "d_info",
+     "long": false,
+     "do": {
+      "flag": [
+       "known_guardian",
+       "known_weak_fire"
+      ]
+     },
+     "note": null
+    },
+    {
+     "text": "ปลอบใจแล้วบอกให้รออยู่ตรงนี้",
+     "goto": "d_wait",
+     "long": false,
+     "do": null,
+     "note": null
+    }
+   ],
+   "id": "c_dorn"
+  },
+  "d_help": {
+   "t": "narr",
+   "text": "คุณฉีดยาให้ดอร์น แล้วพาเขาไปพักที่ปากทาง ก่อนกลับมา เขาให้ ขวดไฟ ที่ซ่อนไว้กับตัว",
+   "id": "d_help",
+   "do": {
+    "item": {
+     "fireflask": 1
+    }
+   },
+   "next": "d_help2"
+  },
+  "d_help2": {
+   "t": "jump",
+   "cases": [],
+   "next": "three",
+   "id": "d_help2"
+  },
+  "d_info": {
+   "t": "say",
+   "sp": "dorn",
+   "emo": "normal",
+   "text": "ผู้พิทักษ์... ตัวมันเป็นเหล็ก แต่ใจมันคือเตาไฟ ใช้ไฟรบกวน มันจะช้าลง ผมมีขวดไฟนี้ ... เอาไป",
+   "id": "d_info",
+   "do": {
+    "item": {
+     "fireflask": 1
+    }
+   },
+   "next": "d_info2"
+  },
+  "d_info2": {
+   "t": "jump",
+   "cases": [],
+   "next": "three",
+   "id": "d_info2"
+  },
+  "d_wait": {
+   "t": "narr",
+   "text": "ดอร์นพยักหน้าแผ่วเบา \"ผมจะรอ\"",
+   "id": "d_wait",
+   "next": "d_wait2"
+  },
+  "d_wait2": {
+   "t": "jump",
+   "cases": [],
+   "next": "three",
+   "id": "d_wait2"
+  },
+  "boss1": {
+   "t": "narr",
+   "text": "ห้องบอสชั้น 1 เต็มไปด้วยกลิ่นเหม็นสาบ กรัก หัวหน้าก็อบลินตัวใหญ่ยืนอยู่บนกองสมบัติ มือถือค้อนหิน",
+   "id": "boss1",
+   "bg": "boss_room_1",
+   "next": "n024"
+  },
+  "n024": {
+   "t": "say",
+   "sp": "grak",
+   "emo": "normal",
+   "text": "มนุษย์! เจ้าฆ่าลูกน้องข้า! ข้าจะบดกระดูกเจ้าเป็นผง!",
+   "id": "n024",
+   "next": "b_grak"
+  },
+  "b_grak": {
+   "t": "battle",
+   "enemies": [
+    "grak"
+   ],
+   "win": "grak_win",
+   "lose": "grak_lose",
+   "id": "b_grak",
+   "bg": "boss_room_1",
+   "ally": "karel",
+   "prep": [
+    "prep_trap",
+    "grong_hint",
+    "goblin_tip"
+   ],
+   "intro": "กรัก เงื้อค้อนหิน!"
+  },
+  "grak_win": {
+   "t": "narr",
+   "text": "กรักล้มลง หายใจรวยริน ค้อนหินหลุดมือ สัญลักษณ์บนหน้ากากของเขาแตก... ดูเหมือนมีบางอย่างควบคุมมันอยู่",
+   "id": "grak_win",
+   "do": {
+    "exp": 400,
+    "gasplus": 180
+   },
+   "next": "c_grak"
+  },
+  "c_grak": {
+   "t": "choice",
+   "prompt": "กรักมองคุณด้วยดวงตาที่เปลี่ยนไป ไม่ใช่ความดุร้ายอีกต่อไป",
+   "opts": [
+    {
+     "text": "ไว้ชีวิตกรัก ขอให้พาก็อบลินที่เหลือออกจากเหมือง",
+     "goto": "grak_spare",
+     "long": true,
+     "do": {
+      "flag": [
+       "spared_grak"
+      ],
+      "root": {
+       "grak": "spared"
+      }
+     },
+     "note": "ก็อบลินจะไม่เป็นศัตรูกับคุณอีก แต่หมู่บ้านอาจไม่พอใจ"
+    },
+    {
+     "text": "จบชีวิตกรัก เพื่อความปลอดภัยของหมู่บ้าน",
+     "goto": "grak_kill",
+     "long": true,
+     "do": {
+      "flag": [
+       "killed_grak"
+      ],
+      "root": {
+       "grak": "killed"
+      }
+     },
+     "note": "หมู่บ้านปลอดภัยกว่าเดิม แต่ก็อบลินจะแค้น"
+    },
+    {
+     "text": "ไม่ตัดสินใจ ปล่อยให้คาเรลจัดการ",
+     "goto": "grak_karel",
+     "long": false,
+     "do": null,
+     "note": null
+    }
+   ],
+   "id": "c_grak"
+  },
+  "grak_spare": {
+   "t": "say",
+   "sp": "grak",
+   "emo": "sad",
+   "text": "เจ้า... ไม่ฆ่าข้า? ข้าถูก 'สิ่ง' นั่นสั่ง... ตอนเจ้ามา มันเงียบ ข้าจะพาพรรคพวกออกไป สาบานด้วยเลือดก็อบลิน",
+   "id": "grak_spare",
+   "next": "grak_s2"
+  },
+  "grak_s2": {
+   "t": "jump",
+   "cases": [],
+   "next": "floor2",
+   "id": "grak_s2"
+  },
+  "grak_kill": {
+   "t": "narr",
+   "text": "คุณทำสิ่งที่ต้องทำ ความเงียบเข้าครอบงำห้อง",
+   "id": "grak_kill",
+   "next": "grak_k2"
+  },
+  "grak_k2": {
+   "t": "jump",
+   "cases": [],
+   "next": "floor2",
+   "id": "grak_k2"
+  },
+  "grak_karel": {
+   "t": "say",
+   "sp": "karel",
+   "emo": "normal",
+   "text": "...ฉันจัดการเอง ไม่ต้องพูดอะไรมาก เดินต่อไป",
+   "id": "grak_karel",
+   "do": {
+    "flag": [
+     "karel_decided"
+    ],
+    "root": {
+     "grak": "karel_handled"
+    }
+   },
+   "next": "grak_ka2"
+  },
+  "grak_ka2": {
+   "t": "jump",
+   "cases": [],
+   "next": "floor2",
+   "id": "grak_ka2"
+  },
+  "grak_lose": {
+   "t": "narr",
+   "text": "กรักล้มเหนือกองสมบัติ คุณปลุกสติขึ้นได้ในมุมห้อง ใครสักคนลากคุณออกมาและทิ้งยาไว้",
+   "id": "grak_lose",
+   "do": {
+    "heal": true,
+    "flag": [
+     "lost_to_grak"
+    ]
+   },
+   "next": "grak_l2"
+  },
+  "grak_l2": {
+   "t": "jump",
+   "cases": [],
+   "next": "three",
+   "id": "grak_l2"
+  },
+  "floor2": {
+   "t": "narr",
+   "text": "บันไดหินเก่าพาลงสู่ชั้น 2 อุโมงค์ขุดแร่โบราณ ราวเหล็กเป็นสนิม เสียงเคาะโลหะดังไกลๆ ที่หัวบันไดมีมุมพักเล็กๆ คุณหยุดพักหายใจ (HP/MANA ฟื้นเต็ม)",
+   "id": "floor2",
+   "bg": "three_way",
+   "do": {
+    "heal": true
+   },
+   "next": "c_f2"
+  },
+  "c_f2": {
+   "t": "choice",
+   "prompt": "ทางแยกในอุโมงค์ชั้น 2 มีสามทาง",
+   "opts": [
+    {
+     "text": "อุโมงค์ที่มีเสียงขุดเหมือง (ก็อบลินนักขุด)",
+     "goto": "f2_miner",
+     "long": false,
+     "do": null,
+     "note": null
+    },
+    {
+     "text": "ห้องที่มีเสียงสั่นของวิญญาณ (วิญญาณเหมือง)",
+     "goto": "f2_spirit",
+     "long": false,
+     "do": null,
+     "note": null
+    },
+    {
+     "text": "ถ้ำใยแมงมุมที่มีเงาไหวๆ",
+     "goto": "f2_spider",
+     "long": false,
+     "do": null,
+     "note": null
+    }
+   ],
+   "id": "c_f2"
+  },
+  "f2_miner": {
+   "t": "battle",
+   "enemies": [
+    "goblin_miner"
+   ],
+   "win": "f2_win",
+   "lose": "f2_lose",
+   "id": "f2_miner",
+   "bg": "boss_room_1",
+   "ally": "karel",
+   "intro": "ก็อบลินนักขุดเงื้อพลั่วเหล็กใส่คุณ!"
+  },
+  "f2_spirit": {
+   "t": "say",
+   "sp": "mine_spirit",
+   "emo": "sad",
+   "text": "คนที่ยังเป็น... มาที่นี่... ได้ยินเสียงเราไหม... ผู้พิทักษ์ไม่ได้บ้า... มันถูกดวงตะวันบังคับ",
+   "id": "f2_spirit",
+   "bg": "underground_lake",
+   "next": "c_spirit"
+  },
+  "c_spirit": {
+   "t": "choice",
+   "prompt": "วิญญาณเหมืองพูดแผ่วเบา มองตรามนตร์ที่คุณถือ",
+   "opts": [
+    {
+     "text": "ฟังต่อไปอย่างตั้งใจ (ได้ข้อมูล)",
+     "goto": "sp_listen",
+     "long": true,
+     "do": {
+      "flag": [
+       "spirit_truth",
+       "known_guardian"
+      ],
+      "root": {
+       "spirit": "listened"
+      }
+     },
+     "note": "รู้ความจริงเรื่องผู้พิทักษ์"
+    },
+    {
+     "text": "ปัดทิ้ง ไม่เชื่อสิ่งที่ตายไปแล้ว",
+     "goto": "sp_ignore",
+     "long": false,
+     "do": {
+      "root": {
+       "spirit": "ignored"
+      }
+     },
+     "note": null
+    },
+    {
+     "text": "ถามหาเส้นทางที่ปลอดภัย",
+     "goto": "sp_path",
+     "long": false,
+     "do": {
+      "flag": [
+       "f2_shortcut"
+      ]
+     },
+     "note": null
+    }
+   ],
+   "id": "c_spirit"
+  },
+  "sp_listen": {
+   "t": "say",
+   "sp": "mine_spirit",
+   "emo": "sad",
+   "text": "...ตราผนึกของโอเรก ถ้าใช้ถูกที่ ผู้พิทักษ์จะนิ่ง แต่... เขาต้องการให้ใครบางคนยกโทษ... เมื่อมันตื่นขึ้นมา",
+   "id": "sp_listen",
+   "next": "sp_l2"
+  },
+  "sp_l2": {
+   "t": "jump",
+   "cases": [],
+   "next": "floor3",
+   "id": "sp_l2"
+  },
+  "sp_ignore": {
+   "t": "narr",
+   "text": "วิญญาณจางหายไปเงียบๆ",
+   "id": "sp_ignore",
+   "next": "sp_i2"
+  },
+  "sp_i2": {
+   "t": "jump",
+   "cases": [],
+   "next": "floor3",
+   "id": "sp_i2"
+  },
+  "sp_path": {
+   "t": "say",
+   "sp": "mine_spirit",
+   "emo": "normal",
+   "text": "ทางซ้ายเสมอ... ผนังเรียบคือเพื่อน",
+   "id": "sp_path",
+   "next": "sp_p2"
+  },
+  "sp_p2": {
+   "t": "jump",
+   "cases": [],
+   "next": "floor3",
+   "id": "sp_p2"
+  },
+  "f2_spider": {
+   "t": "battle",
+   "enemies": [
+    "cave_spider"
+   ],
+   "win": "f2_win",
+   "lose": "f2_lose",
+   "id": "f2_spider",
+   "bg": "boss_room_1",
+   "ally": "karel",
+   "intro": "แมงมุมถ้ำกระโดดจากเพดาน!"
+  },
+  "f2_win": {
+   "t": "narr",
+   "text": "เสียงเงียบลง ของที่ตกจากศัตรูมีค่านิดหน่อย",
+   "id": "f2_win",
+   "do": {
+    "exp": 100,
+    "gasplus": 50
+   },
+   "next": "f2_w2"
+  },
+  "f2_w2": {
+   "t": "jump",
+   "cases": [],
+   "next": "floor3",
+   "id": "f2_w2"
+  },
+  "f2_lose": {
+   "t": "narr",
+   "text": "คุณล้มลง คาเรลลากคุณหนีออกมาได้ทัน",
+   "id": "f2_lose",
+   "do": {
+    "heal": true,
+    "flag": [
+     "lost_f2"
+    ]
+   },
+   "next": "f2_l2"
+  },
+  "f2_l2": {
+   "t": "jump",
+   "cases": [],
+   "next": "floor3",
+   "id": "f2_l2"
+  },
+  "floor3": {
+   "t": "narr",
+   "text": "ชั้น 3 เย็นเยียบ ภูตน้ำแข็งเล็กๆ ล่องลอยอยู่ ไกลออกไป โกเล็มหินเดินช้าๆ ตามกฎไร้ชีวิต คุณพบจุดพักที่คนงานเก่าทิ้งไว้ (HP/MANA ฟื้นเต็ม)",
+   "id": "floor3",
+   "bg": "underground_lake",
+   "do": {
+    "heal": true
+   },
+   "next": "n025"
+  },
+  "n025": {
+   "t": "narr",
+   "text": "ก่อนถึงห้องบอส ทางเดินเต็มไปด้วยเกราะเหล็กเก่าที่เป็นเศษซาก ... และเสียงหายใจดังขึ้นเมื่อคุณเข้าใกล้ห้อง",
+   "id": "n025",
+   "next": "pre_boss"
+  },
+  "pre_boss": {
+   "t": "check",
+   "stat": "wit",
+   "dc": 12,
+   "why": "สังเกตกลไกหลังประตูห้องผู้พิทักษ์ว่ามันไวต่อไฟหรือเสียง",
+   "ok": "pre_ok",
+   "fail": "pre_fail",
+   "id": "pre_boss",
+   "bg": "boss_room_3"
+  },
+  "pre_ok": {
+   "t": "narr",
+   "text": "คุณเห็นรอยไหม้รอบผนัง ผู้พิทักษ์ไวต่อความร้อนสูงจริง!",
+   "id": "pre_ok",
+   "do": {
+    "flag": [
+     "known_weak_fire"
+    ]
+   },
+   "next": "pre_ok2"
+  },
+  "pre_ok2": {
+   "t": "jump",
+   "cases": [],
+   "next": "boss3",
+   "id": "pre_ok2"
+  },
+  "pre_fail": {
+   "t": "narr",
+   "text": "ไม่เห็นอะไรเด่นชัด แต่ก็ได้ยินเสียงโลหะขยับ...",
+   "id": "pre_fail",
+   "next": "boss3"
+  },
+  "boss3": {
+   "t": "narr",
+   "text": "ห้องบอสชั้น 3 เกราะเหล็กขนาดใหญ่ยืนขวางกลางห้อง ดวงตาแดงจาง ๆ ลืมขึ้นมา ข้างหลังมันคือซากเศษเตาโบราณและกลุ่มคนงานหกคนที่กอดกันอยู่",
+   "id": "boss3",
+   "bg": "boss_room_3",
+   "next": "n026"
+  },
+  "n026": {
+   "t": "say",
+   "sp": "mine_guardian",
+   "emo": "normal",
+   "text": "...ผู้บุกรุก... ผนึก... ถูกทำลาย... ปกป้อง... ปกป้อง...",
+   "id": "n026",
+   "next": "c_guard"
+  },
+  "c_guard": {
+   "t": "choice",
+   "prompt": "คุณจะรับมือกับเกราะผู้พิทักษ์ผู้โศกเศร้านี้อย่างไร?",
+   "opts": [
+    {
+     "text": "ใช้ตราผนึกของโอเรกสั่งให้สงบ (ต้องมีตรา)",
+     "goto": "mg_rune",
+     "long": true,
+     "do": {
+      "root": {
+       "guardian": "calmed"
+      }
+     },
+     "note": "ผู้พิทักษ์จะยังอยู่ปกป้องเหมืองต่อไป"
+    },
+    {
+     "text": "ต่อสู้ ใช้ทุกอย่างที่เตรียมมา",
+     "goto": "mg_fight",
+     "long": true,
+     "do": {
+      "root": {
+       "guardian": "fought"
+      }
+     },
+     "note": "สู้ชนะ หมู่บ้านได้เหมืองคืน แต่ผู้พิทักษ์จะไม่กลับมา"
+    },
+    {
+     "text": "ถอยก่อน กลับไปเตรียมตัวและมาใหม่",
+     "goto": "mg_back",
+     "long": false,
+     "do": null,
+     "note": null
+    }
+   ],
+   "id": "c_guard"
+  },
+  "mg_rune": {
+   "t": "jump",
+   "cases": [
+    [
+     "has_rune",
+     "mg_rune_ok"
+    ]
+   ],
+   "next": "mg_rune_no",
+   "id": "mg_rune"
+  },
+  "mg_rune_ok": {
+   "t": "narr",
+   "text": "คุณชูตราโลหะรูนขึ้นเหนือหัว แสงสีฟ้าส่องสว่าง ผู้พิทักษ์หยุดนิ่ง ดวงตาแดงค่อยๆ เป็นสีขาว",
+   "id": "mg_rune_ok",
+   "next": "n027"
+  },
+  "n027": {
+   "t": "say",
+   "sp": "mine_guardian",
+   "emo": "sad",
+   "text": "...ตรา... ของ 'ผู้ดูแล'... ข้า... รู้แล้ว... ผู้ที่ขโมยเตาไฟ... คือคนที่ 'ตายแล้ว' ... แต่ยังเดินได้...",
+   "id": "n027",
+   "next": "mg_rune_ok2"
+  },
+  "mg_rune_ok2": {
+   "t": "jump",
+   "cases": [],
+   "next": "valenz_reveal",
+   "id": "mg_rune_ok2"
+  },
+  "mg_rune_no": {
+   "t": "narr",
+   "text": "คุณไม่มีตราผนึก ตรารูนที่ควรช่วยคุณอยู่ในมือโอเรกที่บนผิวดิน!",
+   "id": "mg_rune_no",
+   "next": "mg_rune_no2"
+  },
+  "mg_rune_no2": {
+   "t": "jump",
+   "cases": [],
+   "next": "guard_fight",
+   "id": "mg_rune_no2"
+  },
+  "mg_fight": {
+   "t": "jump",
+   "cases": [],
+   "next": "guard_fight",
+   "id": "mg_fight"
+  },
+  "mg_back": {
+   "t": "narr",
+   "text": "เสียงเกราะเหล็กคำรามขึ้น... คุณถอยออกมาอย่างปลอดภัย มีเวลาเตรียมตัวอีกพักหนึ่ง",
+   "id": "mg_back",
+   "do": {
+    "heal": true,
+    "flag": [
+     "retreated_once"
+    ]
+   },
+   "next": "mg_back2"
+  },
+  "mg_back2": {
+   "t": "jump",
+   "cases": [],
+   "next": "shop_late",
+   "id": "mg_back2"
+  },
+  "shop_late": {
+   "t": "narr",
+   "text": "คุณมีเวลาเตรียมของครั้งสุดท้าย (ใช้ของที่เหลือ/เงินที่หามาได้)",
+   "id": "shop_late",
+   "next": "sh3"
+  },
+  "sh3": {
+   "t": "shop",
+   "items": [
+    "@potion",
+    "@fireflask",
+    "@antidote"
+   ],
+   "next": "boss3",
+   "id": "sh3",
+   "title": "ของที่พกมา (ซื้อจากคาเรล/ค้าขายลับ)"
+  },
+  "guard_fight": {
+   "t": "battle",
+   "enemies": [
+    "mine_guardian"
+   ],
+   "win": "guard_win",
+   "lose": "guard_lose",
+   "id": "guard_fight",
+   "bg": "boss_room_3",
+   "ally": "karel",
+   "prep": [
+    "known_weak_fire",
+    "spirit_truth",
+    "dorn_saved"
+   ],
+   "intro": "ผู้พิทักษ์เหมืองเงื้อดาบเหล็กยักษ์!"
+  },
+  "guard_win": {
+   "t": "narr",
+   "text": "เกราะผู้พิทักษ์ล้มลง เสียงโลหะดังก้อง... ภายในมีเปลวไฟดวงเล็กๆ ที่ค่อยๆ ดับ",
+   "id": "guard_win",
+   "do": {
+    "exp": 900,
+    "gasplus": 300,
+    "flag": [
+     "killed_guardian"
+    ]
+   },
+   "next": "guard_w2"
+  },
+  "guard_w2": {
+   "t": "jump",
+   "cases": [],
+   "next": "valenz_reveal",
+   "id": "guard_w2"
+  },
+  "guard_lose": {
+   "t": "narr",
+   "text": "คุณล้มลง เกราะผู้พิทักษ์ไม่ได้ฆ่าคุณ เพียงแค่ผลักออกไปนอกห้อง และปิดประตู",
+   "id": "guard_lose",
+   "do": {
+    "heal": true,
+    "flag": [
+     "lost_to_guardian"
+    ]
+   },
+   "next": "guard_l2"
+  },
+  "guard_l2": {
+   "t": "jump",
+   "cases": [],
+   "next": "shop_late",
+   "id": "guard_l2"
+  },
+  "valenz_reveal": {
+   "t": "narr",
+   "text": "ในเงามืดหลังเตาไฟ มีใครบางคนยืนอยู่ นั่นคือ วาเลนซ์ ในมือถือก้อนอัญมณีสีเลือดที่เรืองแสง",
+   "id": "valenz_reveal",
+   "bg": "boss_room_3",
+   "next": "n028"
+  },
+  "n028": {
+   "t": "say",
+   "sp": "valenz",
+   "emo": "sad",
+   "text": "...ฉันขโมย 'หัวใจเตา' ไปจากผู้พิทักษ์ หวังว่ามันจะรักษาคำสาปในตัวฉัน... แต่ผลคือผู้พิทักษ์บ้าคลั่ง ก็อบลินที่ถูกควบคุมบุกเข้ามา คนงานเลยติดอยู่ที่นี่",
+   "id": "n028",
+   "next": "vr_j"
+  },
+  "vr_j": {
+   "t": "jump",
+   "cases": [
+    [
+     "valenz:trusted",
+     "vr_trust"
+    ],
+    [
+     "valenz:suspected",
+     "vr_sus"
+    ]
+   ],
+   "next": "vr_neutral",
+   "id": "vr_j"
+  },
+  "vr_trust": {
+   "t": "say",
+   "sp": "valenz",
+   "emo": "sad",
+   "text": "เธอเป็นคนเดียวที่ซื้อน้ำให้ฉัน... ฉันขอโทษ เธอจะเอาหัวใจเตานี่ไปคืนก็ได้ หรือไม่ ฉันจะรับผิดเอง",
+   "id": "vr_trust",
+   "next": "vr_t2"
+  },
+  "vr_t2": {
+   "t": "jump",
+   "cases": [],
+   "next": "vr_choice",
+   "id": "vr_t2"
+  },
+  "vr_sus": {
+   "t": "say",
+   "sp": "valenz",
+   "emo": "angry",
+   "text": "เธอเชื่อเวสเปอร์ ใช่ไหม... ก็ถูกแล้ว ฉันนี่แหละตัวการ",
+   "id": "vr_sus",
+   "next": "vr_s2"
+  },
+  "vr_s2": {
+   "t": "jump",
+   "cases": [],
+   "next": "vr_choice",
+   "id": "vr_s2"
+  },
+  "vr_neutral": {
+   "t": "say",
+   "sp": "valenz",
+   "emo": "sad",
+   "text": "นี่คือหัวใจเตา ฉันไม่รู้ว่าจะทำยังไงต่อ",
+   "id": "vr_neutral",
+   "next": "vr_choice"
+  },
+  "vr_choice": {
+   "t": "choice",
+   "prompt": "วาเลนซ์ยื่นก้อนอัญมณีหัวใจเตาให้คุณ ทุกคนมองมาที่คุณ",
+   "opts": [
+    {
+     "text": "นำหัวใจเตาไปคืนผู้พิทักษ์ ปล่อยวาเลนซ์ไปตามทาง",
+     "goto": "vr_return",
+     "long": true,
+     "do": {
+      "flag": [
+       "returned_heart"
+      ],
+      "root": {
+       "valenz_end": "forgiven"
+      }
+     },
+     "note": "ผู้พิทักษ์สงบ วาเลนซ์รอดจากการลงโทษ"
+    },
+    {
+     "text": "จับวาเลนซ์ส่งกิลด์ ฮอร์ก้าตัดสินเอง",
+     "goto": "vr_arrest",
+     "long": true,
+     "do": {
+      "flag": [
+       "arrested_valenz"
+      ],
+      "root": {
+       "valenz_end": "arrested"
+      }
+     },
+     "note": "วาเลนซ์จะถูกลงโทษตามกฎกิลด์"
+    },
+    {
+     "text": "เก็บหัวใจเตาไว้เอง เป็นความลับระหว่างคุณกับวาเลนซ์",
+     "goto": "vr_keep",
+     "long": true,
+     "do": {
+      "flag": [
+       "kept_heart"
+      ],
+      "root": {
+       "valenz_end": "secret"
+      }
+     },
+     "note": "ของมีพลังมหาศาลอยู่กับคุณ แต่ผู้พิทักษ์จะไม่ได้รับการเยียวยา"
+    }
+   ],
+   "id": "vr_choice"
+  },
+  "vr_return": {
+   "t": "narr",
+   "text": "หัวใจเตากลับเข้าที่ ไฟลุกขึ้นอีกครั้ง ผู้พิทักษ์ก้มศีรษะลงช้าๆ เหมือนจะขอบคุณ",
+   "id": "vr_return",
+   "next": "vr_r2"
+  },
+  "vr_r2": {
+   "t": "jump",
+   "cases": [],
+   "next": "epilogue",
+   "id": "vr_r2"
+  },
+  "vr_arrest": {
+   "t": "say",
+   "sp": "valenz",
+   "emo": "sad",
+   "text": "...ฉันยอมรับ พาฉันไปเถอะ",
+   "id": "vr_arrest",
+   "next": "vr_a2"
+  },
+  "vr_a2": {
+   "t": "jump",
+   "cases": [],
+   "next": "epilogue",
+   "id": "vr_a2"
+  },
+  "vr_keep": {
+   "t": "narr",
+   "text": "หัวใจเตาอุ่นอยู่ในกระเป๋า ผู้พิทักษ์เงียบงัน",
+   "id": "vr_keep",
+   "next": "vr_k2"
+  },
+  "vr_k2": {
+   "t": "jump",
+   "cases": [],
+   "next": "epilogue",
+   "id": "vr_k2"
+  },
+  "epilogue": {
+   "t": "narr",
+   "text": "หลายวันต่อมา คุณพาคนงานที่เหลือขึ้นสู่ปากเหมือง เสียงร้องไห้ปนเสียงโห่ร้องดังทั่วหมู่บ้าน",
+   "id": "epilogue",
+   "bg": "miner_village",
+   "next": "n029"
+  },
+  "n029": {
+   "t": "say",
+   "sp": "win",
+   "emo": "smile",
+   "text": "ปิ๊ป! หลานรัก...",
+   "id": "n029",
+   "next": "ep_j"
+  },
+  "ep_j": {
+   "t": "jump",
+   "cases": [
+    [
+     "dorn_saved",
+     "ep_dorn"
+    ]
+   ],
+   "next": "ep_loan",
+   "id": "ep_j"
+  },
+  "ep_dorn": {
+   "t": "say",
+   "sp": "dorn",
+   "emo": "smile",
+   "text": "ผมบอกทุกคนในหมู่บ้านแล้วว่าใครช่วยชีวิตพวกเรา",
+   "id": "ep_dorn",
+   "do": {
+    "gasplus": 100
+   },
+   "next": "ep_loan"
+  },
+  "ep_loan": {
+   "t": "jump",
+   "cases": [
+    [
+     "debt:big",
+     "ep_big"
+    ],
+    [
+     "debt:small",
+     "ep_small"
+    ]
+   ],
+   "next": "ep_mint",
+   "id": "ep_loan"
+  },
+  "ep_big": {
+   "t": "say",
+   "sp": "linde",
+   "emo": "normal",
+   "text": "ครบกำหนดแล้วค่ะ ยอดคืน 2,600 กัส... กำไรสุทธิ ไม่ใช่ยอดขาย",
+   "id": "ep_big",
+   "do": {
+    "gas": -2600,
+    "bg": "guild_counter"
+   },
+   "next": "ep_b2"
+  },
+  "ep_b2": {
+   "t": "jump",
+   "cases": [],
+   "next": "ep_mint",
+   "id": "ep_b2"
+  },
+  "ep_small": {
+   "t": "say",
+   "sp": "linde",
+   "emo": "smile",
+   "text": "ยอดคืน 600 กัส เรียบร้อยค่ะ",
+   "id": "ep_small",
+   "do": {
+    "gas": -600,
+    "bg": "guild_counter"
+   },
+   "next": "ep_s2"
+  },
+  "ep_s2": {
+   "t": "jump",
+   "cases": [],
+   "next": "ep_mint",
+   "id": "ep_s2"
+  },
+  "ep_mint": {
+   "t": "say",
+   "sp": "mint",
+   "emo": "smile",
+   "text": "พี่กลับมาแล้ว!",
+   "id": "ep_mint",
+   "bg": "guild_lobby",
+   "next": "ep_mj"
+  },
+  "ep_mj": {
+   "t": "jump",
+   "cases": [
+    [
+     "mint:promised",
+     "ep_mp"
+    ],
+    [
+     "mint:tried",
+     "ep_mt"
+    ]
+   ],
+   "next": "ep_mn",
+   "id": "ep_mj"
+  },
+  "ep_mp": {
+   "t": "say",
+   "sp": "mint",
+   "emo": "shock",
+   "text": "พี่รักษาสัญญา! ขนมปังของหนูอยู่ไหนคะ?",
+   "id": "ep_mp",
+   "do": {
+    "flag": [
+     "mint_loves_you"
+    ]
+   },
+   "next": "n030"
+  },
+  "n030": {
+   "t": "narr",
+   "text": "คุณหยิบขนมปังจากร้านป้าแมกกี้ที่ซื้อมาจากตลาด ให้เธอด้วยรอยยิ้ม (หากไม่มีขนมปัง มิ้นท์จะเข้าใจ เพราะพี่รักษาสัญญาแล้ว)",
+   "id": "n030",
+   "next": "ep_mp2"
+  },
+  "ep_mp2": {
+   "t": "jump",
+   "cases": [],
+   "next": "ep_horka",
+   "id": "ep_mp2"
+  },
+  "ep_mt": {
+   "t": "say",
+   "sp": "mint",
+   "emo": "smile",
+   "text": "พี่พยายามจริงๆ ใช่ไหม... ขอบคุณค่ะ",
+   "id": "ep_mt",
+   "next": "ep_mt2"
+  },
+  "ep_mt2": {
+   "t": "jump",
+   "cases": [],
+   "next": "ep_horka",
+   "id": "ep_mt2"
+  },
+  "ep_mn": {
+   "t": "narr",
+   "text": "มิ้นท์มองคุณเงียบๆ แล้วโบกมือเบาๆ",
+   "id": "ep_mn",
+   "next": "ep_horka"
+  },
+  "ep_horka": {
+   "t": "say",
+   "sp": "horka",
+   "emo": "normal",
+   "text": "ของกิลด์ ต้องกลับมาครบ... เจ้ากลับมาครบ ดี",
+   "id": "ep_horka",
+   "bg": "guild_master_room",
+   "next": "n031"
+  },
+  "n031": {
+   "t": "say",
+   "sp": "horka",
+   "emo": "normal",
+   "text": "เจ้าเป็นนักผจญภัยของใบเรือเงินแล้วอย่างเป็นทางการ แต่ฟังไว้ เรื่องไม่จบแค่ใต้ภูผา ... ของที่ถูกขโมยไป มีมากกว่านี้ และบางอย่างกำลังกลับมา",
+   "id": "n031",
+   "next": "END"
+  },
+  "END": {
+   "t": "end",
+   "text": "จบ Act 1: ใบเรือเงิน",
+   "id": "END"
+  }
+ }
+}

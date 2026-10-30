@@ -21,7 +21,7 @@ $("#bSolo").onclick=()=>{const cs=Vault.all().filter(c=>!c.lock);
   if(!cs.length){alert("ยังไม่มีตัวละครว่างในคลัง\nไปสร้างและกด 'เก็บตัวละครเข้าคลัง' ก่อน");location.href="vault.html";return;}
   const i=prompt("เลือกตัวละคร (พิมพ์เลข)\n"+cs.map((c,n)=>`${n+1}. ${c.name} Lv${c.level}`).join("\n"),"1");if(i===null)return;
   const c=cs[(+i||1)-1];if(!c)return;const t=prompt("ตั้งชื่อเซฟ","การผจญภัยของ "+c.name);if(t===null)return;
-  const k=Campaign.create(t.trim()||"การผจญภัยของฉัน","ฉัน","solo");Campaign.addMember(k,"ฉัน",Vault.checkout(c.cid,"solo:"+k.id));location.href="play.html?camp="+k.id;};
+  const k=Campaign.create(t.trim()||"การผจญภัยของฉัน","ฉัน","solo");Campaign.addMember(k,"ฉัน",Vault.checkout(c.cid,"solo:"+k.id));location.href="story.html?camp="+k.id;};
 $("#bMulti").onclick=()=>location.href="lobby.html";
 $("#bLoad").onclick=()=>{const b=$("#loadBox");b.style.display=b.style.display==="none"?"block":"none";renderLoad();};
 function renderLoad(){
@@ -29,7 +29,7 @@ function renderLoad(){
   $("#loadBox").innerHTML=`<h3>เซฟเล่นคนเดียว</h3>${l.length?l.map(k=>`<div class="row" style="align-items:center;margin-bottom:6px"><div style="flex:1"><b>${esc(k.title)}</b><div class="dim">Act ${k.act} · ${esc(k.party.map(m=>m.char.name).join(", "))} · ${new Date(k.updated).toLocaleString("th-TH")}</div></div>
   <button class="ok" data-a="go" data-i="${k.id}">เล่นต่อ</button><button data-a="fin" data-i="${k.id}">จบ Act</button><button data-a="del" data-i="${k.id}">ลบ</button></div>`).join(""):'<div class="dim">ยังไม่มีเซฟ</div>'}`;
   $$("#loadBox button").forEach(b=>b.onclick=()=>{const id=b.dataset.i,a=b.dataset.a,k=Campaign.get(id);
-    if(a==="go")location.href="play.html?camp="+id;
+    if(a==="go")location.href="story.html?camp="+id;
     if(a==="fin"&&confirm("จบ Act "+k.act+": อัปเดตตัวละครเข้าคลัง แล้วไป Act ถัดไป?")){const out=Campaign.finishAct(k);
       k.party=out.map(o=>{Vault.checkin(o.char,"จบ Act "+(k.act-1));return{owner:o.owner,char:Vault.checkout(o.char.cid,"solo:"+k.id)};});
       Campaign.put(k);alert("อัปเดตตัวละครเข้าคลังแล้ว · ตอนนี้ Act "+k.act);renderLoad();}
