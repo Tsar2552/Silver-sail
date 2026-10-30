@@ -1,0 +1,4 @@
+{"acts":[
+ {"id":"act1","no":1,"title":"Act 1: ใบเรือเงิน","file":"data/story/act1.json","ready":true,"blurb":"คลังใต้ภูผา เหมืองที่คนงานหายไป เหมาะกับเลเวล 1–4"},
+ {"id":"act2","no":2,"title":"Act 2: (เร็วๆ นี้)","file":"","ready":false,"blurb":"ยังไม่เปิด"}
+]}

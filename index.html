@@ -22,7 +22,7 @@ $("#bSolo").onclick=()=>{const cs=Vault.all().filter(c=>!c.lock);
   const i=prompt("เลือกตัวละคร (พิมพ์เลข)\n"+cs.map((c,n)=>`${n+1}. ${c.name} Lv${c.level}`).join("\n"),"1");if(i===null)return;
   const c=cs[(+i||1)-1];if(!c)return;const t=prompt("ตั้งชื่อเซฟ","การผจญภัยของ "+c.name);if(t===null)return;
   const k=Campaign.create(t.trim()||"การผจญภัยของฉัน","ฉัน","solo");Campaign.addMember(k,"ฉัน",Vault.checkout(c.cid,"solo:"+k.id));location.href="story.html?camp="+k.id;};
-$("#bMulti").onclick=()=>location.href="lobby.html";
+$("#bMulti").onclick=()=>location.href="story.html?mp=1";
 $("#bLoad").onclick=()=>{const b=$("#loadBox");b.style.display=b.style.display==="none"?"block":"none";renderLoad();};
 function renderLoad(){
   const l=Campaign.all().filter(k=>k.kind==="solo");

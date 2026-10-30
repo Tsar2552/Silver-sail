@@ -16,6 +16,8 @@ node tools/validate.js          # ตรวจข้อมูลทั้งห�
 ## โครงสร้าง
 - `data/` ข้อมูลเกมทั้งหมดเป็น JSON (เผ่า 20, อาชีพ 40, คุณลักษณะ 50, ธาตุ 9, มอนสเตอร์ 17, NPC 30, สถานที่ 30, วัตถุดิบ 100, อาหาร 41)
 - `images/npc/<id>_<normal|smile|angry|sad|shock|shy>.webp`, `images/bg/<location_id>.webp`
+- `js/mp.js` เล่นหลายคน: Host รันเอนจิน ทุกคนโหวตตัวเลือก/ทอยเช็กร่วม/เลือกท่าพร้อมกัน (ทดสอบ `node tools/test_mp.js`) · เลือก Act ที่ `data/story/acts.json`
+- `tools/make_transparent.py` ลบพื้นขาวภาพ NPC → โปร่งใส
 - `story.html` + `js/story.js` เอนจินเนื้อเรื่อง (RPG ยุคเก่า 3 ตัวเลือก, ตัวเลือก ★ แดง = ส่งผลระยะยาว) · เนื้อหา Act 1 สร้างจาก `tools/build_act1.py` → `data/story/act1.json` · ทดสอบ `node tools/test_story.js` / สมดุลบอส `node tools/sim_act1.js`
 - `js/vault.js` ระบบเซฟ 2 ชั้น (ดู docs/SAVE_SPEC.md) ทดสอบ: `node tools/test_vault.js`
 - `tools/validate.js` ตรวจจำนวน/id ซ้ำ/อ้างอิง/สมดุล; `tools/build_materials.py` สร้าง materials.json
