@@ -16,6 +16,7 @@ node tools/validate.js          # ตรวจข้อมูลทั้งห�
 ## โครงสร้าง
 - `data/` ข้อมูลเกมทั้งหมดเป็น JSON (เผ่า 20, อาชีพ 40, คุณลักษณะ 50, ธาตุ 9, มอนสเตอร์ 17, NPC 30, สถานที่ 30, วัตถุดิบ 100, อาหาร 41)
 - `images/npc/<id>_<normal|smile|angry|sad|shock|shy>.webp`, `images/bg/<location_id>.webp`
+- `js/vault.js` ระบบเซฟ 2 ชั้น (ดู docs/SAVE_SPEC.md) ทดสอบ: `node tools/test_vault.js`
 - `tools/validate.js` ตรวจจำนวน/id ซ้ำ/อ้างอิง/สมดุล; `tools/build_materials.py` สร้าง materials.json
 - `raw/` ข้อมูลดิบจากผู้เล่น (ไม่ถูก deploy)
 

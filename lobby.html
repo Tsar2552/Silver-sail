@@ -9,31 +9,34 @@
 <button class="big-btn ok" id="bHost" style="width:100%;padding:14px">สร้างห้อง (เป็น Host)</button>
 <hr style="border-color:var(--line)">
 <div class="row"><input id="jcode" inputmode="numeric" maxlength="4" placeholder="เลขห้อง 4 หลัก" style="flex:1"><input id="jname" placeholder="ชื่อของคุณ" style="flex:1"></div>
+<select id="jchar" style="width:100%;margin-top:8px"></select>
 <button id="bJoin" style="width:100%;padding:12px;margin-top:8px">เข้าร่วมห้อง</button>
 <div class="dim" id="err" style="color:var(--red);margin-top:8px"></div></div>
 <div class="card" id="room" style="display:none"><div class="dim" id="role"></div><div class="code" id="rcode" style="text-align:center"></div>
 <h3>ผู้เล่นในห้อง</h3><div id="roster"></div>
 <h3>แชต</h3><div class="log" id="chat" style="height:150px"></div>
 <div class="row" style="margin-top:6px"><input id="msg" style="flex:1" placeholder="พิมพ์ข้อความ"><button id="send">ส่ง</button></div>
-<div id="hostTools" style="display:none;margin-top:10px"><button class="ok" id="start">เริ่มเกม (Host เป็น GM)</button> <button id="saveRoom">ส่งออกเซฟห้อง</button></div></div>
+<div id="hostTools" style="display:none;margin-top:10px"><button class="ok" id="start">เริ่มเกม (Host เป็น GM)</button> <button id="endact">จบ Act · ส่งตัวละครกลับ</button> <button id="saveRoom">ส่งออกเซฟห้อง</button></div></div>
 </main>
-<script src="js/common.js"></script>
+<script src="js/common.js"></script><script src="js/vault.js"></script>
 <script>
 // ห้อง = PeerJS id "ssail-v1-<เลข4หลัก>"  (ใช้โบรกเกอร์ฟรีของ PeerJS เพื่อจับคู่เท่านั้น ข้อมูลเกมส่งตรงระหว่างเครื่อง)
-const PFX="ssail-v1-";let peer,code,isHost=false,conns=new Map(),players=[],me="";
+const PFX="ssail-v1-";let peer,code,isHost=false,conns=new Map(),players=[],me="",camp=null,myChar=null;
+$("#jchar").innerHTML=`<option value="">— เข้าร่วมโดยไม่มีตัวละคร (ผู้ชม/ทดลอง) —</option>`+Vault.all().filter(c=>!c.lock).map(c=>`<option value="${c.cid}">${esc(c.name)} · Lv${c.level}</option>`).join("");
 const log=t=>{const d=document.createElement("div");d.textContent=t;$("#chat").appendChild(d);$("#chat").scrollTop=1e9;};
 const showRoom=()=>{$("#choose").style.display="none";$("#room").style.display="block";$("#rcode").textContent=code;};
 function drawRoster(){$("#roster").innerHTML=players.map(p=>`<span class="tag">${p.host?"👑 ":""}${esc(p.name)}</span>`).join("");}
-function hostSaveRoom(){const k="ssail_room_"+code;try{localStorage.setItem(k,JSON.stringify({code,players,log:$("#chat").innerText,updated:Date.now()}));}catch(e){}}
+function hostSaveRoom(){if(camp){camp.log=$("#chat").innerText.split("\n").slice(-200);Campaign.put(camp);}const k="ssail_room_"+code;try{localStorage.setItem(k,JSON.stringify({code,players,log:$("#chat").innerText,updated:Date.now()}));}catch(e){}}
 function broadcast(m){conns.forEach(c=>c.open&&c.send(m));}
 $("#bHost").onclick=()=>{
   const name=prompt("ชื่อของคุณ (Host)","GM");if(!name)return;me=name;isHost=true;
   const tryOpen=n=>{ code=String(1000+Math.floor(Math.random()*9000)); peer=new Peer(PFX+code);
-    peer.on("open",()=>{players=[{name:me,host:true}];showRoom();$("#role").textContent="คุณคือ Host — บอกเลขห้องให้เพื่อน";$("#hostTools").style.display="block";drawRoster();hostSaveRoom();});
+    peer.on("open",()=>{players=[{name:me,host:true}];camp=Campaign.create("ห้อง "+code,me,"multi");showRoom();$("#role").textContent="คุณคือ Host — บอกเลขห้องให้เพื่อน";$("#hostTools").style.display="block";drawRoster();hostSaveRoom();});
     peer.on("error",e=>{if(e.type==="unavailable-id"&&n<8){peer.destroy();tryOpen(n+1);}else $("#err").textContent="สร้างห้องไม่สำเร็จ: "+e.type;});
     peer.on("connection",c=>{
       c.on("data",m=>{
-        if(m.t==="hello"){const nm=(m.name||"ผู้เล่น").slice(0,20);conns.set(c.peer,c);c._name=nm;players.push({name:nm});broadcast({t:"roster",players});drawRoster();log(`${nm} เข้าห้อง`);hostSaveRoom();}
+        if(m.t==="hello"){const nm=(m.name||"ผู้เล่น").slice(0,20);conns.set(c.peer,c);c._name=nm;players.push({name:nm});if(m.char){Campaign.addMember(camp,nm,m.char);log(`  ↳ ${nm} นำ ${m.char.name} เข้าร่วม`);}broadcast({t:"roster",players});drawRoster();log(`${nm} เข้าห้อง`);hostSaveRoom();}
+        if(m.t==="rebase"){Campaign.addMember(camp,c._name,m.char);}
         if(m.t==="chat"){const l=`${c._name}: ${m.text}`;log(l);broadcast({t:"chat",text:l});hostSaveRoom();}
       });
       c.on("close",()=>{conns.delete(c.peer);players=players.filter(p=>p.name!==c._name);broadcast({t:"roster",players});drawRoster();log(`${c._name} ออกจากห้อง`);});
@@ -45,13 +48,21 @@ $("#bJoin").onclick=()=>{
   $("#err").textContent="กำลังเชื่อมต่อ...";peer=new Peer();
   peer.on("open",()=>{const c=peer.connect(PFX+code,{reliable:true});conns.set("host",c);
     const to=setTimeout(()=>$("#err").textContent="ไม่พบห้อง ตรวจเลขห้อง หรือให้ Host เปิดหน้าไว้",8000);
-    c.on("open",()=>{clearTimeout(to);c.send({t:"hello",name:me});showRoom();$("#role").textContent="คุณเป็นผู้เล่น";});
-    c.on("data",m=>{if(m.t==="roster"){players=m.players;drawRoster();}if(m.t==="chat")log(m.text);if(m.t==="start")location.href="play.html?mode=mp&room="+code+"&name="+encodeURIComponent(me);});
+    const cid=$("#jchar").value;myChar=cid?Vault.checkout(cid,code):null;
+    c.on("open",()=>{clearTimeout(to);c.send({t:"hello",name:me,char:myChar});showRoom();$("#role").textContent="คุณเป็นผู้เล่น";});
+    c.on("data",m=>{if(m.t==="roster"){players=m.players;drawRoster();}if(m.t==="chat")log(m.text);if(m.t==="checkin"&&myChar){const r=Vault.checkin(m.char,"จบ Act");myChar=Vault.checkout(m.char.cid,code);c.send({t:"rebase",char:myChar});log(r.conflict?"⚠ ตัวละครชนกับเวอร์ชันในคลัง เก็บเป็นสำเนาแยกให้แล้ว":"✔ อัปเดตตัวละครเข้าคลังของคุณแล้ว (จบ Act)");}
+      if(m.t==="start")location.href="play.html?mode=mp&room="+code+"&name="+encodeURIComponent(me);});
     c.on("close",()=>log("⚠ หลุดจากห้อง (Host ปิดหน้า?)"));});
   peer.on("error",e=>$("#err").textContent="เชื่อมต่อไม่สำเร็จ: "+e.type);};
 $("#send").onclick=()=>{const t=$("#msg").value.trim();if(!t)return;$("#msg").value="";
   if(isHost){const l=`${me}: ${t}`;log(l);broadcast({t:"chat",text:l});hostSaveRoom();}else conns.get("host").send({t:"chat",text:t});};
 $("#msg").onkeydown=e=>e.key==="Enter"&&$("#send").click();
 $("#start").onclick=()=>{hostSaveRoom();broadcast({t:"start"});location.href="play.html?mode=mp&room="+code+"&host=1";};
-$("#saveRoom").onclick=()=>Saves.exportFile({id:"room"+code,name:"ห้อง"+code,mode:"multi",state:{players,chat:$("#chat").innerText}});
+$("#endact").onclick=()=>{if(!confirm("จบ Act "+camp.act+" และส่งตัวละครกลับผู้เล่นทุกคน?"))return;
+  const out=Campaign.finishAct(camp);let miss=[];
+  out.forEach(o=>{const c=[...conns.values()].find(x=>x._name===o.owner);if(c&&c.open)c.send({t:"checkin",char:o.char});else miss.push(o);});
+  log(`จบ Act ${camp.act-1} ส่งตัวละครแล้ว ${out.length-miss.length} ตัว`);
+  if(miss.length){alert("มีผู้เล่นที่ไม่ได้ออนไลน์ ระบบจะดาวน์โหลดไฟล์ตัวละครให้ นำไปให้เขากด 'นำเข้า' ในหน้า ตัวละครของฉัน");miss.forEach(o=>Saves.exportFile({...o.char,id:o.char.cid,state:{}}));}
+  hostSaveRoom();};
+$("#saveRoom").onclick=()=>Saves.exportFile({...camp,id:camp.id,name:camp.title,state:{}});
 </script></body></html>

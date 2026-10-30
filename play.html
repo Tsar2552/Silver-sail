@@ -387,15 +387,22 @@ function wiki(){
 }
 load().catch(e=>{document.body.insertAdjacentHTML("afterbegin",`<pre style="color:#f88;padding:12px">โหลดข้อมูลไม่ได้: ${e}\nถ้าเปิดไฟล์ตรงๆ ให้รัน: python3 -m http.server แล้วเปิด http://localhost:8000</pre>`);});
 </script>
+<script src="js/vault.js"></script>
 <script>
-// เซฟแบบเบื้องต้น: ผูกกับ ?save=<id> (เล่นคนเดียว) · ปุ่ม 💾 เก็บบันทึกของ GM และเวลา
-(function(){const K="ssail_saves_v1",rd=()=>{try{return JSON.parse(localStorage.getItem(K)||"[]")}catch(e){return[]}},Saves={get:id=>rd().find(x=>x.id===id),update:(id,st)=>{try{localStorage.setItem(K,JSON.stringify(rd().map(x=>x.id===id?{...x,state:st,updated:Date.now()}:x)))}catch(e){alert("บันทึกไม่ได้")}}};const q=new URLSearchParams(location.search),sid=q.get("save");
- const h=document.querySelector("header");const b=document.createElement("button");b.textContent="💾 บันทึก";
- const tag=document.createElement("span");tag.className="dim";h.appendChild(b);h.appendChild(tag);
- if(q.get("mode")==="mp")tag.textContent=q.get("host")?"ห้อง "+q.get("room")+" · คุณเป็น Host/GM":"ห้อง "+q.get("room")+" · ผู้เล่น (โหมดดูหน้าจอ GM ที่แชร์)";
- const sv=sid&&Saves.get(sid);if(sv)tag.textContent="เซฟ: "+sv.name;
- b.onclick=()=>{if(!sid){alert("โหมดนี้ไม่มีช่องเซฟ (เปิดจากเมนู → เริ่มเกม → เล่นคนเดียว)");return;}
-  Saves.update(sid,{...(Saves.get(sid)||{}).state,savedAt:Date.now(),log:(document.querySelector(".log")||{}).innerText||""});tag.textContent="บันทึกแล้ว "+new Date().toLocaleTimeString("th-TH");};})();
+// header: เก็บตัวละครเข้าคลัง + บันทึกเซฟเนื้อเรื่อง (?camp=<id>)
+(function(){const q=new URLSearchParams(location.search),kid=q.get("camp");
+ const h=document.querySelector("header"),tag=document.createElement("span");tag.className="dim";
+ const mk=(t,f)=>{const b=document.createElement("button");b.textContent=t;b.onclick=f;h.appendChild(b);return b;};
+ mk("🧍 เก็บตัวละครเข้าคลัง",()=>{
+   if(typeof C==="undefined"||!C||!C.confirmed){alert("สร้างตัวละครและกด 'ยืนยัน' ในแท็บสร้างตัวละครก่อน");return;}
+   const nm=prompt("ชื่อตัวละคร","ผู้กล้า");if(!nm)return;
+   const c=Vault.create({name:nm,slots:C.slots,stats:charStats(C.slots)});tag.textContent="เก็บ "+c.name+" เข้าคลังแล้ว";});
+ mk("💾 บันทึกเซฟ",()=>{const k=kid&&Campaign.get(kid);if(!k){alert("ไม่ได้เปิดจากเซฟเนื้อเรื่อง (เมนู → เริ่มเกม)");return;}
+   k.log=((document.querySelector(".log")||{}).innerText||"").split("\n").slice(-200);Campaign.snapshot(k,"บันทึกเอง");tag.textContent="บันทึกแล้ว "+new Date().toLocaleTimeString("th-TH");});
+ h.appendChild(tag);
+ const k=kid&&Campaign.get(kid);
+ if(k)tag.textContent=`${k.title} · Act ${k.act}`+(k.kind==="solo"?" · เล่นคนเดียว":" · ห้อง Host");
+ else if(q.get("mode")==="mp")tag.textContent="ห้อง "+q.get("room")+(q.get("host")?" · Host/GM":" · ผู้เล่น");})();
 </script>
 </body>
 </html>

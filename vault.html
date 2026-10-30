@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ตัวละครของฉัน · ใบเรือเงิน</title><link rel="stylesheet" href="css/style.css"></head>
+<body><a class="back" href="index.html">← เมนูหลัก</a>
+<main style="max-width:720px"><h2 style="color:var(--gold)">ตัวละครของฉัน</h2>
+<p class="dim">คลังส่วนตัวเก็บในเบราว์เซอร์นี้ ตัวละครจะถูก "เช็กเอาต์สำเนา" ไปเล่นแต่ละเนื้อเรื่อง แล้วกลับมาอัปเดตเมื่อจบ Act · สำรองเป็นไฟล์ไว้เสมอ</p>
+<div class="row" style="margin-bottom:10px"><a href="play.html"><button class="ok">+ สร้างตัวละครใหม่ (ไปหน้าสร้าง)</button></a>
+<label class="dim">นำเข้าไฟล์: <input type="file" id="imp" accept=".json" multiple></label></div>
+<div id="list"></div></main>
+<script src="js/common.js"></script><script src="js/vault.js"></script>
+<script>
+function draw(){const l=Vault.all();
+ $("#list").innerHTML=l.length?l.map(c=>`<div class="card"><div class="row" style="align-items:center"><div style="flex:1"><b>${esc(c.name)}</b> <span class="tag">Lv ${c.level}</span><span class="tag">rev ${c.rev}</span>
+ ${c.lock?`<span class="tag" style="color:var(--red)">กำลังเล่นห้อง ${esc(c.lock.room)}</span>`:""}
+ <div class="dim">${esc(c.slots?.race?.th||c.slots?.race||"")} ${esc(c.slots?.class?.th||c.slots?.class||"")} · ${c.gas} กัส · เล่นแล้ว ${c.history.length} Act</div></div>
+ <button data-a="ex" data-i="${c.cid}">ส่งออก</button>${c.lock?`<button data-a="ul" data-i="${c.cid}">ปลดล็อก</button>`:""}<button data-a="del" data-i="${c.cid}">ลบ</button></div></div>`).join(""):'<div class="dim">ยังไม่มีตัวละคร</div>';
+ $$("#list button").forEach(b=>b.onclick=()=>{const id=b.dataset.i,a=b.dataset.a,c=Vault.get(id);
+  if(a==="ex")Saves.exportFile({...c,id:c.cid,state:{}});
+  if(a==="ul"&&confirm("ปลดล็อก? (ถ้าห้องเดิมยังเล่นอยู่ ผลอาจชนกัน แต่ระบบจะเก็บสำเนาให้ ไม่ทำของหาย)")){Vault.unlock(id);draw();}
+  if(a==="del"&&confirm("ลบตัวละครนี้ถาวร?")){Vault.remove(id);draw();}});}
+$("#imp").onchange=async e=>{for(const f of e.target.files){try{const c=JSON.parse(await f.text());if(!c.cid)throw 0;delete c.id;delete c.state;Vault.put({...c,lock:null});}catch(x){alert("ไฟล์ไม่ใช่ตัวละคร: "+f.name)}}draw();};
+draw();
+</script></body></html>
